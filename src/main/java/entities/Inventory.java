@@ -16,11 +16,6 @@ public class Inventory {
         this.items = items;
     }
 
-    public Inventory() {
-        this.name = "Untitled";
-        this.items = new ArrayList<Item>();
-    }
-
     public String getName() {
         return name;
     }
