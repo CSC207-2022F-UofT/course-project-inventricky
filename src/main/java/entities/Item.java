@@ -1,6 +1,6 @@
 package entities;
 
-import java.util.ArrayList;
+import java.io.File;
 
 public abstract class Item {
 
@@ -15,7 +15,7 @@ public abstract class Item {
     private int sellPrice; // selling price of item (per item or price per kg)
     private int caseQuantity; // quantity of item per case
 
-    private ArrayList<String> itemHistory; // string ArrayList of changes to item quantity
+    private File itemHistory; // text file of changes to item quantity
 
     public String getName() { return name; }
 
@@ -28,16 +28,22 @@ public abstract class Item {
     }
 
     public void setUnit(boolean unit) {
-        isUnit = unit;
+        this.isUnit = unit;
     }
 
     public double getQuantity() {
         return quantity;
     }
 
+    public void setQuantity(double quantity) { this.quantity = quantity; }
+
     public double getQuantityBought() { return quantityBought; }
 
+    public void setQuantityBought(double quantity) { this.quantityBought = quantity; }
+
     public double getQuantitySold() { return quantitySold; }
+
+    public void setQuantitySold(double quantity) { this.quantitySold = quantity; }
 
     public int getBuyPrice() {
         return buyPrice;
@@ -62,18 +68,6 @@ public abstract class Item {
     public void setCaseQuantity(int caseQuantity) {
         this.caseQuantity = caseQuantity;
     }
-
-    // TO BE IMPLEMENTED
-
-    public abstract void changeQuantity(); // change item quantity
-
-    public abstract void setBarcode(); // set item barcode using barcode generator
-
-    public abstract void orderItem(); // order more stock for item
-
-    public abstract void remindOrder(); // remind user to order more stock for item
-
-
 
 }
 
