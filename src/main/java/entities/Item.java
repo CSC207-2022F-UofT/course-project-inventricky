@@ -1,43 +1,41 @@
 package entities;
 
-import java.util.ArrayList;
+import java.io.File;
 
 public abstract class Item {
 
-    // Instance Variables
+    //Instance Variables
     private String name; // product name
     private int barcode; // product barcode
-    private boolean isUnit; // true if product is quantified per unit
+
+    private boolean isWeight; // true if product is quantified by weight
     private double quantity; // quantity of product in on hand in inventory (double type if measured in kg)
-    private double quantityBought; // quantity of product bought so far (double type if measured in kg)
-    private double quantitySold; // quantity of product sold so far (double type if measured in kg)
     private int buyPrice; // buying price of item (per item or price per kg)
     private int sellPrice; // selling price of item (per item or price per kg)
     private int caseQuantity; // quantity of item per case
 
-    private ArrayList<String> itemHistory; // string ArrayList of changes to item quantity
+    private int department; //Department # of item
 
+    //Getters and Setters
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
 
     public int getBarcode() { return barcode; }
 
-    public boolean isUnit() {
-        return isUnit;
+    public void setBarcode(int barcode) { this.barcode = barcode; }
+
+    public void setIsWeight(boolean weight) {
+        this.isWeight = weight;
     }
 
-    public void setUnit(boolean unit) {
-        isUnit = unit;
-    }
+    public boolean getIsWeight() { return isWeight; }
 
     public double getQuantity() {
         return quantity;
     }
 
-    public double getQuantityBought() { return quantityBought; }
-
-    public double getQuantitySold() { return quantitySold; }
+    public void setQuantity(double quantity) { this.quantity = quantity; }
 
     public int getBuyPrice() {
         return buyPrice;
@@ -63,17 +61,35 @@ public abstract class Item {
         this.caseQuantity = caseQuantity;
     }
 
-    // TO BE IMPLEMENTED
+    public int getDepartment() { return department; }
 
-    public abstract void changeQuantity(); // change item quantity
+    public void setDepartment() { this.department = department; }
 
-    public abstract void setBarcode(); // set item barcode using barcode generator
+    //Constructor
 
-    public abstract void orderItem(); // order more stock for item
+    //For Order
+    public Item(String name, int barcode, boolean isWeight, double quantity, int buyPrice, int sellPrice, int caseQuantity, int department) {
+        this.name = name;
+        this.barcode = barcode;
+        this.department = department;
+        this.isWeight = isWeight;
+        this.quantity = quantity;
+        this.buyPrice = buyPrice;
+        this.sellPrice = sellPrice;
+        this.caseQuantity = caseQuantity;
+    }
 
-    public abstract void remindOrder(); // remind user to order more stock for item
-
-
+    //For inventory item
+    public Item(String name, boolean isWeight, double quantity, int buyPrice, int sellPrice, int caseQuantity, int department) {
+        this.name = name;
+        this.barcode = BarcodeGenerator.generateBarcode(department);
+        this.department = department;
+        this.isWeight = isWeight;
+        this.quantity = quantity;
+        this.buyPrice = buyPrice;
+        this.sellPrice = sellPrice;
+        this.caseQuantity = caseQuantity;
+    }
 
 }
 
