@@ -2,15 +2,15 @@ package entities;
 import java.util.ArrayList;
 
 public class Inventory {
-    private ArrayList<Item> items;
+    private ArrayList<InventoryItem> items;
     private String name;
 
     public Inventory(String name) {
         this.name = name;
-        this.items = new ArrayList<Item>();
+        this.items = new ArrayList<InventoryItem>();
     }
 
-    public Inventory(String name, ArrayList<Item> items) {
+    public Inventory(String name, ArrayList<InventoryItem> items) {
         this.name = name;
         this.items = items;
     }
@@ -19,7 +19,7 @@ public class Inventory {
         return name;
     }
 
-    public ArrayList<Item> getItems() {
+    public ArrayList<InventoryItem> getItems() {
         return items;
     }
 
@@ -27,7 +27,7 @@ public class Inventory {
         this.name = name;
     }
 
-    public void setItems(ArrayList<Item> items) {
+    public void setItems(ArrayList<InventoryItem> items) {
         this.items = items;
     }
 }
