@@ -53,6 +53,7 @@ public class Order extends Item{
         return this.cases;
     }
 
+
     public String checkShipmentStatus(){
         if(this.date_received.isEmpty()){
             return "Inbound Order";
