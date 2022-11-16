@@ -1,8 +1,10 @@
 package entities;
 
 import java.io.File;
+import java.io.Serializable;
+import java.util.HashMap;
 
-public abstract class InventoryItem extends Item {
+public abstract class InventoryItem extends Item implements Serializable {
 
     //Instance Variables
     private double quantityBought; // quantity of product bought so far (double type if measured in kg)
@@ -38,9 +40,9 @@ public abstract class InventoryItem extends Item {
 
     //Constructor
 
-    public InventoryItem(String name, boolean isUnit, double quantity, int buyPrice,
+    public InventoryItem(String name, boolean isWeight, double quantity, int buyPrice,
                          int sellPrice, int caseQuantity, int department, double quantityBought, double quantitySold) {
-        super(name, isUnit, quantity, buyPrice, sellPrice, caseQuantity, department);
+        super(name, isWeight, quantity, buyPrice, sellPrice, caseQuantity, department);
         this.quantityBought = quantityBought;
         this.quantitySold = quantitySold;
         this.itemHistory = new File("path to be confirmed"); //TODO Figure out where to put files

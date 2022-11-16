@@ -1,6 +1,13 @@
 package entities;
 
+import java.util.HashMap;
+import java.util.List;
+
 public abstract class Item {
+
+    //Class Variables
+    //Shared mapping of departments to barcodes used by item constructor
+    private static HashMap<Integer, List<Integer>> barcodes = BarcodeGenerator.readBarcodes("src/main/java/exports/testbarcodes.csv");
 
     //Instance Variables
     private String name; // product name
@@ -8,34 +15,46 @@ public abstract class Item {
 
     private boolean isWeight; // true if product is quantified by weight
     private double quantity; // quantity of product in on hand in inventory (double type if measured in kg)
-    private int buyPrice; // buying price of item (per item or price per kg)
-    private int sellPrice; // selling price of item (per item or price per kg)
+    private double buyPrice; // buying price of item (per item or price per kg)
+    private double sellPrice; // selling price of item (per item or price per kg)
     private int caseQuantity; // quantity of item per case
 
     private int department; //Department # of item
 
     //Getters and Setters
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public int getBarcode() { return barcode; }
+    public int getBarcode() {
+        return barcode;
+    }
 
-    public void setBarcode(int barcode) { this.barcode = barcode; }
+    public void setBarcode(int barcode) {
+        this.barcode = barcode;
+    }
 
     public void setIsWeight(boolean weight) {
         this.isWeight = weight;
     }
 
-    public boolean getIsWeight() { return isWeight; }
+    public boolean getIsWeight() {
+        return isWeight;
+    }
 
     public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) { this.quantity = quantity; }
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
 
-    public int getBuyPrice() {
+    public double getBuyPrice() {
         return buyPrice;
     }
 
@@ -43,7 +62,7 @@ public abstract class Item {
         this.buyPrice = buyPrice;
     }
 
-    public int getSellPrice() {
+    public double getSellPrice() {
         return sellPrice;
     }
 
@@ -59,9 +78,13 @@ public abstract class Item {
         this.caseQuantity = caseQuantity;
     }
 
-    public int getDepartment() { return department; }
+    public int getDepartment() {
+        return department;
+    }
 
-    public void setDepartment() { this.department = department; }
+    public void setDepartment() {
+        this.department = department;
+    }
 
     //Constructor
 
@@ -78,9 +101,9 @@ public abstract class Item {
     }
 
     //For inventory item
-    public Item(String name, boolean isWeight, double quantity, int buyPrice, int sellPrice, int caseQuantity, int department) {
+    public Item(String name, boolean isWeight, double quantity, double buyPrice, double sellPrice, int caseQuantity, int department) {
         this.name = name;
-        this.barcode = BarcodeGenerator.generateBarcode(department);
+        this.barcode = BarcodeGenerator.generateBarcode(department, barcodes);
         this.department = department;
         this.isWeight = isWeight;
         this.quantity = quantity;
