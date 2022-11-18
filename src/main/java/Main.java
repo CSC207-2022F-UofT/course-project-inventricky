@@ -1,5 +1,6 @@
 import entities.BarcodeGenerator;
 import entities.BarcodeGenerator2;
+import entities.BarcodeManagerClean;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -10,7 +11,8 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello");
         HashMap m = BarcodeGenerator.readBarcodes("src/main/java/exports/testbarcodes.csv");
-        BarcodeGenerator.removeBarcode(3010, m, "src/main/java/exports/testbarcodes.csv");
+        BarcodeManagerClean.generateBarcode(11, m, "src/main/java/exports/testbarcodes.csv");
+        System.out.println(m);
 //        System.out.println(Integer.parseInt("01001"));
 //        System.out.println(Integer.toString(Integer.parseInt("01001", 10)));
 //        String[] a = new String[3];
