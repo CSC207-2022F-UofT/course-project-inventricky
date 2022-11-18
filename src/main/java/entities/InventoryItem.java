@@ -2,9 +2,8 @@ package entities;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.HashMap;
 
-public abstract class InventoryItem extends Item implements Serializable {
+public class InventoryItem extends Item implements Serializable {
 
     //Instance Variables
     private double quantityBought; // quantity of product bought so far (double type if measured in kg)
@@ -40,8 +39,8 @@ public abstract class InventoryItem extends Item implements Serializable {
 
     //Constructor
 
-    public InventoryItem(String name, boolean isWeight, double quantity, int buyPrice,
-                         int sellPrice, int caseQuantity, int department, double quantityBought, double quantitySold) {
+    public InventoryItem(String name, boolean isWeight, double quantity, double buyPrice,
+                         double sellPrice, int caseQuantity, String department, double quantityBought, double quantitySold) {
         super(name, isWeight, quantity, buyPrice, sellPrice, caseQuantity, department);
         this.quantityBought = quantityBought;
         this.quantitySold = quantitySold;
@@ -51,8 +50,8 @@ public abstract class InventoryItem extends Item implements Serializable {
     //TODO Implement
 
 
-    public abstract void orderItem(); // order more stock for item
-
-    public abstract void remindOrder(); // remind user to order more stock for item
+//    public abstract void orderItem(); // order more stock for item
+//
+//    public abstract void remindOrder(); // remind user to order more stock for item
 
 }

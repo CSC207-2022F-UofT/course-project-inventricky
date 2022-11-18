@@ -9,11 +9,11 @@ public abstract class Item {
     private static final String file = "src/main/java/exports/testbarcodes.csv"; //file path of barcode csv
 
     //Shared mapping of departments to barcodes used by item constructor
-    private static HashMap<Integer, List<Integer>> barcodes = BarcodeGenerator.readBarcodes(file);
+    private static HashMap<String, List<String>> barcodes = BarcodeMapReader.readBarcodes(file);
 
     //Instance Variables
     private String name; // product name
-    private int barcode; // product barcode
+    private String barcode; // product barcode
 
     private boolean isWeight; // true if product is quantified by weight
     private double quantity; // quantity of product in on hand in inventory (double type if measured in kg)
@@ -21,7 +21,7 @@ public abstract class Item {
     private double sellPrice; // selling price of item (per item or price per kg)
     private int caseQuantity; // quantity of item per case
 
-    private int department; //Department # of item
+    private String department; //Department # of item
 
     //Getters and Setters
     public String getName() {
@@ -32,11 +32,11 @@ public abstract class Item {
         this.name = name;
     }
 
-    public int getBarcode() {
+    public String getBarcode() {
         return barcode;
     }
 
-    public void setBarcode(int barcode) {
+    public void setBarcode(String barcode) {
         this.barcode = barcode;
     }
 
@@ -80,7 +80,7 @@ public abstract class Item {
         this.caseQuantity = caseQuantity;
     }
 
-    public int getDepartment() {
+    public String getDepartment() {
         return department;
     }
 
@@ -90,8 +90,8 @@ public abstract class Item {
 
     //Constructor
 
-    //For Order
-    public Item(String name, int barcode, boolean isWeight, double quantity, int buyPrice, int sellPrice, int caseQuantity, int department) {
+    //For Order and testing
+    public Item(String name, String barcode, boolean isWeight, double quantity, double buyPrice, double sellPrice, int caseQuantity, String department) {
         this.name = name;
         this.barcode = barcode;
         this.department = department;
@@ -103,10 +103,10 @@ public abstract class Item {
     }
 
     //For inventory item
-    public Item(String name, boolean isWeight, double quantity, double buyPrice, double sellPrice, int caseQuantity, int department) {
+    public Item(String name, boolean isWeight, double quantity, double buyPrice, double sellPrice, int caseQuantity, String department) {
         this.name = name;
         this.barcode = BarcodeGenerator.generateBarcode(department, barcodes, file);
-        barcodes = BarcodeGenerator.readBarcodes(file);
+        barcodes = BarcodeMapReader.readBarcodes(file);
         this.department = department;
         this.isWeight = isWeight;
         this.quantity = quantity;
