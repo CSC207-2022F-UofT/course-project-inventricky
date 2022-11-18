@@ -6,8 +6,10 @@ import java.util.List;
 public abstract class Item {
 
     //Class Variables
+    private static final String file = "src/main/java/exports/testbarcodes.csv"; //file path of barcode csv
+
     //Shared mapping of departments to barcodes used by item constructor
-    private static HashMap<Integer, List<Integer>> barcodes = BarcodeGenerator.readBarcodes("src/main/java/exports/testbarcodes.csv");
+    private static HashMap<Integer, List<Integer>> barcodes = BarcodeGenerator.readBarcodes(file);
 
     //Instance Variables
     private String name; // product name
@@ -103,7 +105,8 @@ public abstract class Item {
     //For inventory item
     public Item(String name, boolean isWeight, double quantity, double buyPrice, double sellPrice, int caseQuantity, int department) {
         this.name = name;
-        this.barcode = BarcodeGenerator.generateBarcode(department, barcodes);
+        this.barcode = BarcodeGenerator.generateBarcode(department, barcodes, file);
+        barcodes = BarcodeGenerator.readBarcodes(file);
         this.department = department;
         this.isWeight = isWeight;
         this.quantity = quantity;
