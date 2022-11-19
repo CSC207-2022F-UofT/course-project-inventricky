@@ -2,6 +2,7 @@ package entities;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class InventoryItem extends Item implements Serializable {
 
@@ -10,7 +11,7 @@ public class InventoryItem extends Item implements Serializable {
 
     private double quantitySold; // quantity of product sold so far (double type if measured in kg)
 
-    private File itemHistory; // text file of changes to item quantity
+    private ArrayList<String> itemHistory; // List of changes to item quantity
 
     public double getQuantityBought() {
         return quantityBought;
@@ -29,11 +30,11 @@ public class InventoryItem extends Item implements Serializable {
         this.quantitySold = quantitySold;
     }
 
-    public File getItemHistory() {
+    public ArrayList<String> getItemHistory() {
         return itemHistory;
     }
 
-    public void setItemHistory(File itemHistory) {
+    public void setItemHistory(ArrayList itemHistory) {
         this.itemHistory = itemHistory;
     }
 
@@ -44,7 +45,7 @@ public class InventoryItem extends Item implements Serializable {
         super(name, isWeight, quantity, buyPrice, sellPrice, caseQuantity, department);
         this.quantityBought = quantityBought;
         this.quantitySold = quantitySold;
-        this.itemHistory = new File("path to be confirmed"); //TODO Figure out where to put files
+        this.itemHistory = new ArrayList<String>(); //TODO Figure out where to put files
     }
 
     //TODO Implement
