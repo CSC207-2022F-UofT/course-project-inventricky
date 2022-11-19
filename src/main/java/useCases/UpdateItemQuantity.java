@@ -9,7 +9,7 @@ public class UpdateItemQuantity {
 
     }
     /**
-     * Update quantity of given item, with given reason. Save changes in an item log.
+     * Update quantity of given item, with given reason. Save changes in a ArrayList of Strings.
      *
      * @param barcode    barcode of item to be updated
      * @param newQuantity new item quantity

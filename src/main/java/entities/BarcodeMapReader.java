@@ -12,6 +12,13 @@ import java.util.List;
 public class BarcodeMapReader {
     private static final String COMMA_DELIMITER = ", ";
 
+    /**
+     * Takes in a csv file of departments mapped to barcodes and stores it in a HashMap.
+     * Returns empty HashMap if csv file is empty.
+     *
+     * @param file      Filepath of csv to store barcode map
+     * @return          Mapping of departments to corresponding barcodes
+     */
     public static HashMap<String, List<String>> readBarcodes(String file) {
 
         HashMap<String, List<String>> barcodeMap = new HashMap<>();

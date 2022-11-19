@@ -11,6 +11,15 @@ public class BarcodeRemover {
 
     private static final String COMMA_DELIMITER = ", ";
 
+    /**
+     *  Removes a barcode from mapping of departments to barcode and
+     *  csv storing this mapping. Should only be called when InventoryItem is being removed
+     *  from inventory.
+     *
+     * @param barcode       Barcode to be removed from mapping and csv
+     * @param barcodes      Current barcode mapping of item
+     * @param file          Filepath of csv containing barcode mapping
+     */
     public static void removeBarcode(String barcode, HashMap<String, List<String>> barcodes, String file) {
 
         String department = barcode.substring(0, 2);

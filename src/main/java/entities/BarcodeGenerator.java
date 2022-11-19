@@ -8,6 +8,16 @@ public class BarcodeGenerator {
 
     private static final String COMMA_DELIMITER = ", ";
 
+    /**
+     *  Generates a barcode based on department number. Stores
+     *  department and barcode mapping in a map and csv file. Item must not be in the inventory.
+     *  Should be called only when InventoryItem constructed.
+     *
+     * @param department        String representation of department number of item.
+     * @param barcodes          Current barcode mapping of item
+     * @param file              Filepath of csv to store barcode map
+     * @return                  String representation of barcode of item
+     */
     public static String generateBarcode(String department, HashMap<String, List<String>> barcodes, String file) {
 
 

@@ -23,9 +23,9 @@ public class Main {
                 "12",
                 100,
                 200);
-        UpdateItemQuantity.updateQty(banana, 1.43, "bought");
-        UpdateItemQuantity.updateQty(banana, 1.1, "sold");
-        UpdateItemQuantity.updateQty(banana, 0.1, "error");
+//        UpdateItemQuantity.updateQty(banana, 1.43, "bought");
+//        UpdateItemQuantity.updateQty(banana, 1.1, "sold");
+//        UpdateItemQuantity.updateQty(banana, 0.1, "error");
 
 
         System.out.println(banana.getItemHistory());
