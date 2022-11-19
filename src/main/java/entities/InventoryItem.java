@@ -1,8 +1,9 @@
 package entities;
 
 import java.io.File;
+import java.io.Serializable;
 
-public abstract class InventoryItem extends Item {
+public class InventoryItem extends Item implements Serializable {
 
     //Instance Variables
     private double quantityBought; // quantity of product bought so far (double type if measured in kg)
@@ -48,9 +49,5 @@ public abstract class InventoryItem extends Item {
 
     //TODO Implement
 
-
-    public abstract void orderItem(); // order more stock for item
-
-    public abstract void remindOrder(); // remind user to order more stock for item
 
 }
