@@ -1,59 +1,59 @@
 package entities.Ordering_Recieving;
 import entities.Item;
+
 public class Order extends Item{
-    private final int order_number;
-    private final String date_bought;
-    private final String estimated_date;
-    private String date_received;
+    private final int orderNumber;
+    private final String dateBought;
+    private final String estimatedDate;
+    private String dateReceived;
     private final String supplier;
     private final int cases;
 
-    public Order(String name, int barcode, boolean isWeight, double quantity, int buyPrice,
-                 int sellPrice, int caseQuantity, int department, int order_number, String datebought, String estimateddate,
+    public Order(String name, String barcode, boolean isWeight, double quantity, double buyPrice,
+                 double sellPrice, int caseQuantity, String department, int order_number, String date_bought, String estimated_date,
                  String supplier, int cases){
         super(name, barcode, isWeight, quantity, buyPrice, sellPrice, caseQuantity, department);
-        this.order_number = order_number;
-        this.date_bought = datebought;
-        this.estimated_date = estimateddate;
-        this.date_received = "";
+        this.orderNumber = order_number;
+        this.dateBought = date_bought;
+        this.estimatedDate = estimated_date;
+        this.dateReceived = "";
         this.supplier = supplier;
         this.cases = cases;
 
     }
 
-    public int getOrder_number(){return this.order_number;}
     public String getDateBought(){
-        return this.date_bought;
+        return this.dateBought;
     }
 
-    public void changeToReceived(String datereceived){
-        if(this.date_received.isEmpty()){
-            this.date_received = datereceived;
+    public void changeToReceived(String date_received){
+        if(this.dateReceived.isEmpty()){
+            this.dateReceived = date_received;
         }
     }
 
-    public double getOrderPrice(){
-        return this.getBuyPrice();
-    }
-
     public String getEstimatedDate(){
-        return this.estimated_date;
+        return this.estimatedDate;
     }
 
     public String getDateReceived(){
-        return this.date_received;
+        return this.dateReceived;
     }
 
     public String getSupplier(){
         return this.supplier;
     }
 
-    public int getOrderQuantity(){
+    public int getOrderCases(){
         return this.cases;
     }
 
+    public int getOrderNumber(){
+        return this.orderNumber;
+    }
+
     public String checkShipmentStatus(){
-        if(this.date_received.isEmpty()){
+        if(this.dateReceived.isEmpty()){
             return "Inbound Order";
         }
         else{
