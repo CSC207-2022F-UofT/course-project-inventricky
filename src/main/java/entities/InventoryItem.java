@@ -1,15 +1,17 @@
 package entities;
 
 import java.io.File;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public abstract class InventoryItem extends Item {
+public class InventoryItem extends Item implements Serializable {
 
     //Instance Variables
     private double quantityBought; // quantity of product bought so far (double type if measured in kg)
 
     private double quantitySold; // quantity of product sold so far (double type if measured in kg)
 
-    private File itemHistory; // text file of changes to item quantity
+    private ArrayList<String> itemHistory; // List of changes to item quantity
 
     public double getQuantityBought() {
         return quantityBought;
@@ -28,29 +30,29 @@ public abstract class InventoryItem extends Item {
         this.quantitySold = quantitySold;
     }
 
-    public File getItemHistory() {
+    public ArrayList<String> getItemHistory() {
         return itemHistory;
     }
 
-    public void setItemHistory(File itemHistory) {
+    public void setItemHistory(ArrayList itemHistory) {
         this.itemHistory = itemHistory;
     }
 
     //Constructor
 
-    public InventoryItem(String name, boolean isUnit, double quantity, int buyPrice,
-                         int sellPrice, int caseQuantity, int department, double quantityBought, double quantitySold) {
-        super(name, isUnit, quantity, buyPrice, sellPrice, caseQuantity, department);
+    public InventoryItem(String name, boolean isWeight, double quantity, double buyPrice,
+                         double sellPrice, int caseQuantity, String department, double quantityBought, double quantitySold) {
+        super(name, isWeight, quantity, buyPrice, sellPrice, caseQuantity, department);
         this.quantityBought = quantityBought;
         this.quantitySold = quantitySold;
-        this.itemHistory = new File("path to be confirmed"); //TODO Figure out where to put files
+        this.itemHistory = new ArrayList<String>(); //TODO Figure out where to put files
     }
 
     //TODO Implement
 
 
-    public abstract void orderItem(); // order more stock for item
-
-    public abstract void remindOrder(); // remind user to order more stock for item
+//    public abstract void orderItem(); // order more stock for item
+//
+//    public abstract void remindOrder(); // remind user to order more stock for item
 
 }
