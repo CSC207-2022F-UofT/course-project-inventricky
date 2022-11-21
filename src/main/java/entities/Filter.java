@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Filter {
 
@@ -10,38 +11,30 @@ public class Filter {
      * @param byWeight True if you want the items that are by weight, false if you want items that aren't by weight
      * @return array of items that are either by weight or aren't by weight, depending on byWeight
      */
-    public Item[] filterWeight(ArrayList<Item> items, boolean byWeight){
-        ArrayList<Item> returnList = new ArrayList<Item>();
-        for(Item item: items){
-            if(item.getIsWeight == byWeight){
+    public ArrayList<InventoryItem> filterByWeight(ArrayList<InventoryItem> items, boolean byWeight){
+        ArrayList<InventoryItem> returnList = new ArrayList<InventoryItem>();
+        for(InventoryItem item: items){
+            if(item.getIsWeight() == byWeight){
                 returnList.add(item);
             }
         }
-        Item[] returnArr = new Item[returnList.size()];
-        for(int i =0; i < returnList.size(); i++){
-            returnArr[i] = returnList.get(i);
-        }
-        return returnArr;
+        return returnList;
     }
 
     /**
      *
      * @param items Items that are being filtered.
-     * @param departmentNum What department you want to filter by
+     * @param department What department you want to filter by
      * @return array of items that are in the specified department
      */
-    public Item[] filterDepartment(ArrayList<Item> items, int departmentNum){
-        ArrayList<Item> returnList = new ArrayList<Item>();
-        for(Item item: items){
-            if(item.getDepartment == departmentNum){
+    public ArrayList<InventoryItem> filterDepartment(ArrayList<InventoryItem> items, String department){
+        ArrayList<InventoryItem> returnList = new ArrayList<InventoryItem>();
+        for(InventoryItem item: items){
+            if(Objects.equals(item.getDepartment(), department)){
                 returnList.add(item);
             }
         }
-        Item[] returnArr = new Item[returnList.size()];
-        for(int i =0; i < returnList.size(); i++){
-            returnArr[i] = returnList.get(i);
-        }
-        return returnArr;
+        return returnList;
     }
 
 

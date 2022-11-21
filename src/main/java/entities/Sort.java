@@ -1,6 +1,9 @@
 package entities;
 
+import entities.comparator.*;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Sort {
@@ -10,119 +13,95 @@ public class Sort {
 
     /**
      * @param items  The items to be sorted
-     * @return An array of items sorted by barcode number low to high.
+     * @param lowToHigh True if want to sort low to high, false if want to sort high to low
+     * @return The sorted items
      */
-    public Item[] sortBarcode(ArrayList<Item> items){
-        Item[] returnArr = new Item[items.size()];
-        List<Integer> barcodes = new ArrayList<Integer>(items.size());
-        for(int i = 0; i< items.size(); i++){
-            barcodes.set(i, items.get(i).getBarcode());
+    public ArrayList<InventoryItem> sortBarcode(ArrayList<InventoryItem> items, boolean lowToHigh){
+        if(lowToHigh) {
+            items.sort(new SortBarcode());
         }
-        for(int i=0; i< items.size(); i++){
-            returnArr[i] = items.get(SortArray(barcodes)[i]);
+        else{
+            items.sort(Collections.reverseOrder(new SortBarcode()));
         }
-        return returnArr;
+        return items;
     }
 
     /**
      * @param items  The items to be sorted
+     * @param alphabetical True if want to sort alphabetically, false if want to sort reverse alphabetically
      * @return An array of items sorted by name in alphabetical order.
      */
-    public Item[] sortName(ArrayList<Item> items){
-        Item[] returnArr = new Item[items.size()];
-        List<String> names = new ArrayList<String>(items.size());
-        for(int i = 0; i< items.size(); i++){
-            names.set(i, items.get(i).getName());
+    public ArrayList<InventoryItem> sortName(ArrayList<InventoryItem> items, boolean alphabetical){
+        if(alphabetical) {
+            items.sort(new SortName());
         }
-        for(int i=0; i< items.size(); i++){
-            returnArr[i] = items.get(SortArray(names)[i]);
+        else{
+            items.sort(Collections.reverseOrder(new SortName()));
         }
-        return returnArr;
+        return items;
     }
 
     /**
      * @param items  The items to be sorted
+     * @param lowToHigh True if want to sort low to high, false if want to sort high to low
      * @return An array of items sorted by quantity low to high
      */
-    public Item[] sortQuantity(ArrayList<Item> items){
-        Item[] returnArr = new Item[items.size()];
-        List<Double> quantities = new ArrayList<Double>(items.size());
-        for(int i = 0; i< items.size(); i++){
-            quantities.set(i, items.get(i).getQuantity());
+    public ArrayList<InventoryItem> sortQuantity(ArrayList<InventoryItem> items, boolean lowToHigh){
+        if(lowToHigh) {
+            items.sort(new SortQuantity());
         }
-        for(int i=0; i< items.size(); i++){
-            returnArr[i] = items.get(SortArray(quantities)[i]);
+        else{
+            items.sort(Collections.reverseOrder(new SortQuantity()));
         }
-        return returnArr;
+        return items;
     }
 
     /**
      * @param items  The items to be sorted
+     * @param lowToHigh True if want to sort low to high, false if want to sort high to low
      * @return An array of items sorted by buy price low to high.
      */
-    public Item[] sortBuyPrice(ArrayList<Item> items){
-        Item[] returnArr = new Item[items.size()];
-        List<Integer> prices = new ArrayList<Integer>(items.size());
-        for(int i = 0; i< items.size(); i++){
-            prices.set(i, items.get(i).getBuyPrice());
+    public ArrayList<InventoryItem> sortBuyPrice(ArrayList<InventoryItem> items, boolean lowToHigh){
+        if(lowToHigh) {
+            items.sort(new SortBuyPrice());
         }
-        for(int i=0; i< items.size(); i++){
-            returnArr[i] = items.get(SortArray(prices)[i]);
+        else{
+            items.sort(Collections.reverseOrder(new SortBuyPrice()));
         }
-        return returnArr;
+        return items;
     }
 
     /**
      * @param items  The items to be sorted
+     * @param lowToHigh True if want to sort low to high, false if want to sort high to low
      * @return An array of items sorted sell price low to high.
      */
-    public Item[] sortSellPrice(ArrayList<Item> items){
-        Item[] returnArr = new Item[items.size()];
-        List<Integer> prices = new ArrayList<Integer>(items.size());
-        for(int i = 0; i< items.size(); i++){
-            prices.set(i, items.get(i).getSellPrice());
+    public ArrayList<InventoryItem> sortSellPrice(ArrayList<InventoryItem> items, boolean lowToHigh){
+        if(lowToHigh) {
+            items.sort(new SortSellPrice());
         }
-        for(int i=0; i< items.size(); i++){
-            returnArr[i] = items.get(SortArray(prices)[i]);
+        else{
+            items.sort(Collections.reverseOrder(new SortSellPrice()));
         }
-        return returnArr;
+        return items;
     }
 
     /**
      * @param items  The items to be sorted
+     * @param lowToHigh True if want to sort low to high, false if want to sort high to low
      * @return An array of items sorted by case quantity low to high.
      */
-    public Item[] sortCaseQuantity(ArrayList<Item> items){
-        Item[] returnArr = new Item[items.size()];
-        List<Integer> quantities = new ArrayList<Integer>(items.size());
-        for(int i = 0; i< items.size(); i++){
-            quantities.set(i, items.get(i).getCaseQuantity());
+    public ArrayList<InventoryItem> sortCaseQuantity(ArrayList<InventoryItem> items, boolean lowToHigh){
+        if(lowToHigh) {
+            items.sort(new SortCaseQuantity());
         }
-        for(int i=0; i< items.size(); i++){
-            returnArr[i] = items.get(SortArray(quantities)[i]);
+        else{
+            items.sort(Collections.reverseOrder(new SortCaseQuantity()));
         }
-        return returnArr;
+        return items;
     }
 
-    //Returns an array such that comparables[return_arr[0]] <= comparables[return_arr[1]] <= ...
-    //Works for comparables as all strings or all doubles or all integers.
-    public <T extends Comparable<T>> int[] SortArray(List<T> comparables){
-        int[] return_arr = new int[comparables.size()];
-        for(int i = 0; i< comparables.size(); i++){
-            return_arr[i] = i;
-        }
-        for (int i = 1; i < comparables.size(); ++i) {
-            int key = return_arr[i];
-            int j = i - 1;
 
-            while (j >= 0 && comparables.get(return_arr[j]).compareTo(comparables.get(key)) > 0) {
-                return_arr[j + 1] = return_arr[j];
-                j = j - 1;
-            }
-            return_arr[j + 1] = key;
-        }
-        return return_arr;
-    }
 
 
 

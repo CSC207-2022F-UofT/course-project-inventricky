@@ -12,17 +12,15 @@ public class Search {
      * @param name what is being searched for
      * @return list of items in array containing name
      */
-    public Item[] searchResults(ArrayList<Item> items, String name){
-        ArrayList<Item> returnList = new ArrayList<Item>();
-        for(Item item: items){
-            if(item.getName().toLowerCase().contains(item.getName().toLowerCase())){
+    public ArrayList<InventoryItem> searchResults(ArrayList<InventoryItem> items, String name){
+        ArrayList<InventoryItem> returnList = new ArrayList<InventoryItem>();
+        for(InventoryItem item: items){
+            if(item.getName().toLowerCase().contains(name.toLowerCase()) ||
+            name.toLowerCase().contains(item.getName().toLowerCase())){
                 returnList.add(item);
             }
         }
-        Item[] returnArr = new Item[returnList.size()];
-        for(int i =0; i < returnList.size(); i++){
-            returnArr[i] = returnList.get(i);
-        }
-        return returnArr;
+
+        return returnList;
     }
 }
