@@ -1,4 +1,4 @@
-package Export;
+package entities;
 
 import entities.Exporter;
 import entities.Inventory;
@@ -10,7 +10,7 @@ public class ExportController {
     public ExportController(Inventory inventory) throws IOException {
         Exporter exporter = new Exporter(inventory);
         exporter.export();
-        ExportPresenter presenter = new ExportPresenter();
+        Export.ExportPresenter presenter = new Export.ExportPresenter();
         presenter.present();
 
     }

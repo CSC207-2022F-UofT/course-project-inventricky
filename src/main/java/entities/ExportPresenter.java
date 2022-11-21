@@ -1,4 +1,4 @@
-package Export;
+package entities;
 
 import javax.swing.*;
 import java.awt.*;
