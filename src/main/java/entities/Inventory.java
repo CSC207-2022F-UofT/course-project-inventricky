@@ -1,5 +1,4 @@
 package entities;
-import entities.Ordering_Recieving.Order;
 import useCases.UpdateItemQuantity;
 
 import java.util.ArrayList;
