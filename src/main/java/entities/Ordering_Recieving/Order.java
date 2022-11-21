@@ -1,4 +1,4 @@
-package entities.Ordering_Recieving;
+/* package entities.Ordering_Recieving;
 import entities.Item;
 public class Order extends Item{
     private final int order_number;
@@ -63,3 +63,4 @@ public class Order extends Item{
 }
 
 
+*/

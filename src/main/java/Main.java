@@ -14,7 +14,7 @@ public class Main {
         //BarcodeGenerator.generateBarcode("01", m, "src/main/java/exports/testbarcodes.csv");
         BarcodeRemover.removeBarcode("11002", m, "src/main/java/exports/testbarcodes.csv");
         System.out.println(m);
-        InventoryItem banana = new InventoryItem("banana",
+        InventoryItem banana = new InventoryItem("banana", "123" ,
                 true,
                 0.6,
                 0.54,
