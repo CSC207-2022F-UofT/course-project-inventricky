@@ -8,8 +8,8 @@ public class Order extends Item{
     private final String supplier;
     private final int cases;
 
-    public Order(String name, int barcode, boolean isWeight, double quantity, int buyPrice,
-                 int sellPrice, int caseQuantity, int department, int order_number, String datebought, String estimateddate,
+    public Order(String name, String barcode, boolean isWeight, double quantity, int buyPrice,
+                 int sellPrice, int caseQuantity, String department, int order_number, String datebought, String estimateddate,
                  String supplier, int cases){
         super(name, barcode, isWeight, quantity, buyPrice, sellPrice, caseQuantity, department);
         this.order_number = order_number;
