@@ -16,27 +16,27 @@ public class ExporterTest {
 
     public ExporterTest() {
         this.inventory = new Inventory("Testing Inventory");
-        InventoryItem item0 = new InventoryItem("banana","123" , true, 10, 2,
+        InventoryItem item0 = new InventoryItem("bananas","123" , true, 10, 2,
                 3, 5, "1", 10, 0);
-        InventoryItem item1 = new InventoryItem("banana", "123" ,true, 10, 2,
+        InventoryItem item1 = new InventoryItem("banana", "1234" ,true, 10, 2,
                 3, 5, "1", 10, 0);
-        InventoryItem item2 = new InventoryItem("apple", "123" ,false, 1, 4,
+        InventoryItem item2 = new InventoryItem("apple", "1235" ,false, 1, 4,
                 6, 11, "2", 6, 4);
-        InventoryItem item3 = new InventoryItem("orange", "123" ,true, 7, 7,
+        InventoryItem item3 = new InventoryItem("orange", "1236" ,true, 7, 7,
                 5, 6, "4", 4, 5);
-        InventoryItem item4 = new InventoryItem("nectarine", "123" ,false, 3, 9,
+        InventoryItem item4 = new InventoryItem("nectarine", "1237" ,false, 3, 9,
                 4, 9, "3", 2, 4);
-        InventoryItem item5 = new InventoryItem("cookies", "123" ,true, 5, 3,
+        InventoryItem item5 = new InventoryItem("cookies", "1238" ,true, 5, 3,
                 2, 3, "1", 3, 2);
-        InventoryItem item6 = new InventoryItem("bread", "123" ,false, 7, 1,
+        InventoryItem item6 = new InventoryItem("bread", "1239" ,false, 7, 1,
                 1, 4, "3", 5, 8);
-        InventoryItem item7 = new InventoryItem("banana", "123" ,true, 2, 4,
+        InventoryItem item7 = new InventoryItem("banana2", "1231" ,true, 2, 4,
                 8, 3, "1", 9, 9);
-        InventoryItem item8 = new InventoryItem("computer", "123" ,true, 7, 1,
+        InventoryItem item8 = new InventoryItem("computer", "12333" ,true, 7, 1,
                 6, 2, "1", 4, 7);
-        InventoryItem item9 = new InventoryItem("mice", "123" ,false, 5, 6,
+        InventoryItem item9 = new InventoryItem("mice", "12311" ,false, 5, 6,
                 9, 1, "1", 2, 6);
-        InventoryItem item10 = new InventoryItem("cat", "123" ,true, 6, 4,
+        InventoryItem item10 = new InventoryItem("cat", "12388" ,true, 6, 4,
                 4, 8, "1", 3, 8);
 
         ArrayList<InventoryItem> items = new ArrayList<>();
