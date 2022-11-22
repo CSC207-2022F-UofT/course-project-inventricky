@@ -59,28 +59,38 @@ public class Importer implements Serializable {
 //    }
 
     /**
-     * Deserializes inventory data and returns an ArrayList of InventoryItem/OrderItem objects.
-     *
-     * @return ArrayList made up InventoryItem/OrderItem objects.
+     * Deserializes inventory data and checks whether each deserialized item is an InventoryItem or and Order.
+     * Items are put into this.inventory either in the collection of Orders or InventoryItems.
      */
 
     public void importSerializable() {
         // Initialize empty array for returning
         ArrayList<InventoryItem> importList = new ArrayList<>();
+        ArrayList<Order> orderList = new ArrayList<>();
         try {
             // New input and output stream are initialized
             FileInputStream fis = new FileInputStream(this.filename);
             ObjectInputStream ois = new ObjectInputStream(fis);
             // Reading file
-            Object obj = ois.readObject();
-            importList.add((InventoryItem) obj);
+            try {
+                while(true) {
+                    Object obj = ois.readObject();
+                    if (obj instanceof InventoryItem) {
+                        importList.add((InventoryItem) obj);
+                    } else {
+                        orderList.add((Order) obj);
+                    }
+                }
+            } catch (EOFException e) {
+                this.inventory.setItems(importList);
+                this.inventory.setOrders(orderList);
+            }
             // Close input and output streams
             fis.close();
             ois.close();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
-        this.inventory.setItems(importList);
     }
 
     public static void main(String[] args) {

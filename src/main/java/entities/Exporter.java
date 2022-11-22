@@ -37,6 +37,7 @@ public class Exporter  implements Serializable {
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         for (InventoryItem item: inventory.getItems()) {
             objectOutputStream.writeObject(item);
+            objectOutputStream.reset();
             objectOutputStream.flush();
         }
         objectOutputStream.close();
