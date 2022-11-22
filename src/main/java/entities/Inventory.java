@@ -2,9 +2,15 @@ package entities;
 import useCases.UpdateItemQuantity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class Inventory {
+    private static final String file = "src/main/java/exports/testbarcodes.csv"; //file path of barcode csv
+
+    //Shared mapping of departments to barcodes used by item constructor
+    private static HashMap<String, List<String>> barcodes = BarcodeMapReader.readBarcodes(file);
     private String name;
     private ArrayList<InventoryItem> items;
     private ArrayList<Order> orders;
@@ -46,6 +52,7 @@ public class Inventory {
     }
 
     public void removeItem(InventoryItem item) {
+        BarcodeRemover.removeBarcode(item.getBarcode(), barcodes, file);
         this.items.remove(item);
         this.updateHistory("Item" + item.getName() + "was removed from the inventory");
     }
