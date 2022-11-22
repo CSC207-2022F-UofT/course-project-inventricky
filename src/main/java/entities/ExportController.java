@@ -8,10 +8,10 @@ import java.io.IOException;
 public class ExportController {
 
     public ExportController(Inventory inventory) throws IOException {
-        Exporter exporter = new Exporter(inventory);
-        exporter.export();
-        Export.ExportPresenter presenter = new Export.ExportPresenter();
-        presenter.present();
+//        Exporter exporter = new Exporter(inventory);
+//        exporter.export();
+//        Export.ExportPresenter presenter = new Export.ExportPresenter();
+//        presenter.present();
 
     }
 
