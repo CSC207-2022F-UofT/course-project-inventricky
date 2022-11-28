@@ -50,7 +50,7 @@ public class Inventory {
         }
         if (!b) {
             this.items.add(item);
-            this.updateHistory("Item" + item.getName() + "was added to the inventory");
+            this.updateHistory("Item " + item.getName() + " was added to the inventory");
         }
     }
 
@@ -59,6 +59,7 @@ public class Inventory {
      */
     public void addOrder(Order order) {
         this.orders.add(order);
+        this.updateHistory("Order " + order.getName() + " was added to the inventory");
     }
 
     /** Removes an Item to the inventor's list of items.
@@ -67,7 +68,7 @@ public class Inventory {
     public void removeItem(InventoryItem item) {
         BarcodeRemover.removeBarcode(item.getBarcode(), barcodes, file);
         this.items.remove(item);
-        this.updateHistory("Item" + item.getName() + "was removed from the inventory");
+        this.updateHistory("Item " + item.getName() + " was removed from the inventory");
     }
 
     /** Removes an order to the inventor's list of orders.
@@ -75,7 +76,7 @@ public class Inventory {
      */
     public void removeOrder(Order order) {
         this.orders.remove(order);
-        this.updateHistory("Order" + order.getName() + "was removed from the inventory");
+        this.updateHistory("Order " + order.getName() + " was removed from the inventory");
     }
 
     /** Adds an event to the inventor's history.

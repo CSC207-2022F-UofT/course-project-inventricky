@@ -10,8 +10,8 @@ public class InventoryScratchBuilder {
     }
 
     public Inventory create() {
-        Inventory i = new Inventory(this.name);
-        i.updateHistory("New inventory created from scratch");
-        return(i);
+        Inventory inv = new Inventory(this.name);
+        inv.updateHistory("New inventory created from scratch");
+        return inv;
     }
 }
