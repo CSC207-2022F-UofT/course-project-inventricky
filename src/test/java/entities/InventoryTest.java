@@ -18,14 +18,14 @@ public class InventoryTest {
     }
 
     @Test
-    public void InventoryFromImportTest() {
-        //TODO: Wait for Dario
-    }
-
-    @Test
     public void addItemTest() {
         InventoryItem item = new InventoryItem("banana", true, 12, 2, 5, 2, "47", 50, 0);
         Inventory inv = new InventoryScratchBuilder("test").create();
         inv.addItem(item);
+    }
+
+    @Test
+    void addOrderTest() {
+        //TODO
     }
 }
