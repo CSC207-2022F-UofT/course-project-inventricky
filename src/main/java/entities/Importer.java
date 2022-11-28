@@ -76,15 +76,12 @@ public class Importer implements Serializable {
                 while(true) {
                     Object obj = ois.readObject();
                     if (obj instanceof InventoryItem) {
-                        importList.add((InventoryItem) obj);
+                        this.inventory.addItem((InventoryItem) obj);
                     } else {
-                        orderList.add((Order) obj);
+                        this.inventory.addOrder((Order) obj);
                     }
                 }
-            } catch (EOFException e) {
-                this.inventory.setItems(importList);
-                this.inventory.setOrders(orderList);
-            }
+            } catch (EOFException e) {}
             // Close input and output streams
             fis.close();
             ois.close();

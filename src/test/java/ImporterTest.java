@@ -56,8 +56,18 @@ class ImporterTest {
         Inventory inv = new Inventory("Test");
         Importer importer = new Importer("src/main/java/exports/serializable_inventory.txt", inv);
         importer.importSerializable();
-        // TODO: Override equals method to check for equality rather than reference
-        // Assertions.assertEquals(inv.getItems(), inv1.getItems());
-        Assertions.assertTrue(true);
+
+        for (int i = 0; i < inv.getItems().size(); i++) {
+            Assertions.assertEquals(inv.getItems().get(i).getName(), inv1.getItems().get(i).getName());
+            Assertions.assertEquals(inv.getItems().get(i).getBarcode(), inv1.getItems().get(i).getBarcode());
+            Assertions.assertEquals(inv.getItems().get(i).getIsWeight(), inv1.getItems().get(i).getIsWeight());
+            Assertions.assertEquals(inv.getItems().get(i).getQuantity(), inv1.getItems().get(i).getQuantity());
+            Assertions.assertEquals(inv.getItems().get(i).getBuyPrice(), inv1.getItems().get(i).getBuyPrice());
+            Assertions.assertEquals(inv.getItems().get(i).getSellPrice(), inv1.getItems().get(i).getSellPrice());
+            Assertions.assertEquals(inv.getItems().get(i).getCaseQuantity(), inv1.getItems().get(i).getCaseQuantity());
+            Assertions.assertEquals(inv.getItems().get(i).getDepartment(), inv1.getItems().get(i).getDepartment());
+            Assertions.assertEquals(inv.getItems().get(i).getQuantityBought(), inv1.getItems().get(i).getQuantityBought());
+            Assertions.assertEquals(inv.getItems().get(i).getQuantitySold(), inv1.getItems().get(i).getQuantitySold());
+        }
     }
 }
