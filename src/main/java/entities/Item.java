@@ -1,9 +1,10 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class Item {
+public abstract class Item implements Serializable {
 
     //Class Variables
     private static final String file = "src/main/java/exports/testbarcodes.csv"; //file path of barcode csv
