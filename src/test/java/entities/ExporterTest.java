@@ -1,7 +1,6 @@
-import Export.ExportController;
-import entities.Exporter;
-import entities.Inventory;
-import entities.InventoryItem;
+package entities;
+
+import Controllers.ExportController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -82,15 +81,21 @@ public class ExporterTest {
         File f1 = p1.toFile();
         Path p2 = Path.of("src/main/java/exports/serializable_inventory.txt");
         File f2 = p2.toFile();
+        Path p3 = Path.of("src/main/java/exports/order_inventory.txt");
+        File f3 = p3.toFile();
 
         Assertions.assertTrue(f1.exists());
         Assertions.assertTrue(f2.exists());
+        Assertions.assertTrue(f3.exists());
 
 
     }
     @Test
     public void AssertPresenterWindow() throws IOException {
         ExportController controller = new ExportController(inventory);
+        controller.InitiateExport();
+        Assertions.assertTrue(true);
+
 
     }
 }
