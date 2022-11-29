@@ -41,10 +41,12 @@ public class Inventory {
         boolean b = false;
         for (InventoryItem i : this.getItems()) {
             if (Objects.equals(i.getName(), item.getName())) {
-                UpdateItemQuantity u = new UpdateItemQuantity();
-                UpdateItemQuantity.updateQty(this, item.getBarcode(), item.getQuantity(), "bought");
+//                UpdateItemQuantity u = new UpdateItemQuantity();
+//                u.updateQty(this, item.getBarcode(), item.getQuantity(), "bought");
+                double q = i.getQuantity();
+                i.setQuantity(q + item.getQuantity());
                 b = true;
-                this.updateHistory("Item" + i.getName() + "had it's quantity increased by" + item.getQuantity());
+                this.updateHistory("Item " + i.getName() + " had it's quantity increased by " + item.getQuantity());
                 break;
             }
         }
@@ -97,14 +99,14 @@ public class Inventory {
      * @return The items ArrayList associated with the inventory.
      */
     public ArrayList<InventoryItem> getItems() {
-        return items;
+        return this.items;
     }
 
     /** Gets the orders of the inventory.
      * @return The orders ArrayList associated with the inventory.
      */
     public ArrayList<Order> getOrders() {
-        return orders;
+        return this.orders;
     }
 
     /** Gets the history of the inventory.

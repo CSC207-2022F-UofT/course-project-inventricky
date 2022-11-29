@@ -1,5 +1,7 @@
 package Screens;
 
+import entities.Inventory;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,7 +37,7 @@ public class InventoryCreationUI extends JFrame{
         scratch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame j2 = new InventoryUI();
+                JFrame j2 = new ScratchUI();
                 this.removeVisible();
                 j2.setVisible(true);
             }

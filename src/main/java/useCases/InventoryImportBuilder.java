@@ -14,7 +14,7 @@ public class InventoryImportBuilder implements InventoryBuilder {
 
     public Inventory create() {
         Inventory inv = new Inventory(name);
-        new Importer(filename, inv);
+        new Importer(filename, inv).importSerializable();
         inv.updateHistory("New inventory created from import");
         return inv;
     }

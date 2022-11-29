@@ -1,30 +1,26 @@
 package Screens;
 
-import entities.Importer;
 import entities.Inventory;
 import useCases.InventoryImportBuilder;
+import useCases.InventoryScratchBuilder;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ImportUI extends JFrame {
+public class ScratchUI extends JFrame{
     JTextField invName = new JTextField(15);
-    JTextField fileName = new JTextField(15);
 
-    public ImportUI() {
-        this.setTitle("Import Menu");
-        JLabel title = new JLabel("Import");
+    public ScratchUI() {
+        this.setTitle("New Inventory Menu");
+        JLabel title = new JLabel("New Inventory");
         this.setSize(400, 400);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.setVisible(true);
 
-        TextPanel invInfo = new TextPanel(
-                new JLabel("Inventory Name"), invName);
-        TextPanel passwordInfo = new TextPanel(
-                new JLabel("File Name"), fileName);
+        TextPanel invInfo = new TextPanel(new JLabel("Inventory Name"), invName);
 
         JButton create = new JButton("Create");
         JButton cancel = new JButton("Cancel");
@@ -37,34 +33,28 @@ public class ImportUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame j2 = new MainCreationUI();
+                j2.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 this.setVisible();
                 j2.setVisible(true);
             }
 
             private void setVisible() {
-                ImportUI.super.setVisible(false);
+                ScratchUI.super.setVisible(false);
             }
         });
 
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Inventory inv = new InventoryImportBuilder(invName.getText(), fileName.getText()).create();
+                Inventory inv = new InventoryScratchBuilder(invName.getText()).create();
                 JFrame j2 = new InventoryUI(inv);
                 j2.setSize(400,400);
                 this.setVisible();
                 j2.setVisible(true);
-
-//                JFrame f = new JFrame();
-//                f.setSize(300, 300);
-//                String[] list = {fileName.getText()};
-//                JList l = new JList<String>(list);
-//                f.add(l);
-//                f.setVisible(true);
             }
 
             private void setVisible() {
-                ImportUI.super.setVisible(false);
+                ScratchUI.super.setVisible(false);
             }
         });
 
@@ -73,14 +63,7 @@ public class ImportUI extends JFrame {
 
         main.add(title);
         main.add(invInfo);
-        main.add(passwordInfo);
         main.add(buttons);
         this.setContentPane(main);
-
-//        this.pack();
-    }
-
-    public static void main(String[] args) {
-        new ImportUI();
     }
 }
