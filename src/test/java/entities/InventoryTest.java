@@ -24,7 +24,7 @@ public class InventoryTest {
 
     @Test
     public void addItemTest() {
-        InventoryItem item = new InventoryItem("banana", true, 12, 2, 5, 2, "47", 50, 0);
+        InventoryItem item = new InventoryItem("banana", "12064", true, 12, 2, 5, 2, "47", 50, 0);
         Inventory inv = new InventoryScratchBuilder("test").create();
         inv.addItem(item);
     }
