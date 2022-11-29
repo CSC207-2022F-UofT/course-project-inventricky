@@ -15,6 +15,7 @@ public class InventoryCreationUI extends JFrame{
         JLabel title = new JLabel("Inventory Creation");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(100,100);
 
         JPanel buttons = new JPanel();
         buttons.add(imported);
@@ -25,12 +26,12 @@ public class InventoryCreationUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame j2 = new ImportUI();
-                this.setVisible();
+                this.dispose();
                 j2.setVisible(true);
             }
 
-            private void setVisible() {
-                InventoryCreationUI.super.setVisible(false);
+            private void dispose() {
+                InventoryCreationUI.super.dispose();
             }
         });
 
@@ -38,12 +39,12 @@ public class InventoryCreationUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame j2 = new ScratchUI();
-                this.removeVisible();
+                this.dispose();
                 j2.setVisible(true);
             }
 
-            private void removeVisible() {
-                InventoryCreationUI.super.setVisible(false);
+            private void dispose() {
+                InventoryCreationUI.super.dispose();
             }
         });
 

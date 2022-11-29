@@ -156,4 +156,15 @@ public class InventoryUI extends JFrame{
         this.getContentPane().add(BorderLayout.CENTER, scroll);
         this.setVisible(true);
     }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        JFileChooser j = new JFileChooser();
+        frame.add(j);
+        frame.setSize(300,300);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        String d = j.getSelectedFile().getName();
+        System.out.println(d);
+    }
 }
