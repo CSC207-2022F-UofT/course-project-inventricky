@@ -1,8 +1,7 @@
-import entities.Importer;
-import entities.Inventory;
-import entities.InventoryItem;
+package entities;
+
+import gateways.Importer;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

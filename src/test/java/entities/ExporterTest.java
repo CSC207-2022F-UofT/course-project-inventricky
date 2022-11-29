@@ -1,5 +1,6 @@
-import Export.ExportController;
-import entities.Exporter;
+package entities;
+
+import gateways.Exporter;
 import entities.Inventory;
 import entities.InventoryItem;
 import org.junit.jupiter.api.Assertions;
@@ -89,8 +90,5 @@ public class ExporterTest {
 
     }
     @Test
-    public void AssertPresenterWindow() throws IOException {
-        ExportController controller = new ExportController(inventory);
-
-    }
+    public void AssertPresenterWindow() throws IOException {}
 }

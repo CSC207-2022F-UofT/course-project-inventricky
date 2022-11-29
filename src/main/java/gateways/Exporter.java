@@ -1,4 +1,7 @@
-package entities;
+package gateways;
+
+import entities.Inventory;
+import entities.InventoryItem;
 
 import java.io.*;
 import java.util.ArrayList;

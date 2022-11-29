@@ -1,6 +1,5 @@
-package entities;
+package controllers;
 
-import entities.Exporter;
 import entities.Inventory;
 
 import java.io.IOException;
