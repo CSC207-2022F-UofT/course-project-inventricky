@@ -8,19 +8,22 @@ import useCases.InventoryImportBuilder;
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class InventoryUI extends JFrame{
 
-    public InventoryUI() {
+    public InventoryUI(Inventory inventory) {
 //        JFrame frame = new JFrame("Inventory Menu");
-        this.setTitle("Inventory Menu");
+        this.setTitle(inventory.getName() + " Inventory Menu");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(300, 300);
         this.setVisible(true);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         //Creating the MenuBar and adding components
         JMenuBar mb = new JMenuBar();
@@ -29,15 +32,19 @@ public class InventoryUI extends JFrame{
         JMenu generate_analysis = new JMenu("Generate Analysis");
         JMenu delete_inventory = new JMenu("Delete Inventory");
         JMenu history = new JMenu("Inventory History");
+        JMenu sort = new JMenu("Sort");
         mb.add(m1);
         mb.add(orders);
         mb.add(generate_analysis);
         mb.add(delete_inventory);
         mb.add(history);
-        JMenuItem m11 = new JMenuItem("Open");
-        JMenuItem m22 = new JMenuItem("Save as");
-        m1.add(m11);
-        m1.add(m22);
+        mb.add(sort);
+        JMenuItem m11 = new JMenuItem("Analysis 1");
+        JMenuItem m22 = new JMenuItem("Analysis 2");
+        JMenuItem sort1 = new JMenuItem("Sort by Name");
+        generate_analysis.add(m11);
+        generate_analysis.add(m22);
+        sort.add(sort1);
 
         delete_inventory.addMenuListener(new MenuListener() {
             @Override
@@ -64,9 +71,10 @@ public class InventoryUI extends JFrame{
         history.addMenuListener(new MenuListener() {
             @Override
             public void menuSelected(MenuEvent e) {
-                Inventory inv = new InventoryImportBuilder("test", "src/main/java/exports/serializable_inventory.txt").create();
-                inv.updateHistory("test");
-                String[] list = inv.getHistory().toArray(new String[0]);
+//                Inventory inv = new InventoryImportBuilder("test", "src/main/java/exports/serializable_inventory.txt").create();
+//                inv.updateHistory("test");
+                inventory.updateHistory("test");
+                String[] list = inventory.getHistory().toArray(new String[0]);
                 JFrame frame = new JFrame();
                 JList l = new JList<String>(list);
                 frame.add(l);
@@ -90,29 +98,18 @@ public class InventoryUI extends JFrame{
         //Creating the panel at bottom and adding components
         JPanel panel = new JPanel(); // the panel is not visible in output
         // accepts upto 10 characters
-        JButton send = new JButton("Create New Inventory");
         JButton hist = new JButton("History");
-        send.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFrame j2 = new JFrame();
-                j2.setSize(400,400);
-                j2.setVisible(true);
-            }
-        });
+        JButton newitem = new JButton("Add New Item");
+
         // Components Added using Flow Layout
-        panel.add(send);
         panel.add(hist);
+        panel.add(newitem);
 
         hist.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                String[] list = {"one", "two"};
                 JFrame frame = new JFrame();
-                Inventory inv = new InventoryImportBuilder("test", "src/main/java/exports/serializable_inventory.txt").create();
-                inv.addItem(new InventoryItem("bananas","123" , true, 10, 2,
-                        3, 5, "1", 10, 0));
-                String[] list = inv.getHistory().toArray(new String[0]);
+                String[] list = inventory.getHistory().toArray(new String[0]);
                 JList l = new JList<String>(list);
                 frame.add(l);
                 frame.pack();
@@ -122,18 +119,41 @@ public class InventoryUI extends JFrame{
             }
         });
 
-        // Text Area at the Center
-        JTextArea ta = new JTextArea();
+        newitem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InventoryItem item0 = new InventoryItem("bananasss","183" , true, 10, 2,
+                        3, 5, "1", 10, 0);
+                inventory.addItem(item0);
+                this.removeVisible();
+                new InventoryUI(inventory);
+            }
+
+            private void removeVisible() {
+                InventoryUI.super.setVisible(false);
+            }
+        });
+
+        // Table at the Center
+
+        DefaultTableModel model = new DefaultTableModel();
+        JTable ta = new JTable(model);
+        ta.setShowGrid(false);
+        model.addColumn("Name");
+        model.addColumn("Quantity");
+        model.addColumn("Barcode");
+
+        for (int i = inventory.getItems().size() - 1; i >= 0; i--) {
+            model.insertRow(0, new String[]{inventory.getItems().get(i).getName(), String.valueOf(inventory.getItems().get(i).getQuantity()), inventory.getItems().get(i).getBarcode()});
+        }
+
+        JScrollPane scroll = new JScrollPane(ta);
+        this.add(scroll);
 
         //Adding Components to the frame.
         this.getContentPane().add(BorderLayout.SOUTH, panel);
         this.getContentPane().add(BorderLayout.NORTH, mb);
-        this.getContentPane().add(BorderLayout.CENTER, ta);
+        this.getContentPane().add(BorderLayout.CENTER, scroll);
         this.setVisible(true);
     }
-
-    public static void main(String[] args) {
-        new InventoryUI();
-    }
-
 }
