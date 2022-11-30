@@ -10,8 +10,8 @@ public class ExportPresenter {
      */
     public void present() {
         JFrame frame = new JFrame("Export Successful");
-        JButton button = new JButton("Ok");
-        button.setFont(new Font("Arial", Font.PLAIN, 80));
+        JButton button = new JButton("<html>Export Successful;<br />Click to return to menu</html>");
+        button.setFont(new Font("Arial", Font.PLAIN, 40));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(button);
         button.addActionListener(e -> frame.dispose());
