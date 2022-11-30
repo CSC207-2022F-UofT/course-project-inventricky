@@ -1,4 +1,6 @@
-import Export.ExportController;
+package entities;
+
+import entities.ExportController;
 import entities.Exporter;
 import entities.Inventory;
 import entities.InventoryItem;
