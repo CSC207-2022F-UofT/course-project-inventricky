@@ -1,5 +1,8 @@
-package entities;
+package receive_order_use_case;
 
+import entities.Inventory;
+import entities.InventoryItem;
+import entities.Order;
 import useCases.UpdateItemQuantity;
 
 public class OrderReceiver {

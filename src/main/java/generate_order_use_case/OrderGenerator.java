@@ -1,8 +1,13 @@
-package entities;
+package generate_order_use_case;
+
+import entities.Inventory;
+import entities.InventoryItem;
+import entities.Order;
 
 import java.time.LocalDate;
 
 public class OrderGenerator {
+
 
     /**
      * Registers an order to the Inventory. Creates a new Order object using the given name, supplier, cases,
@@ -19,9 +24,9 @@ public class OrderGenerator {
      * @param department   The department of the item.
      * @return  The ordered item.
      */
-    public Order registerOrder(String name, String supplier, int cases, Inventory inventory,
-                               boolean isWeight, double buyPrice, double sellPrice, int caseQuantity,
-                               String department){
+    public Order registerOrderManual(String name, String supplier, int cases, Inventory inventory,
+                                     boolean isWeight, double buyPrice, double sellPrice, int caseQuantity,
+                                     String department){
         LocalDate dateToday = LocalDate.now();
 
         for(InventoryItem item: inventory.getItems()){
@@ -46,4 +51,26 @@ public class OrderGenerator {
         inventory.addOrder(newOrder);
         return newOrder;
     }
+
+    /**
+     * Auto register an order using the given name. The name of the item will allow the user to fill in the order
+     * information automatically, while only inputting the amount of cases they want to order and the supplier they
+     * want to order from. Register the order to the given inventory.
+     * Precondition: item is already in inventory.
+     * @param name      The name of the item.
+     * @param inventory    The inventory the order is being added to.
+     * @param cases      The number of cases being ordered.
+     * @param supplier  The supplier of the order.
+     * @return      The ordered item.
+     */
+    public Order registerOrderAuto(String name, Inventory inventory, int cases, String supplier){
+        for(InventoryItem item: inventory.getItems()) {
+            if (item.getName().equals(name)){
+                return registerOrderManual(name, supplier, cases, inventory, item.getIsWeight(),
+                        item.getBuyPrice(), item.getSellPrice(), item.getCaseQuantity(), item.getDepartment());
+            }
+        }
+        return null;
+    }
 }
+

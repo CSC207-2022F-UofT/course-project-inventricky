@@ -1,3 +1,5 @@
+package entities;
+
 import entities.Importer;
 import entities.Inventory;
 import entities.InventoryItem;
