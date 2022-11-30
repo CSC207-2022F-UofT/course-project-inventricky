@@ -8,7 +8,7 @@ public class RemoveItemInventoryUpdater implements RemoveItemPresenter {
     public InventoryViewModel prepareSuccessView(RemoveItemResponseModel oldItem, String[][] inventoryTable) {
         InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
 
-        new InventoryView(inventoryViewModel);
+        new InventoryUI(inventoryViewModel);
         return inventoryViewModel;
     }
 

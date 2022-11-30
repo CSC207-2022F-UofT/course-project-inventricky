@@ -23,24 +23,25 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
     }
 
     @Override
-    public InventoryViewModel create(RemoveItemRequestModel requestModel) {
+    public InventoryViewModel create(RemoveItemRequestModel requestModel) throws RuntimeException {
 
         //Search for item in Inventory
         //TODO case where item is not in inventory
+            
+            
 
 
+            for (InventoryItem candidate : inventory.getItems()) {
+                if (candidate.getBarcode().equals(requestModel.getBarcode())) {
+                    inventory.removeItem(candidate);
 
-
-            for (InventoryItem item : inventory.getItems()) {
-                if (item.getBarcode().equals(requestModel.getBarcode())) {
-                    inventory.removeItem(item);
-
-                    RemoveItemResponseModel removeItemReponseModel = new RemoveItemResponseModel(item.getName(), item.getBarcode());
+                    RemoveItemResponseModel removeItemReponseModel = new RemoveItemResponseModel(candidate.getName(), candidate.getBarcode());
 
                     String[][] inventoryTable = new String[inventory.getItems().size()][3];
 
                     for (int i = 0; i < inventory.getItems().size(); i++) {
-                        inventoryTable[i] = new String[]{item.getName(), item.getQuantity() + "", item.getBarcode()};
+                        InventoryItem item = inventory.getItems().get(i);
+                        inventoryTable[i] = new String[] {item.getName(), item.getQuantity()+"", item.getBarcode()};
                     }
 
                     return removeItemPresenter.prepareSuccessView(removeItemReponseModel, inventoryTable);
@@ -48,7 +49,8 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
                 }
             }
 
-        return null; //TODO exception
+        RuntimeException RuntimeException = null;
+        throw RuntimeException; //TODO exception
 
     }
 }

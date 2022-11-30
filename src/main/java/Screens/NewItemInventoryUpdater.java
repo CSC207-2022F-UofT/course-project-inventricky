@@ -9,7 +9,7 @@ public class NewItemInventoryUpdater implements NewItemPresenter {
     public InventoryViewModel prepareSuccessView(NewItemResponseModel item, String[][] inventoryTable) {
         InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
 
-        new InventoryView(inventoryViewModel);
+        new InventoryUI(inventoryViewModel);
         return inventoryViewModel;
     }
 

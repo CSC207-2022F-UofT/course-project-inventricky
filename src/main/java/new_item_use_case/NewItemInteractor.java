@@ -25,21 +25,22 @@ public class NewItemInteractor implements NewItemInputBoundary {
 
         //create new InventoryItem
         //TODO right now this assumes valid input
-        InventoryItem item = new InventoryItem(requestModel.getName(), requestModel.getIsWeight(),
+        InventoryItem newItem = new InventoryItem(requestModel.getName(), requestModel.getIsWeight(),
                 requestModel.getQuantity(), requestModel.getBuyPrice(), requestModel.getSellPrice(),
                 requestModel.getCaseQuantity(), requestModel.getDepartment(), 0, 0);
         //add the inventory item to inventory
-        inventory.addItem(item);
+        inventory.addItem(newItem);
 
 
         //TODO implement time functionality
 
         //return new item's name and barcode to the presenter, along with inventory
-        NewItemResponseModel newItemResponseModel = new NewItemResponseModel(item.getName(), item.getBarcode());
+        NewItemResponseModel newItemResponseModel = new NewItemResponseModel(newItem.getName(), newItem.getBarcode());
 
         String[][] inventoryTable = new String[inventory.getItems().size()][3];
 
         for (int i = 0; i < inventory.getItems().size(); i++) {
+            InventoryItem item = inventory.getItems().get(i);
             inventoryTable[i] = new String[] {item.getName(), item.getQuantity()+"", item.getBarcode()};
         }
 

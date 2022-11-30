@@ -106,8 +106,8 @@ public abstract class Item implements Serializable {
     //For inventory item
     public Item(String name, boolean isWeight, double quantity, double buyPrice, double sellPrice, int caseQuantity, String department) {
         this.name = name;
-        this.barcode = BarcodeGenerator.generateBarcode(department, barcodes, file);
         barcodes = BarcodeMapReader.readBarcodes(file);
+        this.barcode = BarcodeGenerator.generateBarcode(department, barcodes, file);
         this.department = department;
         this.isWeight = isWeight;
         this.quantity = quantity;

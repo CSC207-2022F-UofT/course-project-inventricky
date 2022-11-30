@@ -95,7 +95,7 @@ public class AddNewItemUI extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("cancel")) {
-
+            this.dispose();
         }
 
 

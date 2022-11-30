@@ -1,8 +1,8 @@
 package Screens;
 
-import entities.Inventory;
-
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.table.DefaultTableModel;
@@ -11,17 +11,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
-public class InventoryMenuUI extends JFrame {
+public class InventoryUI extends JFrame {
 
-    public InventoryMenuUI(HashMap controllers) {
+    private static HashMap controllers; //controllers for use cases
+
+    public HashMap getControllers() {
+        return controllers;
+    }
+
+    public void setControllers(HashMap controllers) {
+        InventoryUI.controllers = controllers;
+    }
+
+    public InventoryUI(InventoryViewModel inventoryViewModel) {
 //        JFrame frame = new JFrame("Inventory Menu");
-        this.setTitle("Inventory Menu");
+        this.setTitle("Inventory");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(300, 300);
         this.setVisible(true);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         //Creating the MenuBar and adding components
         JMenuBar mb = new JMenuBar();
+
 
         //create menu for inventory items
         JMenu InventoryItemsMenu = new JMenu("Inventory Items");
@@ -77,7 +89,7 @@ public class InventoryMenuUI extends JFrame {
             }
 
             private void removeVisible() {
-                InventoryMenuUI.super.setVisible(false);
+                InventoryUI.super.setVisible(false);
             }
 
             @Override
@@ -153,25 +165,51 @@ public class InventoryMenuUI extends JFrame {
             }
 
             private void removeVisible() {
-                InventoryMenuUI.super.setVisible(false);
+                InventoryUI.super.setVisible(false);
             }
         });
 
         //action listener for removing item
-        removeItem.addActionListener((new ActionListener() {
+//        removeItem.addActionListener((new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                new RemoveItemUI((RemoveItemController) controllers.get("removeItemController"));
+//            }
+//        }));
+
+
+        // Table at the Center
+
+        DefaultTableModel model = new DefaultTableModel();
+        JTable ta = new JTable(model);
+        ta.setShowGrid(true);
+
+        model.addColumn("Name");
+        model.addColumn("Quantity");
+        model.addColumn("Barcode");
+
+        for (int i = inventoryViewModel.getItemList().length - 1; i >= 0; i--) {
+            model.addRow(inventoryViewModel.getItemList()[i]);
+        }
+
+        //open item UI for selected item
+        ta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        ListSelectionModel rowSelectionModel = ta.getSelectionModel();
+        rowSelectionModel.addListSelectionListener(new ListSelectionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new RemoveItemUI((RemoveItemController) controllers.get("removeItemController"));
+            public void valueChanged(ListSelectionEvent e) {
+                //get barcode of selected item
+                String selectedItemBarcode = (String) ta.getValueAt(ta.getSelectedRow(), 2);
+                System.out.println("11122");
+                if (!e.getValueIsAdjusting()) {
+
+                    new InventoryItemMenu(selectedItemBarcode, controllers);
+                }
             }
-        }));
+        });
 
 
-
-
-
-
-
-        JScrollPane scroll = new JScrollPane();
+        JScrollPane scroll = new JScrollPane(ta);
         this.add(scroll);
 
         //Adding Components to the frame.

@@ -10,8 +10,6 @@ import remove_item_use_case.RemoveItemInputBoundary;
 import remove_item_use_case.RemoveItemInteractor;
 import remove_item_use_case.RemoveItemPresenter;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {
@@ -52,8 +50,10 @@ public class Main {
         //TODO select whether you want to import or start from scratch
 
         //scratch
+        InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
         inv.updateHistory("New inventory created from scratch");
-        new InventoryMenuUI(controllers);
+        InventoryUI newInventory = new InventoryUI(blankViewModel);
+        newInventory.setControllers(controllers);
 
 
         //new MainCreationUI();

@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 //view
+//UNUSED
 public class InventoryView extends JFrame {
 
     public InventoryView(InventoryViewModel inventoryViewModel) {
@@ -29,13 +30,13 @@ public class InventoryView extends JFrame {
         for (int i = inventoryViewModel.getItemList().length - 1; i >= 0; i--) {
             model.insertRow(0, inventoryViewModel.getItemList()[i]);
         }
-            JScrollPane scroll = new JScrollPane(ta);
-            this.add(scroll);
+        JScrollPane scroll = new JScrollPane(ta);
+        this.add(scroll);
 
-            //Adding Components to the frame.
-            this.getContentPane().add(BorderLayout.SOUTH, panel);
-            this.getContentPane().add(BorderLayout.CENTER, scroll);
-            this.setVisible(true);
-        }
+        //Adding Components to the frame.
+        this.getContentPane().add(BorderLayout.SOUTH, panel);
+        this.getContentPane().add(BorderLayout.CENTER, scroll);
+        this.setVisible(true);
     }
+}
 
