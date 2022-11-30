@@ -46,7 +46,8 @@ public class ScratchUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Inventory inv = new InventoryScratchBuilder(invName.getText()).create();
-                JFrame j2 = new InventoryUI(inv);
+                //JFrame j2 = new InventoryUI(inv);
+                JFrame j2 = new ScratchUI();
                 j2.setSize(400,400);
                 this.setVisible();
                 j2.setVisible(true);

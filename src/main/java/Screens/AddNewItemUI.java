@@ -5,7 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddNewItemUI extends JPanel implements ActionListener{
+public class AddNewItemUI extends JFrame implements ActionListener{
+
+    private boolean itemAdded;
 
     //text fields for user input
     JTextField name = new JTextField(15);
@@ -17,9 +19,22 @@ public class AddNewItemUI extends JPanel implements ActionListener{
     JTextField caseQuantity = new JTextField(15);
     JTextField department = new JTextField(15);
 
+
+
+
     NewItemController newItemController; //controller
 
     public AddNewItemUI(NewItemController controller) {
+
+        //default item not added
+        this.itemAdded = false;
+
+        //create new JPanel
+        JPanel panel = new JPanel();
+
+        //set size of frame
+        this.setSize(400, 400);
+
 
         this.newItemController = controller;
 
@@ -27,8 +42,7 @@ public class AddNewItemUI extends JPanel implements ActionListener{
         JLabel title = new JLabel("Add New Item");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-//        //set size of panel
-//        this.setSize(200, 400);
+
 
         //this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);   //close button exits inventory app
         
@@ -60,17 +74,21 @@ public class AddNewItemUI extends JPanel implements ActionListener{
         confirm.addActionListener(this);
         cancel.addActionListener(this);
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        this.add(title);
-        this.add(namePanel);
-        this.add(isWeightPanel);
-        this.add(quantityPanel);
-        this.add(buyPricePanel);
-        this.add(sellPricePanel);
-        this.add(caseQuantityPanel);
-        this.add(departmentPanel);
-        this.add(buttons);
+        panel.add(title);
+        panel.add(namePanel);
+        panel.add(isWeightPanel);
+        panel.add(quantityPanel);
+        panel.add(buyPricePanel);
+        panel.add(sellPricePanel);
+        panel.add(caseQuantityPanel);
+        panel.add(departmentPanel);
+        panel.add(buttons);
+
+        this.getContentPane().add(panel);
+        this.setVisible(true);
+
 
         }
 
@@ -80,9 +98,10 @@ public class AddNewItemUI extends JPanel implements ActionListener{
 
         }
 
+        //TODO use returned info from presenter
         //user has clicked button to create item, with all the parameters filled
         newItemController.create(name.getText(), Boolean.parseBoolean(isWeight.getText()),
-                Integer.parseInt(quantity.getText()), Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
+                Double.parseDouble(quantity.getText()), Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
                 Integer.parseInt(caseQuantity.getText()), department.getText());
 
 

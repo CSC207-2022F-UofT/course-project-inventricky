@@ -1,5 +1,7 @@
 package new_item_use_case;
 
+import Screens.InventoryViewModel;
+
 //Input boundary
 public interface NewItemInputBoundary {
     //take item data and return a message stating that item with barcode has been added
@@ -7,6 +9,6 @@ public interface NewItemInputBoundary {
 
 
     //use case interactor must implement this method where it takes in input data and returns output data
-    NewItemResponseModel create(NewItemRequestModel requestModel);
+    InventoryViewModel create(NewItemRequestModel requestModel);
 
 }
