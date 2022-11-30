@@ -31,10 +31,11 @@ public class NewItemInteractor implements NewItemInputBoundary {
         //add the inventory item to inventory
         inventory.addItem(item);
 
+
         //TODO implement time functionality
 
         //return new item's name and barcode to the presenter, along with inventory
-        NewItemResponseModel itemResponseModel = new NewItemResponseModel(item.getName(), item.getBarcode());
+        NewItemResponseModel newItemResponseModel = new NewItemResponseModel(item.getName(), item.getBarcode());
 
         String[][] inventoryTable = new String[inventory.getItems().size()][3];
 
@@ -42,6 +43,6 @@ public class NewItemInteractor implements NewItemInputBoundary {
             inventoryTable[i] = new String[] {item.getName(), item.getQuantity()+"", item.getBarcode()};
         }
 
-        return newItemPresenter.prepareSuccessView(itemResponseModel, inventoryTable);
+        return newItemPresenter.prepareSuccessView(newItemResponseModel, inventoryTable);
     }
 }

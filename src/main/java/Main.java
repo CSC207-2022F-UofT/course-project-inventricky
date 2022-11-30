@@ -5,6 +5,14 @@ import new_item_use_case.NewItemDsGateway;
 import new_item_use_case.NewItemInputBoundary;
 import new_item_use_case.NewItemInteractor;
 import new_item_use_case.NewItemPresenter;
+import remove_item_use_case.RemoveItemDsGateway;
+import remove_item_use_case.RemoveItemInputBoundary;
+import remove_item_use_case.RemoveItemInteractor;
+import remove_item_use_case.RemoveItemPresenter;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,21 +26,34 @@ public class Main {
         //create a new blank inventory
         Inventory inv = new Inventory("New Inventory");
 
-        //inventory database
-        NewItemDsGateway database = new InventoryDatabase(); //TODO implement this class
+        //map of controllers
+        //ex. controllers.get("newItemController") = newItemController
+        HashMap controllers = new HashMap();
+
+
+
+
 
         //setup for New Item use case
-        NewItemPresenter presenter = new NewItemInventoryUpdater();
-        NewItemInputBoundary interactor = new NewItemInteractor(database, presenter, inv); //create new use case interactor
-        NewItemController newItemController = new NewItemController(interactor); //create new controller with interactor as param
+        NewItemDsGateway niDatabase = new InventoryDatabase(); //TODO implement this class
+        NewItemPresenter newItemPresenter = new NewItemInventoryUpdater();
+        NewItemInputBoundary newItemInteractor = new NewItemInteractor(niDatabase, newItemPresenter, inv); //create new use case interactor
+        NewItemController newItemController = new NewItemController(newItemInteractor); //create new controller with interactor as param
+        controllers.put("newItemController", newItemController);
 
+        //setup for Remove Item use case
+        RemoveItemDsGateway riDatabase = new InventoryDatabase(); //TODO implement this class
+        RemoveItemPresenter removeItemPresenter= new RemoveItemInventoryUpdater();
+        RemoveItemInputBoundary removeItemInteractor = new RemoveItemInteractor(riDatabase, removeItemPresenter, inv);
+        RemoveItemController removeItemController = new RemoveItemController(removeItemInteractor);
+        controllers.put("removeItemController", removeItemController);
 
 
         //TODO select whether you want to import or start from scratch
 
         //scratch
         inv.updateHistory("New inventory created from scratch");
-        new InventoryMenuUI(newItemController);
+        new InventoryMenuUI(controllers);
 
 
         //new MainCreationUI();

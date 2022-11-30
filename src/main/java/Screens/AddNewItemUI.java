@@ -98,7 +98,7 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
         }
 
-        //TODO use returned info from presenter
+
         //user has clicked button to create item, with all the parameters filled
         newItemController.create(name.getText(), Boolean.parseBoolean(isWeight.getText()),
                 Double.parseDouble(quantity.getText()), Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),

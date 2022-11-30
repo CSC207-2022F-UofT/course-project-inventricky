@@ -9,10 +9,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class InventoryMenuUI extends JFrame {
 
-    public InventoryMenuUI(NewItemController newItemController) {
+    public InventoryMenuUI(HashMap controllers) {
 //        JFrame frame = new JFrame("Inventory Menu");
         this.setTitle("Inventory Menu");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,10 +23,15 @@ public class InventoryMenuUI extends JFrame {
         //Creating the MenuBar and adding components
         JMenuBar mb = new JMenuBar();
 
-        //creat menu for inventory items
+        //create menu for inventory items
         JMenu InventoryItemsMenu = new JMenu("Inventory Items");
+
         JMenu addItemSelect = new JMenu("Add New Item");
         InventoryItemsMenu.add(addItemSelect);
+
+        JMenu removeItemSelect = new JMenu("Remove Item");
+        InventoryItemsMenu.add(removeItemSelect);
+
 
         JMenu orders = new JMenu("Orders");
         JMenu generate_analysis = new JMenu("Generate Analysis");
@@ -116,11 +122,13 @@ public class InventoryMenuUI extends JFrame {
         JPanel panel = new JPanel(); // the panel is not visible in output
         // accepts upto 10 characters
         JButton hist = new JButton("History");
-        JButton newitem = new JButton("Add New Item");
+        JButton newItem = new JButton("Add New Item");
+        JButton removeItem = new JButton("Remove Item");
 
         // Components Added using Flow Layout
         panel.add(hist);
-        panel.add(newitem);
+        panel.add(newItem);
+        panel.add(removeItem);
 
 //        hist.addActionListener(new ActionListener() {
 //            @Override
@@ -136,21 +144,27 @@ public class InventoryMenuUI extends JFrame {
 //            }
 //        });
 
-        newitem.addActionListener(new ActionListener() {
+
+        //action listener for making new item
+        newItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AddNewItemUI(newItemController);
-
-
-
-
-
+                new AddNewItemUI((NewItemController) controllers.get("newItemController"));
             }
 
             private void removeVisible() {
                 InventoryMenuUI.super.setVisible(false);
             }
         });
+
+        //action listener for removing item
+        removeItem.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new RemoveItemUI((RemoveItemController) controllers.get("removeItemController"));
+            }
+        }));
+
 
 
 
