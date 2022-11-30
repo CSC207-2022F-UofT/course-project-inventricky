@@ -1,6 +1,5 @@
 package Screens;
 
-import entities.Importer;
 import entities.Inventory;
 import useCases.InventoryImportBuilder;
 
@@ -21,9 +20,9 @@ public class ImportUI extends JFrame {
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.setVisible(true);
 
-        TextPanel invInfo = new TextPanel(
+        LabelTextPanel invInfo = new LabelTextPanel(
                 new JLabel("Inventory Name"), invName);
-        TextPanel passwordInfo = new TextPanel(
+        LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("File Name"), fileName);
 
         JButton create = new JButton("Create");

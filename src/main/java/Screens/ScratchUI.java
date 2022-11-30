@@ -1,7 +1,6 @@
 package Screens;
 
 import entities.Inventory;
-import useCases.InventoryImportBuilder;
 import useCases.InventoryScratchBuilder;
 
 import javax.swing.*;
@@ -20,7 +19,7 @@ public class ScratchUI extends JFrame{
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.setVisible(true);
 
-        TextPanel invInfo = new TextPanel(new JLabel("Inventory Name"), invName);
+        LabelTextPanel invInfo = new LabelTextPanel(new JLabel("Inventory Name"), invName);
 
         JButton create = new JButton("Create");
         JButton cancel = new JButton("Cancel");
