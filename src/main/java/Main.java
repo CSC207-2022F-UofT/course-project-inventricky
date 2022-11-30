@@ -52,11 +52,11 @@ public class Main {
         //scratch
         InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
         inv.updateHistory("New inventory created from scratch");
-        InventoryUI newInventory = new InventoryUI(blankViewModel);
-        newInventory.setControllers(controllers);
+        //InventoryUI newInventory = new InventoryUI(blankViewModel);
+        //newInventory.setControllers(controllers);
 
 
-        //new MainCreationUI();
+        new MainCreationUI(controllers);
 
 
 

@@ -15,6 +15,9 @@ public class InventoryUI extends JFrame {
 
     private static HashMap controllers; //controllers for use cases
 
+    private static String name; //inventory name
+
+
     public HashMap getControllers() {
         return controllers;
     }
@@ -23,9 +26,13 @@ public class InventoryUI extends JFrame {
         InventoryUI.controllers = controllers;
     }
 
+    public void setName(String name) {
+        InventoryUI.name = name;
+    }
+
     public InventoryUI(InventoryViewModel inventoryViewModel) {
 //        JFrame frame = new JFrame("Inventory Menu");
-        this.setTitle("Inventory");
+        this.setTitle(name);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(300, 300);
         this.setVisible(true);
@@ -85,7 +92,7 @@ public class InventoryUI extends JFrame {
             @Override
             public void menuSelected(MenuEvent e) {
                 this.removeVisible();
-                new MainCreationUI();
+                new MainCreationUI(controllers);
             }
 
             private void removeVisible() {
@@ -187,6 +194,10 @@ public class InventoryUI extends JFrame {
         model.addColumn("Name");
         model.addColumn("Quantity");
         model.addColumn("Barcode");
+        model.addColumn("Buy Price");
+        model.addColumn("Sell Price");
+        model.addColumn("Case Quantity");
+        model.addColumn("Department");
 
         for (int i = inventoryViewModel.getItemList().length - 1; i >= 0; i--) {
             model.addRow(inventoryViewModel.getItemList()[i]);

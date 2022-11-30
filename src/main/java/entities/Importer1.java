@@ -1,24 +1,19 @@
 package entities;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
-public class Importer implements Serializable {
+public class Importer1 implements Serializable {
     private Inventory inventory;
     private final String filename;
     private String delimiter = ";";
 
-    public Importer(String fileToImport, Inventory givenInventory) {
+    public Importer1(String fileToImport, Inventory givenInventory) {
         this.filename = fileToImport;
         this.inventory = givenInventory;
     }
 
-    public Importer(String fileToImport, Inventory givenInventory, String delimiter) {
+    public Importer1(String fileToImport, Inventory givenInventory, String delimiter) {
         this.filename = fileToImport;
         this.inventory = givenInventory;
         this.delimiter = delimiter;
@@ -95,7 +90,7 @@ public class Importer implements Serializable {
 
     public static void main(String[] args) {
         Inventory inventory1 = new Inventory("Test");
-        Importer imp = new Importer("src/main/java/exports/serializable_inventory.txt", inventory1);
+        Importer1 imp = new Importer1("src/main/java/exports/serializable_inventory.txt", inventory1);
         imp.importSerializable();
         System.out.println(inventory1.getItems());
     }
