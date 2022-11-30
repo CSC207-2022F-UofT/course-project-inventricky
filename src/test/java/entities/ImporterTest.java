@@ -1,8 +1,8 @@
 package entities;
 
-import gateways.Importer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import useCases.importUseCase.ImportInventory;
 
 import java.util.ArrayList;
 
@@ -53,20 +53,10 @@ class ImporterTest {
 
         // Test for equality with import from file
         Inventory inv = new Inventory("Test");
-        Importer importer = new Importer("src/main/java/exports/serializable_inventory.txt", inv);
-        importer.importSerializable();
+        ImportInventory importer = new ImportInventory(inv);
+        importer.importToInventory("src/main/java/exports/serializable_inventory.txt");
+        // TODO: Override equals() in InventoryItem and OrderItem
+        Assertions.assertEquals(inv.getOrders(), inv1.getOrders());
 
-        for (int i = 0; i < inv.getItems().size(); i++) {
-            Assertions.assertEquals(inv.getItems().get(i).getName(), inv1.getItems().get(i).getName());
-            Assertions.assertEquals(inv.getItems().get(i).getBarcode(), inv1.getItems().get(i).getBarcode());
-            Assertions.assertEquals(inv.getItems().get(i).getIsWeight(), inv1.getItems().get(i).getIsWeight());
-            Assertions.assertEquals(inv.getItems().get(i).getQuantity(), inv1.getItems().get(i).getQuantity());
-            Assertions.assertEquals(inv.getItems().get(i).getBuyPrice(), inv1.getItems().get(i).getBuyPrice());
-            Assertions.assertEquals(inv.getItems().get(i).getSellPrice(), inv1.getItems().get(i).getSellPrice());
-            Assertions.assertEquals(inv.getItems().get(i).getCaseQuantity(), inv1.getItems().get(i).getCaseQuantity());
-            Assertions.assertEquals(inv.getItems().get(i).getDepartment(), inv1.getItems().get(i).getDepartment());
-            Assertions.assertEquals(inv.getItems().get(i).getQuantityBought(), inv1.getItems().get(i).getQuantityBought());
-            Assertions.assertEquals(inv.getItems().get(i).getQuantitySold(), inv1.getItems().get(i).getQuantitySold());
-        }
     }
 }

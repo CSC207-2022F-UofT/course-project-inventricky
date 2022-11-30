@@ -1,7 +1,7 @@
 package useCases;
 
-import entities.Importer;
 import entities.Inventory;
+import useCases.importUseCase.ImportInventory;
 
 public class InventoryImportBuilder implements InventoryBuilder {
     private final String name;
@@ -14,7 +14,8 @@ public class InventoryImportBuilder implements InventoryBuilder {
 
     public Inventory create() {
         Inventory inv = new Inventory(name);
-        new Importer(filename, inv).importSerializable();
+        ImportInventory importer = new ImportInventory(inv);
+        importer.importToInventory(filename);
         inv.updateHistory("New inventory created from import");
         return inv;
     }
