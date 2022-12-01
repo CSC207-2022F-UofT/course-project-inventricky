@@ -3,16 +3,13 @@ package import_use_case;
 import Screens.InventoryViewModel;
 import new_item_use_case.NewItemResponseModel;
 
-public class ImportPresenter {
+import java.util.HashMap;
 
-    InventoryViewModel prepareSuccessView(String[][] inventoryTable) {
-        InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
-        return inventoryViewModel;
-    }
+public interface ImportPresenter {
 
-    NewItemResponseModel prepareFailView(String error) //TODO more speicific errors
-    {
-        return null;
-    }
+    InventoryViewModel prepareSuccessView(String[][] inventoryTable, HashMap controllers);
+
+    NewItemResponseModel prepareFailView(String error);
+
 
 }
