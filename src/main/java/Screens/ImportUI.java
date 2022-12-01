@@ -1,19 +1,21 @@
 package Screens;
 
-import entities.Importer;
 import entities.Inventory;
+import import_use_case.ImportInventory;
+import import_use_case.ImportPresenter;
 import useCases.InventoryImportBuilder;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class ImportUI extends JFrame {
     JTextField invName = new JTextField(15);
     JTextField fileName = new JTextField(15);
 
-    public ImportUI() {
+    public ImportUI(HashMap controllers) {
         this.setTitle("Import Menu");
         JLabel title = new JLabel("Import");
         this.setSize(400, 400);
@@ -21,9 +23,9 @@ public class ImportUI extends JFrame {
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.setVisible(true);
 
-        TextPanel invInfo = new TextPanel(
+        LabelTextPanel invInfo = new LabelTextPanel(
                 new JLabel("Inventory Name"), invName);
-        TextPanel passwordInfo = new TextPanel(
+        LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("File Name"), fileName);
 
         JButton create = new JButton("Create");
@@ -36,7 +38,7 @@ public class ImportUI extends JFrame {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame j2 = new MainCreationUI();
+                JFrame j2 = new MainCreationUI(controllers);
                 this.setVisible();
                 j2.setVisible(true);
             }
@@ -49,11 +51,17 @@ public class ImportUI extends JFrame {
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Inventory inv = new InventoryImportBuilder(invName.getText(), fileName.getText()).create();
-                JFrame j2 = new InventoryUI(inv);
-                j2.setSize(400,400);
-                this.setVisible();
-                j2.setVisible(true);
+                //Inventory inv = new InventoryImportBuilder(invName.getText(), fileName.getText()).create();
+//                InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
+//                InventoryUI newInventory = new InventoryUI(blankViewModel);
+//                newInventory.setName(invName.getName());
+//                newInventory.setControllers(controllers);
+                ImportInventoryUpdater importPresenter = new ImportInventoryUpdater();
+                //TODO create controller to avoid creating inventory in UI
+                Inventory inv = new Inventory("New Inventory");
+                ImportInventory importer = new ImportInventory(inv, fileName.getText(), importPresenter, controllers);
+                importer.importToInventory();
+
 
 //                JFrame f = new JFrame();
 //                f.setSize(300, 300);
@@ -80,7 +88,4 @@ public class ImportUI extends JFrame {
 //        this.pack();
     }
 
-    public static void main(String[] args) {
-        new ImportUI();
-    }
 }
