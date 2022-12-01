@@ -41,9 +41,6 @@ public abstract class Item implements Serializable {
         this.barcode = barcode;
     }
 
-    public void setIsWeight(boolean weight) {
-        this.isWeight = weight;
-    }
 
     public boolean getIsWeight() {
         return isWeight;
@@ -61,33 +58,21 @@ public abstract class Item implements Serializable {
         return buyPrice;
     }
 
-    public void setBuyPrice(int buyPrice) {
-        this.buyPrice = buyPrice;
-    }
 
     public double getSellPrice() {
         return sellPrice;
     }
 
-    public void setSellPrice(int sellPrice) {
-        this.sellPrice = sellPrice;
-    }
 
     public int getCaseQuantity() {
         return caseQuantity;
     }
 
-    public void setCaseQuantity(int caseQuantity) {
-        this.caseQuantity = caseQuantity;
-    }
 
     public String getDepartment() {
         return department;
     }
 
-    public void setDepartment() {
-        this.department = department;
-    }
 
     //Constructor
 
