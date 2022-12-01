@@ -34,9 +34,6 @@ public class InventoryItem extends Item implements Serializable {
         return itemHistory;
     }
 
-    public void setItemHistory(ArrayList itemHistory) {
-        this.itemHistory = itemHistory;
-    }
 
     //Constructor
 
@@ -56,12 +53,5 @@ public class InventoryItem extends Item implements Serializable {
         this.quantitySold = quantitySold;
         this.itemHistory = new ArrayList<String>(); //TODO Figure out where to put files
     }
-
-    //TODO Implement
-
-
-//    public abstract void orderItem(); // order more stock for item
-//
-//    public abstract void remindOrder(); // remind user to order more stock for item
 
 }
