@@ -1,13 +1,22 @@
-package entities;
+package Screens;
 
-import org.junit.jupiter.api.Test;
+import entities.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
-public class AnalysisTest {
-    private Inventory fruits;
+public class AnalysisCostsBreakdownUI extends JFrame{
+    public AnalysisCostsBreakdownUI(Inventory inventory){
+        AnalysisController controller = new AnalysisController(inventory);
+        String[] list = controller.makeCostsArray();
+        JList l = new JList<>(list);
+        this.add(l);
+        this.setSize(600,400);
+        // this.setDefaultCloseOperation(EXIT_ON_CLOSE); used for testing only
+        this.setVisible(true);
+    }
 
-    public void makeInventory(){
+    public static void main(String[] args) {
         ArrayList<InventoryItem> stuff = new ArrayList<InventoryItem>();
         ArrayList<Order> stuff2 = new ArrayList<Order>();
         InventoryItem item1 = new InventoryItem("Apple", "11000", false, 5, 2, 5,
@@ -36,41 +45,8 @@ public class AnalysisTest {
         stuff.add(item6);
         stuff2.add(order1);
         stuff2.add(order2);
-        this.fruits = new Inventory("fruits", stuff, stuff2);
-    }
-
-    @Test
-    public void testCalculateProfit(){
-        makeInventory();
-        Analysis AnalysisTest = new Analysis(this.fruits);
-        double RealProfit = 104.75;
-        double CalculatedProfit = AnalysisTest.calculateProfit();
-        assert (RealProfit == CalculatedProfit);
-    }
-
-    @Test
-    public void testGetTotalRevenue(){
-        makeInventory();
-        Analysis AnalysisTest = new Analysis(this.fruits);
-        double RealRevenue = 581;
-        double CalculatedRevenue = AnalysisTest.getTotalRevenue();
-        assert (RealRevenue == CalculatedRevenue);
-    }
-
-    @Test
-    public void testGetTotalCosts() {
-        makeInventory();
-        Analysis AnalysisTest = new Analysis(this.fruits);
-        double RealCosts = 476.25;
-        double CalculatedCosts = AnalysisTest.getTotalCosts();
-        assert (RealCosts == CalculatedCosts);
-    }
-
-    @Test
-    public void testLoss(){
-        makeInventory();
-        Analysis AnalysisTest = new Analysis(this.fruits);
-        assert (!AnalysisTest.loss());
+        Inventory fruits = new Inventory("fruits", stuff, stuff2);
+        new AnalysisCostsBreakdownUI(fruits);
     }
 
 }

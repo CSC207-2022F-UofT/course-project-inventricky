@@ -1,9 +1,7 @@
 package Screens;
 
-import entities.Importer;
 import entities.Inventory;
 import entities.InventoryItem;
-import useCases.InventoryImportBuilder;
 
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
@@ -12,8 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class InventoryUI extends JFrame{
 
@@ -39,11 +35,13 @@ public class InventoryUI extends JFrame{
         mb.add(delete_inventory);
         mb.add(history);
         mb.add(sort);
-        JMenuItem m11 = new JMenuItem("Analysis 1");
-        JMenuItem m22 = new JMenuItem("Analysis 2");
+        JMenuItem analysis11 = new JMenuItem("Revenue Breakdown");
+        JMenuItem analysis22 = new JMenuItem("Cost Breakdown");
+        JMenuItem analysis33 = new JMenuItem("Profit/Loss Calculator");
         JMenuItem sort1 = new JMenuItem("Sort by Name");
-        generate_analysis.add(m11);
-        generate_analysis.add(m22);
+        generate_analysis.add(analysis11);
+        generate_analysis.add(analysis22);
+        generate_analysis.add(analysis33);
         sort.add(sort1);
 
         delete_inventory.addMenuListener(new MenuListener() {
@@ -65,6 +63,27 @@ public class InventoryUI extends JFrame{
             @Override
             public void menuCanceled(MenuEvent e) {
 
+            }
+        });
+
+        analysis11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AnalysisRevenueBreakdownUI(inventory);
+            }
+        });
+
+        analysis22.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AnalysisCostsBreakdownUI(inventory);
+            }
+        });
+
+        analysis33.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AnalysisProfitLossCalculatorUI(inventory);
             }
         });
 
