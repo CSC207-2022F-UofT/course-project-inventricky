@@ -1,9 +1,7 @@
 package entities;
 
 import controllers.ExportController;
-import gateways.Exporter;
-import entities.Inventory;
-import entities.InventoryItem;
+import databases.Exporter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

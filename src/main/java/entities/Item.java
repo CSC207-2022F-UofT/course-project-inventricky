@@ -115,6 +115,5 @@ public abstract class Item implements Serializable {
         this.sellPrice = sellPrice;
         this.caseQuantity = caseQuantity;
     }
-
 }
 

@@ -1,4 +1,6 @@
-package gateways;
+package databases;
+
+import useCases.importUseCase.ImportDataWrapper;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ public class Importer implements Serializable {
      * Items are put into this.inventory either in the collection of Orders or InventoryItems.
      */
 
-    public ArrayList<Object> importSerializable() {
+    public ImportDataWrapper importSerializable() {
         // Initialize empty array for returning
         ArrayList<Object> objectList = new ArrayList<>();
         try {
@@ -35,12 +37,6 @@ public class Importer implements Serializable {
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
-        return objectList;
+        return new ImportDataWrapper(objectList);
     }
-
-    public static void main(String[] args) {
-        Importer imp = new Importer("src/main/java/exports/serializable_inventory.txt");
-        System.out.println(imp.importSerializable());
-    }
-
 }

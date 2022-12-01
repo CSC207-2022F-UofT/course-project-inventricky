@@ -1,4 +1,4 @@
-package gateways;
+package databases;
 
 import entities.Inventory;
 import entities.InventoryItem;

@@ -1,6 +1,5 @@
 package Screens;
 
-import gateways.Importer;
 import entities.Inventory;
 import useCases.InventoryImportBuilder;
 

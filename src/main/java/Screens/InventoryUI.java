@@ -1,9 +1,7 @@
 package Screens;
 
-import gateways.Importer;
 import entities.Inventory;
 import entities.InventoryItem;
-import useCases.InventoryImportBuilder;
 
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
@@ -12,8 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class InventoryUI extends JFrame{
 

@@ -1,8 +1,8 @@
 package entities;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class InventoryItem extends Item implements Serializable {
 
@@ -63,5 +63,4 @@ public class InventoryItem extends Item implements Serializable {
 //    public abstract void orderItem(); // order more stock for item
 //
 //    public abstract void remindOrder(); // remind user to order more stock for item
-
 }
