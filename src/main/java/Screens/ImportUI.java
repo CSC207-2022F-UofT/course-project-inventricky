@@ -1,6 +1,8 @@
 package Screens;
 
 import entities.Inventory;
+import import_use_case.ImportInventory;
+import import_use_case.ImportPresenter;
 import useCases.InventoryImportBuilder;
 
 import javax.swing.*;
@@ -50,10 +52,16 @@ public class ImportUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Inventory inv = new InventoryImportBuilder(invName.getText(), fileName.getText()).create();
-                InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
-                InventoryUI newInventory = new InventoryUI(blankViewModel);
-                newInventory.setName(invName.getName());
-                newInventory.setControllers(controllers);
+//                InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
+//                InventoryUI newInventory = new InventoryUI(blankViewModel);
+//                newInventory.setName(invName.getName());
+//                newInventory.setControllers(controllers);
+                ImportInventoryUpdater importPresenter = new ImportInventoryUpdater();
+                //TODO create controller to avoid creating inventory in UI
+                Inventory inv = new Inventory("New Inventory");
+                ImportInventory importer = new ImportInventory(inv, fileName.getText(), importPresenter, controllers);
+                importer.importToInventory();
+
 
 //                JFrame f = new JFrame();
 //                f.setSize(300, 300);

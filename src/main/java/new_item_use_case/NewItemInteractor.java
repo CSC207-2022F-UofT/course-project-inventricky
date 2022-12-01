@@ -37,11 +37,13 @@ public class NewItemInteractor implements NewItemInputBoundary {
         //return new item's name and barcode to the presenter, along with inventory
         NewItemResponseModel newItemResponseModel = new NewItemResponseModel(newItem.getName(), newItem.getBarcode());
 
-        String[][] inventoryTable = new String[inventory.getItems().size()][3];
+        String[][] inventoryTable = new String[inventory.getItems().size()][7];
 
         for (int i = 0; i < inventory.getItems().size(); i++) {
             InventoryItem item = inventory.getItems().get(i);
-            inventoryTable[i] = new String[] {item.getName(), item.getQuantity()+"", item.getBarcode()};
+            inventoryTable[i] = new String[] {item.getName(), item.getQuantity()+"", item.getBarcode(),
+                    item.getBuyPrice()+"", item.getSellPrice()+"",
+                    Integer.toString(item.getCaseQuantity()), item.getDepartment()};
         }
 
         return newItemPresenter.prepareSuccessView(newItemResponseModel, inventoryTable);

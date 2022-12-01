@@ -9,6 +9,10 @@ import remove_item_use_case.RemoveItemDsGateway;
 import remove_item_use_case.RemoveItemInputBoundary;
 import remove_item_use_case.RemoveItemInteractor;
 import remove_item_use_case.RemoveItemPresenter;
+import update_item_quantity_use_case.UpdateItemQtyDsGateway;
+import update_item_quantity_use_case.UpdateItemQtyInputBoundary;
+import update_item_quantity_use_case.UpdateItemQtyInteractor;
+import update_item_quantity_use_case.UpdateItemQtyPresenter;
 
 import java.util.HashMap;
 
@@ -45,6 +49,13 @@ public class Main {
         RemoveItemInputBoundary removeItemInteractor = new RemoveItemInteractor(riDatabase, removeItemPresenter, inv);
         RemoveItemController removeItemController = new RemoveItemController(removeItemInteractor);
         controllers.put("removeItemController", removeItemController);
+
+        //setup for Update Item Qty use case
+        UpdateItemQtyDsGateway uiDatabase = new InventoryDatabase(); //TODO implement this class
+        UpdateItemQtyPresenter updateItemQtyPresenter= new UpdateItemQtyInventoryUpdater();
+        UpdateItemQtyInputBoundary updateItemQtyInteractor = new UpdateItemQtyInteractor(uiDatabase, updateItemQtyPresenter, inv);
+        UpdateItemQtyController updateItemQtyController = new UpdateItemQtyController(updateItemQtyInteractor);
+        controllers.put("updateItemQtyController", updateItemQtyController);
 
 
         //TODO select whether you want to import or start from scratch

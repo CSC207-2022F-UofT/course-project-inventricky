@@ -10,11 +10,18 @@ import java.util.HashMap;
 
 public class InventoryItemMenu extends JFrame implements ActionListener, ItemListener {
 
+    private JFrame parent;
     private static HashMap controllers; //controllers for use cases
     final static String REMOVEITEMPANEL = "Remove Item";
     final static String UPDATEITEMPANEL = "Update Item Quantity";
 
+    final static String[] REASON_COMBO_BOX_ITEMS = {"bought", "sold", "error"};
+
+    JComboBox reasonComboBox = new JComboBox(REASON_COMBO_BOX_ITEMS);
+    JTextField newQty = new JTextField(5);
+
     String barcode; //barcode of item being operated on
+
 
     public static void setControllers(HashMap controllers) {
         InventoryItemMenu.controllers = controllers;
@@ -23,9 +30,9 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
 
     JPanel cards;
 
-    public InventoryItemMenu(String barcode, HashMap controllers) {
+    public InventoryItemMenu(String barcode, HashMap controllers, JFrame parent) {
 
-
+        this.parent = parent;
 
 
         this.controllers = controllers; //set controller map
@@ -58,7 +65,7 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
 
         //update qty card
         JPanel updateItemCard = new JPanel();
-        updateItemCard.add(new JTextField("New Item Quantity:", 5));
+
 
         JButton confirmUpdate = new JButton("Confirm Update");
         JButton cancelUpdate = new JButton("Cancel");
@@ -67,13 +74,13 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
         cancelUpdate.addActionListener(this);
 
 
+        LabelTextPanel newQtyPanel = new LabelTextPanel(new JLabel("New Qty"), newQty);
 
 
-        String[] reasonComboBoxItems = {"Bought", "Sold", "Error"};
-        JComboBox reasonComboBox = new JComboBox(reasonComboBoxItems);
         reasonComboBox.setEditable(false);
-        reasonComboBox.addItemListener(this);
+        reasonComboBox.addActionListener(this);
 
+        updateItemCard.add(newQtyPanel);
         updateItemCard.add(reasonComboBox);
         updateItemCard.add(confirmUpdate);
         updateItemCard.add(cancelUpdate);
@@ -87,13 +94,8 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
         this.getContentPane().add(cards, BorderLayout.CENTER);
 
 
-
         this.pack();
         this.setVisible(true);
-
-
-
-
 
 
     }
@@ -111,13 +113,21 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
         if (evt.getActionCommand().equals("Cancel")) {
             this.dispose();
         } else if (evt.getActionCommand().equals("Confirm Remove")) {
-            RemoveItemController controller = (RemoveItemController) controllers.get("removeItemController");
-            controller.create(barcode);
+            RemoveItemController removeItemController = (RemoveItemController) controllers.get("removeItemController");
+            removeItemController.create(barcode);
+
+            //dispose old inventory
+            parent.dispose();
+            this.dispose();
+        } else if (evt.getActionCommand().equals("Confirm Update")) {
+            UpdateItemQtyController updateItemQtyController = (UpdateItemQtyController) controllers.get("updateItemQtyController");
+            updateItemQtyController.create(barcode, (String) reasonComboBox.getSelectedItem(), Double.parseDouble(newQty.getText()));
+
+            //dispose old inventory
+            parent.dispose();
+            this.dispose();
         }
-
     }
-
-
 
 
 }

@@ -35,16 +35,18 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
                 if (candidate.getBarcode().equals(requestModel.getBarcode())) {
                     inventory.removeItem(candidate);
 
-                    RemoveItemResponseModel removeItemReponseModel = new RemoveItemResponseModel(candidate.getName(), candidate.getBarcode());
+                    RemoveItemResponseModel removeItemResponseModel = new RemoveItemResponseModel(candidate.getName(), candidate.getBarcode());
 
-                    String[][] inventoryTable = new String[inventory.getItems().size()][3];
+                    String[][] inventoryTable = new String[inventory.getItems().size()][7];
 
                     for (int i = 0; i < inventory.getItems().size(); i++) {
                         InventoryItem item = inventory.getItems().get(i);
-                        inventoryTable[i] = new String[] {item.getName(), item.getQuantity()+"", item.getBarcode()};
+                        inventoryTable[i] = new String[] {item.getName(), item.getQuantity()+"", item.getBarcode(),
+                                item.getBuyPrice()+"", item.getSellPrice()+"",
+                                Integer.toString(item.getCaseQuantity()), item.getDepartment()};
                     }
 
-                    return removeItemPresenter.prepareSuccessView(removeItemReponseModel, inventoryTable);
+                    return removeItemPresenter.prepareSuccessView(removeItemResponseModel, inventoryTable);
 
                 }
             }

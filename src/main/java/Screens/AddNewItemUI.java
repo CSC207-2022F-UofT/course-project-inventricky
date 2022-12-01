@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class AddNewItemUI extends JFrame implements ActionListener{
 
-    private boolean itemAdded;
+    private JFrame parent; //parent InventoryUI
 
     //text fields for user input
     JTextField name = new JTextField(15);
@@ -24,10 +24,9 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
     NewItemController newItemController; //controller
 
-    public AddNewItemUI(NewItemController controller) {
+    public AddNewItemUI(NewItemController controller, JFrame parent) {
 
-        //default item not added
-        this.itemAdded = false;
+        this.parent = parent; //set parent
 
         //create new JPanel
         JPanel panel = new JPanel();
@@ -104,6 +103,9 @@ public class AddNewItemUI extends JFrame implements ActionListener{
                 Double.parseDouble(quantity.getText()), Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
                 Integer.parseInt(caseQuantity.getText()), department.getText());
 
+        //dispose old inventory
+        parent.dispose();
+        this.dispose();
 
     }
 }

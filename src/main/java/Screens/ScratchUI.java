@@ -49,8 +49,9 @@ public class ScratchUI extends JFrame{
                 //Inventory inv = new InventoryScratchBuilder(invName.getText()).create();
                 InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
                 InventoryUI newInventory = new InventoryUI(blankViewModel);
-                newInventory.setName(invName.getName());
                 newInventory.setControllers(controllers);
+                newInventory.setName(invName.getText());
+                newInventory.refresh();
             }
 
             private void setVisible() {

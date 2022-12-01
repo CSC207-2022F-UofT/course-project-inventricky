@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class InventoryUI extends JFrame {
 
@@ -18,21 +19,18 @@ public class InventoryUI extends JFrame {
     private static String name; //inventory name
 
 
-    public HashMap getControllers() {
-        return controllers;
+    public void setName(String name) {
+        InventoryUI.name = name;
     }
 
     public void setControllers(HashMap controllers) {
         InventoryUI.controllers = controllers;
     }
 
-    public void setName(String name) {
-        InventoryUI.name = name;
-    }
-
     public InventoryUI(InventoryViewModel inventoryViewModel) {
 //        JFrame frame = new JFrame("Inventory Menu");
         this.setTitle(name);
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(300, 300);
         this.setVisible(true);
@@ -142,12 +140,12 @@ public class InventoryUI extends JFrame {
         // accepts upto 10 characters
         JButton hist = new JButton("History");
         JButton newItem = new JButton("Add New Item");
-        JButton removeItem = new JButton("Remove Item");
+
 
         // Components Added using Flow Layout
         panel.add(hist);
         panel.add(newItem);
-        panel.add(removeItem);
+
 
 //        hist.addActionListener(new ActionListener() {
 //            @Override
@@ -168,13 +166,18 @@ public class InventoryUI extends JFrame {
         newItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AddNewItemUI((NewItemController) controllers.get("newItemController"));
+
+                doNewItemAction();
+
+
             }
 
             private void removeVisible() {
                 InventoryUI.super.setVisible(false);
             }
         });
+
+
 
         //action listener for removing item
 //        removeItem.addActionListener((new ActionListener() {
@@ -211,10 +214,11 @@ public class InventoryUI extends JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 //get barcode of selected item
                 String selectedItemBarcode = (String) ta.getValueAt(ta.getSelectedRow(), 2);
-                System.out.println("11122");
                 if (!e.getValueIsAdjusting()) {
 
-                    new InventoryItemMenu(selectedItemBarcode, controllers);
+                    doItemMenuAction(selectedItemBarcode);
+
+
                 }
             }
         });
@@ -228,5 +232,20 @@ public class InventoryUI extends JFrame {
         this.getContentPane().add(BorderLayout.NORTH, mb);
         this.getContentPane().add(BorderLayout.CENTER, scroll);
         this.setVisible(true);
+    }
+
+    private void doNewItemAction() {
+        new AddNewItemUI((NewItemController) controllers.get("newItemController"), this);
+    }
+
+    private void doItemMenuAction(String selectedItemBarcode) {
+        new InventoryItemMenu(selectedItemBarcode, controllers, this);
+    }
+
+    public void refresh() {
+        this.setTitle(name);
+        SwingUtilities.updateComponentTreeUI(this);
+
+
     }
 }
