@@ -16,6 +16,7 @@ public class InventoryCreationUI extends JFrame{
         JLabel title = new JLabel("Inventory Creation");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(100,100);
 
         JPanel buttons = new JPanel();
         buttons.add(imported);
@@ -27,24 +28,26 @@ public class InventoryCreationUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 JFrame j2 = new ImportUI(controllers);
                 this.setVisible();
+
                 j2.setVisible(true);
             }
 
-            private void setVisible() {
-                InventoryCreationUI.super.setVisible(false);
+            private void dispose() {
+                InventoryCreationUI.super.dispose();
             }
         });
 
         scratch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 JFrame j2 = new ScratchUI(controllers);
                 this.removeVisible();
                 j2.setVisible(true);
             }
 
-            private void removeVisible() {
-                InventoryCreationUI.super.setVisible(false);
+            private void dispose() {
+                InventoryCreationUI.super.dispose();
             }
         });
 

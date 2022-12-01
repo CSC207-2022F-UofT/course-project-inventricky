@@ -24,11 +24,12 @@ public class MainCreationUI extends JFrame {
                 JFrame j2 = new InventoryCreationUI(controllers); //FIX
                 this.setVisible();
                 j2.setSize(400, 400);
+
                 j2.setVisible(true);
             }
 
-            private void setVisible() {
-                MainCreationUI.super.setVisible(false);
+            private void dispose() {
+                MainCreationUI.super.dispose();
             }
         });
         this.getContentPane().add(BorderLayout.CENTER, panel);

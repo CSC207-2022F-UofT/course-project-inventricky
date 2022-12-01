@@ -1,4 +1,4 @@
-package tutorial;
+package entities;
 
 import entities.*;
 import org.junit.Test;
