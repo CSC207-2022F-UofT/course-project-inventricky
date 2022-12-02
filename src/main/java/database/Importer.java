@@ -1,4 +1,4 @@
-package databases;
+package database;
 
 import import_use_case.ImportDataWrapper;
 
@@ -39,4 +39,5 @@ public class Importer implements Serializable {
         }
         return new ImportDataWrapper(objectList);
     }
+
 }

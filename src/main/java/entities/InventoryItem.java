@@ -1,8 +1,8 @@
 package entities;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class InventoryItem extends Item implements Serializable {
 
@@ -34,9 +34,6 @@ public class InventoryItem extends Item implements Serializable {
         return itemHistory;
     }
 
-    public void setItemHistory(ArrayList itemHistory) {
-        this.itemHistory = itemHistory;
-    }
 
     //Constructor
 
@@ -57,10 +54,4 @@ public class InventoryItem extends Item implements Serializable {
         this.itemHistory = new ArrayList<String>(); //TODO Figure out where to put files
     }
 
-    //TODO Implement
-
-
-//    public abstract void orderItem(); // order more stock for item
-//
-//    public abstract void remindOrder(); // remind user to order more stock for item
 }

@@ -1,5 +1,4 @@
 package entities;
-
 import controllers.ExportController;
 import databases.Exporter;
 import org.junit.jupiter.api.Assertions;
