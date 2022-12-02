@@ -6,14 +6,12 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class AnalysisRevenueBreakdownUI extends JFrame {
-    public AnalysisRevenueBreakdownUI(Inventory inventory){
-        AnalysisController controller = new AnalysisController(inventory);
-        String[] list = controller.makeRevenueArray();
-        JList l = new JList<>(list);
-        this.add(l);
-        this.setSize(600,400);
-        // this.setDefaultCloseOperation(EXIT_ON_CLOSE); used for testing only
-        this.setVisible(true);
+    /**
+     * This UI calls the controller to do the revenue breakdown feature
+     * @param controller this UI takes the AnalysisController as a parameter
+     */
+    public AnalysisRevenueBreakdownUI(AnalysisController controller){
+        controller.makeRevenueArray();
     }
 
     public static void main(String[] args) {
@@ -46,7 +44,7 @@ public class AnalysisRevenueBreakdownUI extends JFrame {
         stuff2.add(order1);
         stuff2.add(order2);
         Inventory fruits = new Inventory("fruits", stuff, stuff2);
-        new AnalysisRevenueBreakdownUI(fruits);
+        // new AnalysisRevenueBreakdownUI(fruits);
     }
 
 }

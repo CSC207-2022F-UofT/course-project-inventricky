@@ -32,8 +32,8 @@ public class InventoryCreationUI extends JFrame{
                 j2.setVisible(true);
             }
 
-            private void dispose() {
-                InventoryCreationUI.super.dispose();
+            private void setVisible() {
+                InventoryCreationUI.super.setVisible(false);
             }
         });
 
@@ -46,8 +46,8 @@ public class InventoryCreationUI extends JFrame{
                 j2.setVisible(true);
             }
 
-            private void dispose() {
-                InventoryCreationUI.super.dispose();
+            private void removeVisible() {
+                InventoryCreationUI.super.setVisible(false);
             }
         });
 

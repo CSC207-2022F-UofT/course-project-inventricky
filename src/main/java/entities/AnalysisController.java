@@ -1,33 +1,30 @@
 package entities;
 
-import entities.comparator.AnalysisPresenter;
+import entities.comparator.AnalysisScreenUpdater;
 
 public class AnalysisController {
     private final Analysis analysis;
 
-    public AnalysisController(Inventory inventory){
-        this.analysis = new Analysis(inventory);
-    }
     public AnalysisController(Analysis analysis){
         this.analysis = analysis;
     }
 
-    public String[] makeRevenueArray(){
+    public void makeRevenueArray(){
         String[] list = this.analysis.totalRevenueBreakdown().toArray(new String[0]);
-        AnalysisPresenter presenter = new AnalysisPresenter();
-        return presenter.showRevenueArray(list);
+        AnalysisScreenUpdater presenter = new AnalysisScreenUpdater();
+        presenter.showArray(list);
 
     }
 
-    public String[] makeCostsArray(){
+    public void makeCostsArray(){
         String[] list = this.analysis.totalCostsBreakdown().toArray(new String[0]);
-        AnalysisPresenter presenter = new AnalysisPresenter();
-        return presenter.showCostsArray(list);
+        AnalysisScreenUpdater presenter = new AnalysisScreenUpdater();
+        presenter.showArray(list);
     }
 
-    public String[] makeProfitLossArray(){
+    public void makeProfitLossArray(){
         String revenue = "Revenue: " + this.analysis.getTotalRevenue();
-        String costs = "Costs: " + this.analysis.getTotalRevenue();
+        String costs = "Costs: " + this.analysis.getTotalCosts();
         String profitloss = new String();
         if (analysis.loss()){
             profitloss = "Loss: " + (this.analysis.calculateProfit() * -1);
@@ -35,8 +32,8 @@ public class AnalysisController {
             profitloss = "Profit: " + this.analysis.calculateProfit();
         }
         String[] list = new String[]{revenue, costs, profitloss};
-        AnalysisPresenter presenter = new AnalysisPresenter();
-        return presenter.showProfitLossArray(list);
+        AnalysisScreenUpdater presenter = new AnalysisScreenUpdater();
+        presenter.showArray(list);
     }
 
 }

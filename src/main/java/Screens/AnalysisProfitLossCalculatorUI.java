@@ -6,14 +6,12 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class AnalysisProfitLossCalculatorUI extends JFrame {
-    public AnalysisProfitLossCalculatorUI(Inventory inventory){
-        AnalysisController controller = new AnalysisController(inventory);
-        String[] list = controller.makeProfitLossArray();
-        JList l = new JList<>(list);
-        this.add(l);
-        this.setSize(200,200);
-        // this.setDefaultCloseOperation(EXIT_ON_CLOSE); used for testing only
-        this.setVisible(true);
+    /**
+     * This UI calls the controller to make the profit/loss calculation feature
+     * @param controller this UI takes the AnalysisController as a parameter
+     */
+    public AnalysisProfitLossCalculatorUI(AnalysisController controller){
+        controller.makeProfitLossArray();
     }
 
     public static void main(String[] args) {
@@ -46,6 +44,6 @@ public class AnalysisProfitLossCalculatorUI extends JFrame {
         stuff2.add(order1);
         stuff2.add(order2);
         Inventory fruits = new Inventory("fruits", stuff, stuff2);
-        new AnalysisProfitLossCalculatorUI(fruits);
+        // new AnalysisProfitLossCalculatorUI(fruits);
     }
 }

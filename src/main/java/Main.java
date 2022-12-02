@@ -1,6 +1,9 @@
 
 import Screens.*;
+import entities.Analysis;
+import entities.AnalysisController;
 import entities.Inventory;
+import entities.comparator.AnalysisScreenUpdater;
 import new_item_use_case.NewItemDsGateway;
 import new_item_use_case.NewItemInputBoundary;
 import new_item_use_case.NewItemInteractor;
@@ -56,6 +59,12 @@ public class Main {
         UpdateItemQtyInputBoundary updateItemQtyInteractor = new UpdateItemQtyInteractor(uiDatabase, updateItemQtyPresenter, inv);
         UpdateItemQtyController updateItemQtyController = new UpdateItemQtyController(updateItemQtyInteractor);
         controllers.put("updateItemQtyController", updateItemQtyController);
+
+        //setup for Analysis
+        AnalysisScreenUpdater analysisScreenPresenter = new AnalysisScreenUpdater();
+        Analysis analysis = new Analysis(inv);
+        AnalysisController analysisController = new AnalysisController(analysis);
+        controllers.put("analysisController", analysisController);
 
 
         //TODO select whether you want to import or start from scratch
