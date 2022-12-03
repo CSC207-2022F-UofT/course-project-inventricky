@@ -69,11 +69,15 @@ public class Inventory {
 
     /** Removes an Item to the inventor's list of items.
      * @param item Item that is to be removed.
+     * @param testing true if method is being called for test, ignores barcode remover
      */
-    public void removeItem(InventoryItem item) {
-        file = Item.getFile(); //update filepath of csv
-        this.barcodes = new BarcodeInteractor().readBarcode(file);
-        new BarcodeInteractor().removeBarcode(item.getBarcode(), barcodes, file);
+    public void removeItem(InventoryItem item, boolean testing) {
+        if (!testing) {
+            file = Item.getFile(); //update filepath of csv
+            this.barcodes = new BarcodeInteractor().readBarcode(file);
+            new BarcodeInteractor().removeBarcode(item.getBarcode(), barcodes, file);
+        }
+
         this.items.remove(item);
         this.updateHistory("Item " + item.getName() + " was removed from the inventory");
     }

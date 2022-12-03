@@ -3,10 +3,6 @@ package remove_item_use_case;
 import Screens.InventoryViewModel;
 import entities.Inventory;
 import entities.InventoryItem;
-import new_item_use_case.NewItemDsGateway;
-import new_item_use_case.NewItemPresenter;
-
-import java.io.IOException;
 
 public class RemoveItemInteractor implements RemoveItemInputBoundary {
 
@@ -23,7 +19,7 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
     }
 
     @Override
-    public InventoryViewModel create(RemoveItemRequestModel requestModel) throws RuntimeException {
+    public InventoryViewModel removeItem(RemoveItemRequestModel requestModel, boolean testing) throws RuntimeException {
 
         //Search for item in Inventory
         //TODO case where item is not in inventory
@@ -33,7 +29,7 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
 
             for (InventoryItem candidate : inventory.getItems()) {
                 if (candidate.getBarcode().equals(requestModel.getBarcode())) {
-                    inventory.removeItem(candidate);
+                    inventory.removeItem(candidate, testing);
 
                     RemoveItemResponseModel removeItemResponseModel = new RemoveItemResponseModel(candidate.getName(), candidate.getBarcode());
 

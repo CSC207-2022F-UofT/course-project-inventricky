@@ -9,6 +9,7 @@ public interface NewItemInputBoundary {
 
 
     //use case interactor must implement this method where it takes in input data and returns output data
-    InventoryViewModel create(NewItemRequestModel requestModel);
 
+    //returns output data, takes in input data
+    InventoryViewModel addItem(NewItemRequestModel requestModel, boolean testing);
 }

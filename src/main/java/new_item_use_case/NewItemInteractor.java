@@ -21,13 +21,22 @@ public class NewItemInteractor implements NewItemInputBoundary {
 
     //returns output data, takes in input data
     @Override
-    public InventoryViewModel create(NewItemRequestModel requestModel) {
+    public InventoryViewModel addItem(NewItemRequestModel requestModel, boolean testing) {
 
         //create new InventoryItem
         //TODO right now this assumes valid input
-        InventoryItem newItem = new InventoryItem(requestModel.getName(), requestModel.getIsWeight(),
-                requestModel.getQuantity(), requestModel.getBuyPrice(), requestModel.getSellPrice(),
-                requestModel.getCaseQuantity(), requestModel.getDepartment(), 0, 0);
+        InventoryItem newItem;
+
+        if (testing) {
+            newItem = new InventoryItem(requestModel.getName(), "12345", requestModel.getIsWeight(),
+                    requestModel.getQuantity(), requestModel.getBuyPrice(), requestModel.getSellPrice(),
+                    requestModel.getCaseQuantity(), requestModel.getDepartment(), 0, 0);
+        } else {
+            newItem = new InventoryItem(requestModel.getName(), requestModel.getIsWeight(),
+                    requestModel.getQuantity(), requestModel.getBuyPrice(), requestModel.getSellPrice(),
+                    requestModel.getCaseQuantity(), requestModel.getDepartment(), 0, 0);
+        }
+
         //add the inventory item to inventory
         inventory.addItem(newItem);
 
@@ -41,8 +50,8 @@ public class NewItemInteractor implements NewItemInputBoundary {
 
         for (int i = 0; i < inventory.getItems().size(); i++) {
             InventoryItem item = inventory.getItems().get(i);
-            inventoryTable[i] = new String[] {item.getName(), item.getQuantity()+"", item.getBarcode(),
-                    item.getBuyPrice()+"", item.getSellPrice()+"",
+            inventoryTable[i] = new String[]{item.getName(), item.getQuantity() + "", item.getBarcode(),
+                    item.getBuyPrice() + "", item.getSellPrice() + "",
                     Integer.toString(item.getCaseQuantity()), item.getDepartment()};
         }
 

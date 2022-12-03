@@ -1,7 +1,9 @@
-package entities;
+package database_access;
 
 import database_access.BarcodeRemover;
+import entities.TestResources;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +41,7 @@ class BarcodeRemoverTest {
     void givenMultipleBarcodesInDepartment_whenBarcodeRemoved_thenCorrectBarcodeRemoved() {
         BarcodeRemover.removeBarcode("12011", barcodes, "src/test/java/test_files/barcode_test-copy.csv");
         assertEquals(barcodes.get("12"), new ArrayList<>(Arrays.asList("12010", "12012")));
-        assertTrue(TestResources.checkLineEquality("src/test/java/test_files/barcode_test-copy.csv",
+        Assertions.assertTrue(TestResources.checkLineEquality("src/test/java/test_files/barcode_test-copy.csv",
                 "12010, 12012", 2));
     }
 

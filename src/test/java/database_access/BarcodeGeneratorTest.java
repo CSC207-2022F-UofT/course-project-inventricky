@@ -1,7 +1,9 @@
-package entities;
+package database_access;
 
 import database_access.BarcodeGenerator;
+import entities.TestResources;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,7 +47,7 @@ public class BarcodeGeneratorTest {
     void givenDepartmentInCsv_whenBarcodeGenerated_thenCorrectBarcodeAdded() {
         BarcodeGenerator.generateBarcode("11", barcodes, "src/test/java/test_files/barcode_test-copy.csv");
         assertEquals(barcodes.get("11"), new ArrayList<>(Arrays.asList("11011", "11024", "11025")));
-        assertTrue (TestResources.checkLineEquality("src/test/java/test_files/barcode_test-copy.csv",
+        Assertions.assertTrue (TestResources.checkLineEquality("src/test/java/test_files/barcode_test-copy.csv",
                 "11011, 11024, 11025", 2));
 
     }
