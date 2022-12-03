@@ -1,9 +1,7 @@
 package Screens;
 
-import entities.Importer;
 import entities.Inventory;
 import entities.InventoryItem;
-import useCases.InventoryImportBuilder;
 
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
@@ -12,12 +10,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
-public class InventoryUI extends JFrame{
+public class InventoryUI2 extends JFrame{
 
-    public InventoryUI(Inventory inventory) {
+    public InventoryUI2(Inventory inventory) {
 //        JFrame frame = new JFrame("Inventory Menu");
         this.setTitle(inventory.getName() + " Inventory Menu");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +50,7 @@ public class InventoryUI extends JFrame{
             }
 
             private void removeVisible() {
-                InventoryUI.super.setVisible(false);
+                InventoryUI2.super.setVisible(false);
             }
 
             @Override
@@ -126,11 +122,11 @@ public class InventoryUI extends JFrame{
                         3, 5, "1", 10, 0);
                 inventory.addItem(item0);
                 this.removeVisible();
-                new InventoryUI(inventory);
+                new InventoryUI2(inventory);
             }
 
             private void removeVisible() {
-                InventoryUI.super.setVisible(false);
+                InventoryUI2.super.setVisible(false);
             }
         });
 

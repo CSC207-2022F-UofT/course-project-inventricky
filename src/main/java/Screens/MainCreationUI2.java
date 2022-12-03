@@ -5,9 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainCreationUI extends JFrame {
+public class MainCreationUI2 extends JFrame {
 
-    public MainCreationUI() {
+    public MainCreationUI2() {
 //        JFrame frame = new JFrame("Main Menu");
         JPanel panel = new JPanel();
         JButton button = new JButton("Create New Inventory");
@@ -26,7 +26,7 @@ public class MainCreationUI extends JFrame {
             }
 
             private void dispose() {
-                MainCreationUI.super.dispose();
+                MainCreationUI2.super.dispose();
             }
         });
         this.getContentPane().add(BorderLayout.CENTER, panel);

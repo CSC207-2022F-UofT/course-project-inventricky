@@ -1,5 +1,7 @@
 package generate_order_use_case;
 
+import Screens.InventoryViewModel;
+
 public interface OrderingInputBoundary {
-    OrderingResponseModel create(OrderingRequestModel requestModel);
+    InventoryViewModel create(OrderingRequestModel requestModel);
 }

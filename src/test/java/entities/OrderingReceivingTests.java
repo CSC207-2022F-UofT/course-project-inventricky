@@ -2,8 +2,8 @@ package entities;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import generate_order_use_case.OrderGenerator;
-import receive_order_use_case.OrderReceiver;
+import useCases.OrderGenerator;
+import useCases.OrderReceiver;
 
 import java.time.LocalDate;
 

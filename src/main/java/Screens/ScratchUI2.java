@@ -1,7 +1,6 @@
 package Screens;
 
 import entities.Inventory;
-import useCases.InventoryImportBuilder;
 import useCases.InventoryScratchBuilder;
 
 import javax.swing.*;
@@ -9,10 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ScratchUI extends JFrame{
+public class ScratchUI2 extends JFrame{
     JTextField invName = new JTextField(15);
 
-    public ScratchUI() {
+    public ScratchUI2() {
         this.setTitle("New Inventory Menu");
         JLabel title = new JLabel("New Inventory");
         this.setSize(400, 400);
@@ -39,7 +38,7 @@ public class ScratchUI extends JFrame{
             }
 
             private void setVisible() {
-                ScratchUI.super.setVisible(false);
+                ScratchUI2.super.setVisible(false);
             }
         });
 
@@ -54,7 +53,7 @@ public class ScratchUI extends JFrame{
             }
 
             private void setVisible() {
-                ScratchUI.super.setVisible(false);
+                ScratchUI2.super.setVisible(false);
             }
         });
 

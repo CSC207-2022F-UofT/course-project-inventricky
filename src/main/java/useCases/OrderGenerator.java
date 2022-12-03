@@ -1,4 +1,4 @@
-package generate_order_use_case;
+package useCases;
 
 import entities.Inventory;
 import entities.InventoryItem;
@@ -6,7 +6,7 @@ import entities.Order;
 
 import java.time.LocalDate;
 
-public class OrderGenerator {
+public class OrderGenerator{
 
 
     /**
