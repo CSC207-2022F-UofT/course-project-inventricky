@@ -1,12 +1,13 @@
 package update_item_quantity_use_case;
 
 import Screens.InventoryViewModel;
-import remove_item_use_case.RemoveItemRequestModel;
+import Screens.ItemHistoryViewModel;
 
 
+public interface UpdateItemQtyInputBoundary {
 
-    public interface UpdateItemQtyInputBoundary {
+        InventoryViewModel UpdateQty(UpdateItemQtyRequestModel requestModel);
 
-        InventoryViewModel create(UpdateItemQtyRequestModel requestModel);
+        ItemHistoryViewModel GetItemHistory(UpdateItemQtyRequestModel requestModel);
     }
 

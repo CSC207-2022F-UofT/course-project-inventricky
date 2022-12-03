@@ -1,9 +1,12 @@
 package update_item_quantity_use_case;
 
 import Screens.InventoryViewModel;
+import Screens.ItemHistoryViewModel;
 import entities.Inventory;
 import entities.InventoryItem;
-import remove_item_use_case.*;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
@@ -21,7 +24,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
     }
 
     @Override
-    public InventoryViewModel create(UpdateItemQtyRequestModel requestModel) throws RuntimeException {
+    public InventoryViewModel UpdateQty(UpdateItemQtyRequestModel requestModel) throws RuntimeException {
 
         //Search for item in Inventory
         //TODO case where item is not in inventory
@@ -29,9 +32,9 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
 
         for (InventoryItem candidate : inventory.getItems()) {
             if (candidate.getBarcode().equals(requestModel.getBarcode())) {
-            updateQty(candidate, requestModel.getNewQuantity(), requestModel.getUpdateReason());
+            updateQty(candidate, requestModel.getQtyInput(), requestModel.getUpdateReason());
 
-                UpdateItemQtyResponseModel updateItemQtyResponseModel = new UpdateItemQtyResponseModel(candidate.getName(), candidate.getBarcode());
+                UpdateItemQtyResponseModel updateItemQtyResponseModel = new UpdateItemQtyResponseModel(candidate.getName(), candidate.getBarcode(), candidate.getItemHistory());
 
                 String[][] inventoryTable = new String[inventory.getItems().size()][7];
 
@@ -42,7 +45,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
                             Integer.toString(item.getCaseQuantity()), item.getDepartment()};
                 }
 
-                return updateItemQtyPresenter.prepareSuccessView(updateItemQtyResponseModel, inventoryTable);
+                return updateItemQtyPresenter.prepareQtySuccessView(updateItemQtyResponseModel, inventoryTable);
 
             }
         }
@@ -52,24 +55,40 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
 
     }
 
-    public static void updateQty(InventoryItem item, double newQuantity, String updateReason) {
+    @Override
+    public ItemHistoryViewModel GetItemHistory(UpdateItemQtyRequestModel requestModel) {
 
+        for (InventoryItem candidate : inventory.getItems()) {
+            if (candidate.getBarcode().equals(requestModel.getBarcode())) {
 
-        double diff = newQuantity - item.getQuantity(); // difference between new quantity and old quantity
-        diff = diff * 100.0;
-        double roundedDiff = Math.round(diff) / 100.0;
+                UpdateItemQtyResponseModel updateItemQtyResponseModel = new UpdateItemQtyResponseModel(candidate.getName(), candidate.getBarcode(), candidate.getItemHistory());
 
-        if (updateReason.equals("bought")) {
-            item.setQuantityBought(item.getQuantityBought() + roundedDiff);
-            item.getItemHistory().add("b" + roundedDiff);
-        } else if (updateReason.equals("sold")) {
-            item.setQuantitySold(item.getQuantitySold() - roundedDiff);
-            item.getItemHistory().add("s" + -roundedDiff);
-        } else {
-            item.getItemHistory().add("e" + roundedDiff);
+                return updateItemQtyPresenter.prepareHistorySuccessView(updateItemQtyResponseModel);
+            }
         }
+        RuntimeException RuntimeException = null;
+        throw RuntimeException; //TODO exception
+    }
 
-        item.setQuantity(newQuantity);
+    public static void updateQty(InventoryItem item, double qtyInput, String updateReason) {
+
+
+        qtyInput = qtyInput * 100.0;
+        double roundedQtyInput = Math.round(qtyInput) / 100.0;
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+        if (updateReason.equals("bought")) {
+            item.setQuantityBought(item.getQuantityBought() + roundedQtyInput);
+            item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Bought " + roundedQtyInput);
+            item.setQuantity(item.getQuantity() + roundedQtyInput);
+        } else if (updateReason.equals("sold")) {
+            item.setQuantitySold(item.getQuantitySold() + roundedQtyInput);
+            item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Sold " + roundedQtyInput);
+            item.setQuantity(item.getQuantity() - roundedQtyInput);
+        } else {
+            item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Error: Adjusted quantity to " + roundedQtyInput);
+            item.setQuantity(roundedQtyInput);
+        }
     }
 }
 

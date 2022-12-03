@@ -1,10 +1,10 @@
 package import_use_case;
 
 import Screens.InventoryViewModel;
-import database.Importer;
+import database_access.Importer;
 import entities.Inventory;
 import entities.InventoryItem;
-import entities.Order;
+import entities.Item;
 
 import java.util.HashMap;
 
@@ -24,6 +24,10 @@ public class ImportInventory implements ImportInputBoundary{
     @Override
     public InventoryViewModel create(ImportRequestModel importRequestModel) {
         Importer importer = new Importer(importRequestModel.getFileName());
+
+        //Imported inventory must already have barcode csv in exports
+        Item.setFile("src/main/java/exports/" + importRequestModel.getInvName() + ".csv");
+
 
         ImportDataWrapper wrappedInv = importer.importSerializable();
 

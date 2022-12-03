@@ -6,7 +6,7 @@ import update_item_quantity_use_case.UpdateItemQtyResponseModel;
 
 public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
     @Override
-    public InventoryViewModel prepareSuccessView(UpdateItemQtyResponseModel Item, String[][] inventoryTable) {
+    public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel Item, String[][] inventoryTable) {
         InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
 
         new InventoryUI(inventoryViewModel);
@@ -14,7 +14,20 @@ public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
     }
 
     @Override
-    public RemoveItemResponseModel prepareFailView(String error) {
+    public InventoryViewModel prepareQtyFailView(String error) {
+        return null;
+    }
+
+    @Override
+    public ItemHistoryViewModel prepareHistorySuccessView(UpdateItemQtyResponseModel item) {
+        ItemHistoryViewModel itemHistoryViewModel = new ItemHistoryViewModel(item.getItemHistory());
+
+        new ItemHistoryScreen(itemHistoryViewModel);
+        return itemHistoryViewModel;
+    }
+
+    @Override
+    public ItemHistoryViewModel prepareHistoryFailView(String error) {
         return null;
     }
 }

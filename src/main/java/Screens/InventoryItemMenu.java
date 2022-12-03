@@ -18,7 +18,7 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
     final static String[] REASON_COMBO_BOX_ITEMS = {"bought", "sold", "error"};
 
     JComboBox reasonComboBox = new JComboBox(REASON_COMBO_BOX_ITEMS);
-    JTextField newQty = new JTextField(5);
+    JTextField qtyInput = new JTextField(5);
 
     String barcode; //barcode of item being operated on
 
@@ -69,12 +69,14 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
 
         JButton confirmUpdate = new JButton("Confirm Update");
         JButton cancelUpdate = new JButton("Cancel");
+        JButton getItemHistory = new JButton("Get Item History");
 
         confirmUpdate.addActionListener(this);
         cancelUpdate.addActionListener(this);
+        getItemHistory.addActionListener(this);
 
 
-        LabelTextPanel newQtyPanel = new LabelTextPanel(new JLabel("New Qty"), newQty);
+        LabelTextPanel newQtyPanel = new LabelTextPanel(new JLabel(), qtyInput);
 
 
         reasonComboBox.setEditable(false);
@@ -84,6 +86,7 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
         updateItemCard.add(reasonComboBox);
         updateItemCard.add(confirmUpdate);
         updateItemCard.add(cancelUpdate);
+        updateItemCard.add(getItemHistory);
 
         cards = new JPanel(new CardLayout());
 
@@ -121,12 +124,17 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
             this.dispose();
         } else if (evt.getActionCommand().equals("Confirm Update")) {
             UpdateItemQtyController updateItemQtyController = (UpdateItemQtyController) controllers.get("updateItemQtyController");
-            updateItemQtyController.create(barcode, (String) reasonComboBox.getSelectedItem(), Double.parseDouble(newQty.getText()));
+            updateItemQtyController.create(barcode, (String) reasonComboBox.getSelectedItem(), Double.parseDouble(qtyInput.getText()));
 
             //dispose old inventory
             parent.dispose();
             this.dispose();
+        } else if (evt.getActionCommand().equals("Get Item History")) {
+            UpdateItemQtyController updateItemQtyController = (UpdateItemQtyController) controllers.get("updateItemQtyController");
+            updateItemQtyController.create(barcode, "history", 1.0);
+
         }
+
     }
 
 

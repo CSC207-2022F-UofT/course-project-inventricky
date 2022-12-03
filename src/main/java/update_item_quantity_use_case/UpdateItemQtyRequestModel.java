@@ -6,12 +6,13 @@ public class UpdateItemQtyRequestModel {
 
     private String updateReason;
 
-    private double newQuantity;
 
-    public UpdateItemQtyRequestModel(String barcode, String updateReason, double newQuantity) {
+    private double qtyInput;
+
+    public UpdateItemQtyRequestModel(String barcode, String updateReason, double qtyInput) {
         this.barcode = barcode;
         this.updateReason = updateReason;
-        this.newQuantity = newQuantity;
+        this.qtyInput = qtyInput;
     }
 
     public String getBarcode() {
@@ -30,11 +31,11 @@ public class UpdateItemQtyRequestModel {
         this.updateReason = updateReason;
     }
 
-    public double getNewQuantity() {
-        return newQuantity;
+    public double getQtyInput() {
+        return qtyInput;
     }
 
-    public void setNewQuantity(double newQuantity) {
-        this.newQuantity = newQuantity;
+    public void setQtyInput(double newQuantity) {
+        this.qtyInput = newQuantity;
     }
 }

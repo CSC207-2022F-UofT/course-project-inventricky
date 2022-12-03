@@ -1,8 +1,11 @@
 
 import Screens.*;
+import entities.Analysis;
+import entities.AnalysisController;
 import entities.Inventory;
 import import_use_case.ImportInventory;
 import import_use_case.ImportPresenter;
+import entities.comparator.AnalysisScreenUpdater;
 import new_item_use_case.NewItemDsGateway;
 import new_item_use_case.NewItemInputBoundary;
 import new_item_use_case.NewItemInteractor;
@@ -65,8 +68,11 @@ public class Main {
         ImportController importController = new ImportController(importInventory);
         controllers.put("importController", importController);
 
-
-        //TODO select whether you want to import or start from scratch
+        //setup for Analysis
+        AnalysisScreenUpdater analysisScreenPresenter = new AnalysisScreenUpdater();
+        Analysis analysis = new Analysis(inv);
+        AnalysisController analysisController = new AnalysisController(analysis);
+        controllers.put("analysisController", analysisController);
 
         //scratch
         InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
@@ -76,7 +82,6 @@ public class Main {
 
 
         new MainCreationUI(controllers);
-
 
 
 

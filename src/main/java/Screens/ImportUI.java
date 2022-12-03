@@ -15,7 +15,7 @@ public class ImportUI extends JFrame {
     JTextField invName = new JTextField(15);
     JTextField fileName = new JTextField(15);
     ImportController importController;
-    // TODO: Change implementation so that controller is grabbed from hashmap
+
     public ImportUI(HashMap controllers) {
         this.setTitle("Import Menu");
         JLabel title = new JLabel("Import");
@@ -58,8 +58,9 @@ public class ImportUI extends JFrame {
 //                InventoryUI newInventory = new InventoryUI(blankViewModel);
 //                newInventory.setName(invName.getName());
 //                newInventory.setControllers(controllers);
-                //TODO create controller to avoid creating inventory in UI
+
                 importController.create(invName.getText(), fileName.getText());
+                this.setVisible();
 
 
 //                JFrame f = new JFrame();

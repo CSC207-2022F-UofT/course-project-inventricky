@@ -14,12 +14,15 @@ public class UpdateItemQtyController {
     }
 
     //take in input from the user
-    InventoryViewModel create(String barcode, String reason, double newQuantity) {
+    Object create(String barcode, String reason, double newQuantity) {
 
         //take user input and pass into the use case interactor
         UpdateItemQtyRequestModel requestModel = new UpdateItemQtyRequestModel(barcode, reason, newQuantity);
 
-        return userInput.create(requestModel);
+        if (reason.equals("history")) {
+            return userInput.GetItemHistory(requestModel);
+        }
+        return userInput.UpdateQty(requestModel);
 
     }
 }

@@ -1,4 +1,4 @@
-package entities;
+package database_access;
 
 import java.io.*;
 import java.util.ArrayList;

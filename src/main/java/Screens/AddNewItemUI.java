@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class AddNewItemUI extends JFrame implements ActionListener{
 
-    private JFrame parent; //parent InventoryUI
+    JFrame parent; //parent InventoryUI
 
     //text fields for user input
     JTextField name = new JTextField(15);

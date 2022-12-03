@@ -1,5 +1,10 @@
 package entities;
 
+import barcode_use_case.BarcodeInteractor;
+import barcode_use_case.GenerateBarcodeInputBoundary;
+import barcode_use_case.ReadBarcodeInputBoundary;
+import database_access.BarcodeMapReader;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -7,10 +12,10 @@ import java.util.List;
 public abstract class Item implements Serializable {
 
     //Class Variables
-    private static final String file = "src/main/java/exports/testbarcodes.csv"; //file path of barcode csv
+    private static String file = "src/main/java/temp_files/new_inventory_barcodes_temp.csv"; //file path of barcode csv, defaults to empty csv for new Inventory
 
     //Shared mapping of departments to barcodes used by item constructor
-    private static HashMap<String, List<String>> barcodes = BarcodeMapReader.readBarcodes(file);
+    private static HashMap<String, List<String>> barcodes = new BarcodeInteractor().readBarcode(file);
 
     //Instance Variables
     private String name; // product name
@@ -74,6 +79,17 @@ public abstract class Item implements Serializable {
     }
 
 
+    public static String getFile() {
+        return file;
+    }
+
+    //update filepath of barcode csv
+    public static void setFile(String newFile) {
+        file = newFile;
+        barcodes = BarcodeMapReader.readBarcodes(file);
+    }
+
+
     //Constructor
 
     //For Order and testing
@@ -92,7 +108,7 @@ public abstract class Item implements Serializable {
     public Item(String name, boolean isWeight, double quantity, double buyPrice, double sellPrice, int caseQuantity, String department) {
         this.name = name;
         barcodes = BarcodeMapReader.readBarcodes(file);
-        this.barcode = BarcodeGenerator.generateBarcode(department, barcodes, file);
+        this.barcode = new BarcodeInteractor().generateBarcode(department, barcodes, file);
         this.department = department;
         this.isWeight = isWeight;
         this.quantity = quantity;
@@ -100,5 +116,6 @@ public abstract class Item implements Serializable {
         this.sellPrice = sellPrice;
         this.caseQuantity = caseQuantity;
     }
+
 }
 
