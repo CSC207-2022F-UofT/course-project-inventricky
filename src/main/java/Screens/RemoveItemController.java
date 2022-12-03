@@ -9,10 +9,10 @@ public class RemoveItemController {
 
     public RemoveItemController(RemoveItemInputBoundary itemGateway) { this.userInput = itemGateway; }
 
-    InventoryViewModel create(String barcode) {
+    InventoryViewModel removeItem(String barcode) {
 
         RemoveItemRequestModel requestModel = new RemoveItemRequestModel(barcode);
 
-        return userInput.create(requestModel);
+        return userInput.removeItem(requestModel, false);
     }
 }

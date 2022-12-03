@@ -59,7 +59,7 @@ public class ExporterTest {
         Exporter exporter = new Exporter(inventory);
         exporter.export();
         try {
-            FileReader fr_usr = new FileReader("src/main/java/exports/user_inventory.txt");
+            FileReader fr_usr = new FileReader("src/main/java/exports/user_inventory.tt");
             int i;
             while ((i = fr_usr.read()) != -1) {
                 System.out.print((char) i);

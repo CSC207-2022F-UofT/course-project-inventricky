@@ -1,4 +1,4 @@
-package entities;
+package database_access;
 
 import database_access.BarcodeMapReader;
 import org.junit.jupiter.api.BeforeAll;
