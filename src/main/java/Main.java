@@ -3,6 +3,9 @@ import Screens.*;
 import entities.Analysis;
 import entities.AnalysisController;
 import entities.Inventory;
+import generate_order_use_case.OrderingDsGateway;
+import generate_order_use_case.OrderingInputBoundary;
+import generate_order_use_case.OrderingPresenter;
 import import_use_case.ImportInventory;
 import import_use_case.ImportPresenter;
 import entities.comparator.AnalysisScreenUpdater;
@@ -74,11 +77,20 @@ public class Main {
         AnalysisController analysisController = new AnalysisController(analysis);
         controllers.put("analysisController", analysisController);
 
+        // setup for Ordering use case
+        OrderingDsGateway orderingDsGateway = new InventoryDatabase(); //TODO implement this class
+        OrderingPresenter orderingPresenter = new NewItemInventoryUpdater();
+        OrderingInputBoundary orderingInputBoundary = new NewItemInteractor(niDatabase, newItemPresenter, inv); //create new use case interactor
+        OrderingController orderingController = new NewItemController(newItemInteractor); //create new controller with interactor as param
+        controllers.put("newItemController", newItemController);
+
         //scratch
         InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
         inv.updateHistory("New inventory created from scratch");
         //InventoryUI newInventory = new InventoryUI(blankViewModel);
         //newInventory.setControllers(controllers);
+
+
 
 
         new MainCreationUI(controllers);
