@@ -1,5 +1,8 @@
 package entities;
-import useCases.UpdateItemQuantity;
+import barcode_use_case.BarcodeInteractor;
+import barcode_use_case.ReadBarcodeInputBoundary;
+import barcode_use_case.RemoveBarcodeInputBoundary;
+import database_access.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,10 +13,10 @@ import java.util.Objects;
  * The Inventory class. Keeps track of the items and orders of the inventory as well as its history.
  */
 public class Inventory {
-    private static final String file = "src/main/java/exports/testbarcodes.csv"; //file path of barcode csv
+    private static String file = Item.getFile(); //file path of barcode csv
 
     //Shared mapping of departments to barcodes used by item constructor
-    private static HashMap<String, List<String>> barcodes = BarcodeMapReader.readBarcodes(file);
+    private static HashMap<String, List<String>> barcodes;
     private String name;
     private ArrayList<InventoryItem> items;
     private ArrayList<Order> orders;
@@ -68,7 +71,9 @@ public class Inventory {
      * @param item Item that is to be removed.
      */
     public void removeItem(InventoryItem item) {
-        BarcodeRemover.removeBarcode(item.getBarcode(), barcodes, file);
+        file = Item.getFile(); //update filepath of csv
+        this.barcodes = new BarcodeInteractor().readBarcode(file);
+        new BarcodeInteractor().removeBarcode(item.getBarcode(), barcodes, file);
         this.items.remove(item);
         this.updateHistory("Item " + item.getName() + " was removed from the inventory");
     }
@@ -143,4 +148,5 @@ public class Inventory {
     public void setHistory(ArrayList<String> history) {
         this.history = history;
     }
+
 }

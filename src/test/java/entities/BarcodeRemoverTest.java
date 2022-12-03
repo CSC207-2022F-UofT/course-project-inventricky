@@ -1,5 +1,6 @@
 package entities;
 
+import database_access.BarcodeRemover;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

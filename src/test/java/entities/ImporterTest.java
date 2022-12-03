@@ -1,10 +1,9 @@
 package entities;
 
-import entities.Importer;
+import entities.Importer1;
 import entities.Inventory;
 import entities.InventoryItem;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -56,7 +55,7 @@ class ImporterTest {
 
         // Test for equality with import from file
         Inventory inv = new Inventory("Test");
-        Importer importer = new Importer("src/main/java/exports/serializable_inventory.txt", inv);
+        Importer1 importer = new Importer1("src/main/java/exports/serializable_inventory.txt", inv);
         importer.importSerializable();
         // TODO: Override equals method to check for equality rather than reference
         // Assertions.assertEquals(inv.getItems(), inv1.getItems());

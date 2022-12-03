@@ -1,4 +1,4 @@
-package entities;
+package presenters;
 
 import javax.swing.*;
 import java.awt.*;

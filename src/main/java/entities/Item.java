@@ -1,5 +1,10 @@
 package entities;
 
+import barcode_use_case.BarcodeInteractor;
+import barcode_use_case.GenerateBarcodeInputBoundary;
+import barcode_use_case.ReadBarcodeInputBoundary;
+import database_access.BarcodeMapReader;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -7,10 +12,10 @@ import java.util.List;
 public abstract class Item implements Serializable {
 
     //Class Variables
-    private static final String file = "src/main/java/exports/testbarcodes.csv"; //file path of barcode csv
+    private static String file = "src/main/java/temp_files/new_inventory_barcodes_temp.csv"; //file path of barcode csv, defaults to empty csv for new Inventory
 
     //Shared mapping of departments to barcodes used by item constructor
-    private static HashMap<String, List<String>> barcodes = BarcodeMapReader.readBarcodes(file);
+    private static HashMap<String, List<String>> barcodes = new BarcodeInteractor().readBarcode(file);
 
     //Instance Variables
     private String name; // product name
@@ -41,9 +46,6 @@ public abstract class Item implements Serializable {
         this.barcode = barcode;
     }
 
-    public void setIsWeight(boolean weight) {
-        this.isWeight = weight;
-    }
 
     public boolean getIsWeight() {
         return isWeight;
@@ -61,33 +63,32 @@ public abstract class Item implements Serializable {
         return buyPrice;
     }
 
-    public void setBuyPrice(int buyPrice) {
-        this.buyPrice = buyPrice;
-    }
 
     public double getSellPrice() {
         return sellPrice;
     }
 
-    public void setSellPrice(int sellPrice) {
-        this.sellPrice = sellPrice;
-    }
 
     public int getCaseQuantity() {
         return caseQuantity;
     }
 
-    public void setCaseQuantity(int caseQuantity) {
-        this.caseQuantity = caseQuantity;
-    }
 
     public String getDepartment() {
         return department;
     }
 
-    public void setDepartment() {
-        this.department = department;
+
+    public static String getFile() {
+        return file;
     }
+
+    //update filepath of barcode csv
+    public static void setFile(String newFile) {
+        file = newFile;
+        barcodes = BarcodeMapReader.readBarcodes(file);
+    }
+
 
     //Constructor
 
@@ -106,8 +107,8 @@ public abstract class Item implements Serializable {
     //For inventory item
     public Item(String name, boolean isWeight, double quantity, double buyPrice, double sellPrice, int caseQuantity, String department) {
         this.name = name;
-        this.barcode = BarcodeGenerator.generateBarcode(department, barcodes, file);
         barcodes = BarcodeMapReader.readBarcodes(file);
+        this.barcode = new BarcodeInteractor().generateBarcode(department, barcodes, file);
         this.department = department;
         this.isWeight = isWeight;
         this.quantity = quantity;

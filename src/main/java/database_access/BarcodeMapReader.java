@@ -1,4 +1,4 @@
-package entities;
+package database_access;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -40,13 +40,11 @@ public class AnalysisTest {
     }
 
     @Test
-    public void testCalculateProfit(){ // Also test the revenue and costs breakdown
+    public void testCalculateProfit(){
         makeInventory();
         Analysis AnalysisTest = new Analysis(this.fruits);
         double RealProfit = 104.75;
         double CalculatedProfit = AnalysisTest.calculateProfit();
-        AnalysisTest.totalCostsBreakdown(); // print the cost breakdown
-        AnalysisTest.totalRevenueBreakdown(); // print the revenue breakdown
         assert (RealProfit == CalculatedProfit);
     }
 
