@@ -2,8 +2,6 @@ package Screens;
 
 import entities.Inventory;
 import import_use_case.ImportInventory;
-import import_use_case.ImportPresenter;
-import useCases.InventoryImportBuilder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +12,7 @@ import java.util.HashMap;
 public class ImportUI extends JFrame {
     JTextField invName = new JTextField(15);
     JTextField fileName = new JTextField(15);
-    ImportController importController;
+    String name;
 
     public ImportUI(HashMap controllers) {
         this.setTitle("Import Menu");
@@ -23,7 +21,6 @@ public class ImportUI extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.setVisible(true);
-        this.importController = (ImportController) controllers.get("importController");
 
         LabelTextPanel invInfo = new LabelTextPanel(
                 new JLabel("Inventory Name"), invName);
@@ -58,9 +55,11 @@ public class ImportUI extends JFrame {
 //                InventoryUI newInventory = new InventoryUI(blankViewModel);
 //                newInventory.setName(invName.getName());
 //                newInventory.setControllers(controllers);
-
-                importController.create(invName.getText(), fileName.getText());
-                this.setVisible();
+//                ImportInventoryUpdater importPresenter = new ImportInventoryUpdater();
+//                //TODO create controller to avoid creating inventory in UI
+//                Inventory inv = new Inventory("New Inventory");
+//                ImportInventory importer = new ImportInventory(inv, fileName.getText(), importPresenter, controllers);
+//                importer.importToInventory();
 
 
 //                JFrame f = new JFrame();
@@ -82,6 +81,7 @@ public class ImportUI extends JFrame {
         main.add(title);
         main.add(invInfo);
         main.add(passwordInfo);
+//        main.add(creator);
         main.add(buttons);
         this.setContentPane(main);
 
