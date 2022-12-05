@@ -1,6 +1,7 @@
 package Screens;
 
 import entities.AnalysisController;
+import entities.Order;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -26,6 +27,8 @@ public class InventoryUI extends JFrame {
 
     private static boolean isNew; //true if inventory created from scratch
 
+    private static OrderHistoryViewModel orderViewModel = new OrderHistoryViewModel(new String[][] {});
+
     public void setName(String name) {
         InventoryUI.name = name;
     }
@@ -36,6 +39,10 @@ public class InventoryUI extends JFrame {
 
     public void setIsNew(boolean bool) {
         isNew = bool;
+    }
+
+    public static void setOrderViewModel(OrderHistoryViewModel orderHistoryViewModel){
+        orderViewModel = orderHistoryViewModel;
     }
 
     public InventoryUI(InventoryViewModel inventoryViewModel) {
@@ -96,6 +103,18 @@ public class InventoryUI extends JFrame {
         generate_analysis.add(analysis11);
         generate_analysis.add(analysis22);
         generate_analysis.add(analysis33);
+
+        JMenuItem orderHistory = new JMenuItem("Order History");
+        orders.add(orderHistory);
+
+        orderHistory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doOrderHistoryAction();
+
+            }
+        });
+
 
 
         analysis11.addActionListener(new ActionListener() {
@@ -455,5 +474,11 @@ public class InventoryUI extends JFrame {
         SwingUtilities.updateComponentTreeUI(this);
 
 
+    }
+
+    private void doOrderHistoryAction() {
+        new OrderHistoryUI(orderViewModel, (OrderingController) controllers.get("orderingController"),
+                (ReceivingController) controllers.get("receivingController"));
+        OrderHistoryUI.setParent(this);
     }
 }

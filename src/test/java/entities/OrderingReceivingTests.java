@@ -2,6 +2,8 @@ package entities;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import useCases.OrderGenerator;
+import useCases.OrderReceiver;
 
 import java.time.LocalDate;
 
@@ -27,7 +29,7 @@ LocalDate dateToday = LocalDate.now();
 
         OrderGenerator newOrder = new OrderGenerator();
         Inventory inventory = new Inventory("Sample");
-        Order created = newOrder.registerOrder("Pizza", "moxies", 5,
+        Order created = newOrder.registerOrderManual("Pizza", "moxies", 5,
                 inventory, true, 40, 60, 2,
                 "69");
         Assertions.assertTrue(inventory.getOrders().contains(created));
@@ -41,10 +43,10 @@ LocalDate dateToday = LocalDate.now();
 
         Inventory inventory = new Inventory("Sample");
         OrderGenerator newOrder = new OrderGenerator();
-        newOrder.registerOrder("Pizza", "moxies", 5,
+        newOrder.registerOrderManual("Pizza", "moxies", 5,
                 inventory, true, 40, 60, 2,
                 "69");
-        newOrder.registerOrder("Pizza", "moxies", 20, inventory, true,
+        newOrder.registerOrderManual("Pizza", "moxies", 20, inventory, true,
                 40, 60, 2, "69");
         Assertions.assertEquals(1, inventory.getItems().size());
         Assertions.assertEquals(2, inventory.getOrders().size());
@@ -56,7 +58,7 @@ LocalDate dateToday = LocalDate.now();
 
         Inventory inventory = new Inventory("Sample");
         OrderGenerator newOrder = new OrderGenerator();
-        newOrder.registerOrder("Pizza", "moxies", 5,
+        newOrder.registerOrderManual("Pizza", "moxies", 5,
                 inventory, true, 40, 60, 2,
                 "69");
         Assertions.assertFalse(inventory.getOrders().contains(order));
@@ -70,7 +72,7 @@ LocalDate dateToday = LocalDate.now();
 
         Inventory inventory = new Inventory("Sample");
         OrderGenerator newOrder = new OrderGenerator();
-        Order created = newOrder.registerOrder("Pizza", "moxies", 5,
+        Order created = newOrder.registerOrderManual("Pizza", "moxies", 5,
                 inventory, true, 40, 60, 2,
                 "69");
         Assertions.assertSame("Inbound Order", created.checkShipmentStatus());
@@ -90,10 +92,10 @@ LocalDate dateToday = LocalDate.now();
 
         Inventory inventory = new Inventory("Sample");
         OrderGenerator newOrder = new OrderGenerator();
-        Order firstOrder = newOrder.registerOrder("Pizza", "moxies", 5,
+        Order firstOrder = newOrder.registerOrderManual("Pizza", "moxies", 5,
                 inventory, true, 40, 60, 2,
                 "69");
-        Order secondOrder = newOrder.registerOrder("Pizza", "moxies", 20, inventory, true,
+        Order secondOrder = newOrder.registerOrderManual("Pizza", "moxies", 20, inventory, true,
                 40, 60, 2, "69");
         Assertions.assertEquals(0.0, inventory.getItems().get(0).getQuantity());
         OrderReceiver receivedOrder = new OrderReceiver();
@@ -113,12 +115,12 @@ LocalDate dateToday = LocalDate.now();
 
         Inventory inventory = new Inventory("Sample");
         OrderGenerator newOrder = new OrderGenerator();
-        Order firstOrder = newOrder.registerOrder("Pizza", "moxies", 5,
+        Order firstOrder = newOrder.registerOrderManual("Pizza", "moxies", 5,
                 inventory, true, 40, 60, 2,
                 "69");
-        Order secondOrder = newOrder.registerOrder("Pineapple", "moxies", 20, inventory, true,
+        Order secondOrder = newOrder.registerOrderManual("Pineapple", "moxies", 20, inventory, true,
                 40, 60, 2, "69");
-        Order thirdOrder = newOrder.registerOrder("Pineapple", "moxies", 5, inventory, true,
+        Order thirdOrder = newOrder.registerOrderManual("Pineapple", "moxies", 5, inventory, true,
                 40, 60, 2, "69");
         OrderReceiver receivedOrder = new OrderReceiver();
         receivedOrder.receiveOrder(firstOrder, inventory, "2022-12-07");
