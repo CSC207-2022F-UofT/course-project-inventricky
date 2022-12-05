@@ -22,7 +22,7 @@ public class UpdateItemQtyController {
         if (reason.equals("history")) {
             return userInput.GetItemHistory(requestModel);
         }
-        return userInput.UpdateQty(requestModel);
+        return userInput.updateQty(requestModel);
 
     }
 }

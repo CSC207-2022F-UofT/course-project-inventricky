@@ -1,5 +1,6 @@
 package Screens;
 import entities.Inventory;
+import entities.InventoryItem;
 import entities.Order;
 
 import javax.swing.*;
@@ -24,7 +25,9 @@ public class OrderWindowUI extends JFrame implements ActionListener{
 
     OrderingController orderController; //controller
 
-    public OrderWindowUI(OrderingController controller) {
+    JFrame parent;
+
+    public OrderWindowUI(OrderingController controller, JFrame parent) {
 
         //default item not added
 //        this.itemAdded = false;
@@ -35,7 +38,7 @@ public class OrderWindowUI extends JFrame implements ActionListener{
         //set size of frame
         this.setSize(400, 400);
 
-
+        this.parent = parent;
         this.orderController = controller;
 
         //create title
@@ -64,7 +67,7 @@ public class OrderWindowUI extends JFrame implements ActionListener{
 
         //option to confirm item or cancel item creation
         JButton confirm = new JButton("Confirm");
-        JButton cancel = new JButton("cancel");
+        JButton cancel = new JButton("Cancel");
 
         JPanel buttons = new JPanel();
         buttons.add(confirm);
@@ -95,35 +98,14 @@ public class OrderWindowUI extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("Cancel")) {
-            Inventory inv = new Inventory("poo pee");
-            JFrame j3 = new OrderHistoryUI(inv);
             this.dispose();
-            j3.setVisible(true);
+            return;
         }
+        InventoryUI.setOrderViewModel(orderController.addOrder(name.getText(), Boolean.parseBoolean(isWeight.getText()), Double.parseDouble(buyPrice.getText()),
+                Double.parseDouble(sellPrice.getText()), Integer.parseInt(caseQuantity.getText()),
+                department.getText(), supplier.getText(), Integer.parseInt(cases.getText()), parent));
 
 
-
-
-//        user has clicked button to create item, with all the parameters filled
-//        orderController.create(name.getText(), Boolean.parseBoolean(isWeight.getText()),
-//                Double.parseDouble(quantity.getText()), Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
-//                Integer.parseInt(caseQuantity.getText()), department.getText());
-
-
-    }
-    public static void main(String[] args) {
-        LocalDate dateToday = LocalDate.now();
-        OrderingController controller = new OrderingController();
-        Inventory inv = new Inventory("pee pee");
-        inv.addOrder(new Order("Pizza", "12345", true,
-                5, 40, 60, 2, "69",
-                dateToday.toString(), dateToday.plusDays(5).toString(), "moxies", 5));
-        inv.addOrder(new Order("goop", "12346", true,
-                1, 41, 70, 3, "62",
-                dateToday.toString(), dateToday.plusDays(5).toString(), "mos", 9));
-        inv.addOrder(new Order("poop", "12145", true,
-                8, 48, 30, 2, "99",
-                dateToday.toString(), dateToday.plusDays(5).toString(), "ies", 20));
-        new OrderWindowUI(controller);
+        this.dispose();
     }
 }

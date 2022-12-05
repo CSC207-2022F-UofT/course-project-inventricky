@@ -1,7 +1,10 @@
 package generate_order_use_case;
 
 import Screens.InventoryViewModel;
+import Screens.OrderHistoryViewModel;
+
+import javax.swing.*;
 
 public interface OrderingInputBoundary {
-    InventoryViewModel create(OrderingRequestModel requestModel);
+    OrderHistoryViewModel addOrder(OrderingRequestModel requestModel, JFrame parent);
 }

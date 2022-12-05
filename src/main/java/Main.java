@@ -5,6 +5,7 @@ import entities.AnalysisController;
 import entities.Inventory;
 import generate_order_use_case.OrderingDsGateway;
 import generate_order_use_case.OrderingInputBoundary;
+import generate_order_use_case.OrderingInteractor;
 import generate_order_use_case.OrderingPresenter;
 import import_use_case.ImportInventory;
 import import_use_case.ImportPresenter;
@@ -13,6 +14,10 @@ import new_item_use_case.NewItemDsGateway;
 import new_item_use_case.NewItemInputBoundary;
 import new_item_use_case.NewItemInteractor;
 import new_item_use_case.NewItemPresenter;
+import receive_order_use_case.ReceivingDsGateway;
+import receive_order_use_case.ReceivingInputBoundary;
+import receive_order_use_case.ReceivingInteractor;
+import receive_order_use_case.ReceivingPresenter;
 import remove_item_use_case.RemoveItemDsGateway;
 import remove_item_use_case.RemoveItemInputBoundary;
 import remove_item_use_case.RemoveItemInteractor;
@@ -79,10 +84,19 @@ public class Main {
 
         // setup for Ordering use case
         OrderingDsGateway orderingDsGateway = new InventoryDatabase(); //TODO implement this class
-        OrderingPresenter orderingPresenter = new NewItemInventoryUpdater();
-        OrderingInputBoundary orderingInputBoundary = new NewItemInteractor(niDatabase, newItemPresenter, inv); //create new use case interactor
-        OrderingController orderingController = new NewItemController(newItemInteractor); //create new controller with interactor as param
-        controllers.put("newItemController", newItemController);
+        OrderingPresenter orderingPresenter = new OrderingScreenUpdater();
+        OrderingInteractor orderingInteractor = new OrderingInteractor(orderingDsGateway, orderingPresenter, inv,
+                controllers, newItemPresenter); //create new use case interactor
+        OrderingController orderingController = new OrderingController(orderingInteractor); //create new controller with interactor as param
+        controllers.put("orderingController", orderingController);
+
+//       //  setup for Receiving use case
+        ReceivingDsGateway receivingDsGateway = new InventoryDatabase(); //TODO implement this class
+        ReceivingPresenter receivingPresenter = new ReceivingScreenUpdater();
+        ReceivingInteractor receivingInteractor = new ReceivingInteractor(receivingDsGateway, receivingPresenter, inv,
+                controllers, updateItemQtyPresenter); //create new use case interactor
+        ReceivingController receivingController = new ReceivingController(receivingInteractor); //create new controller with interactor as param
+        controllers.put("receivingController", receivingController);
 
         //scratch
         InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});

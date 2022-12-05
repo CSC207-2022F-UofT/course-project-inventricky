@@ -6,7 +6,7 @@ import Screens.ItemHistoryViewModel;
 
 public interface UpdateItemQtyInputBoundary {
 
-        InventoryViewModel UpdateQty(UpdateItemQtyRequestModel requestModel);
+        InventoryViewModel updateQty(UpdateItemQtyRequestModel requestModel);
 
         ItemHistoryViewModel GetItemHistory(UpdateItemQtyRequestModel requestModel);
     }

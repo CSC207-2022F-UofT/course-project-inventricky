@@ -9,7 +9,8 @@ public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
     public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel Item, String[][] inventoryTable) {
         InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
 
-        new InventoryUI(inventoryViewModel);
+        InventoryUI invUI = new InventoryUI(inventoryViewModel);
+        OrderHistoryUI.setParent(invUI);
         return inventoryViewModel;
     }
 

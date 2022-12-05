@@ -3,9 +3,14 @@ package receive_order_use_case;
 public class ReceivingRequestModel {
 
     private String dateReceived;
+    private final String name;
 
-    public ReceivingRequestModel(){
-        this.dateReceived = "";
+    private final int casesBought;
+
+    public ReceivingRequestModel(String name, int casesBought, String dateReceived){
+        this.dateReceived = dateReceived;
+        this.name = name;
+        this.casesBought = casesBought;
     }
 
     public String checkShipmentStatus(){
@@ -21,5 +26,13 @@ public class ReceivingRequestModel {
         if(this.dateReceived.isEmpty()){
             this.dateReceived = date_received;
         }
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getDateReceived(){
+        return this.dateReceived;
     }
 }

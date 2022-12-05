@@ -9,7 +9,8 @@ public class NewItemInventoryUpdater implements NewItemPresenter {
     public InventoryViewModel prepareSuccessView(NewItemResponseModel item, String[][] inventoryTable) {
         InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
 
-        new InventoryUI(inventoryViewModel);
+        InventoryUI invUI = new InventoryUI(inventoryViewModel);
+        OrderHistoryUI.setParent(invUI);
         return inventoryViewModel;
     }
 
