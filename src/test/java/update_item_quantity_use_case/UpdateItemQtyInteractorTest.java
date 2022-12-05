@@ -59,7 +59,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(uiDatabase, presenter, inv);
         UpdateItemQtyRequestModel inputData = new UpdateItemQtyRequestModel("12345", "bought", 13);
-        interactor.UpdateQty(inputData);
+        interactor.updateQty(inputData);
 
 
     }
@@ -102,7 +102,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(uiDatabase, presenter, inv);
         UpdateItemQtyRequestModel soldData = new UpdateItemQtyRequestModel("12345", "sold", 14);
-        interactor.UpdateQty(soldData);
+        interactor.updateQty(soldData);
     }
 
     @Test
@@ -142,7 +142,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(uiDatabase, presenter, inv);
         UpdateItemQtyRequestModel errorData = new UpdateItemQtyRequestModel("12345", "error", 11);
-        interactor.UpdateQty(errorData);
+        interactor.updateQty(errorData);
     }
 
     @Test
@@ -180,6 +180,6 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(uiDatabase, presenter, inv);
         UpdateItemQtyRequestModel historyData = new UpdateItemQtyRequestModel("12345", "bought", 11);
-        interactor.UpdateQty(historyData);
+        interactor.updateQty(historyData);
     }
 }

@@ -24,7 +24,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
     }
 
     @Override
-    public InventoryViewModel UpdateQty(UpdateItemQtyRequestModel requestModel) throws RuntimeException {
+    public InventoryViewModel updateQty(UpdateItemQtyRequestModel requestModel) throws RuntimeException {
 
         //Search for item in Inventory
         //TODO case where item is not in inventory

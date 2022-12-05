@@ -13,9 +13,9 @@ public class NewItemInteractor implements NewItemInputBoundary {
     private Inventory inventory;
 
     //pass in data access class, presenter
-    public NewItemInteractor(NewItemDsGateway newItemDsGateway, NewItemPresenter newItemDsPresenter, Inventory inventory) {
+    public NewItemInteractor(NewItemDsGateway newItemDsGateway, NewItemPresenter newItemPresenter, Inventory inventory) {
         this.newItemDsGateway = newItemDsGateway;
-        this.newItemPresenter = newItemDsPresenter;
+        this.newItemPresenter = newItemPresenter;
         this.inventory = inventory;
     }
 
