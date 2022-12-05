@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -365,11 +366,13 @@ public class InventoryUI extends JFrame {
         // accepts upto 10 characters
         JButton hist = new JButton("History");
         JButton newItem = new JButton("Add New Item");
+        JButton export = new JButton("Export");
 
 
         // Components Added using Flow Layout
         panel.add(hist);
         panel.add(newItem);
+        panel.add(export);
 
 
 //        hist.addActionListener(new ActionListener() {
@@ -385,6 +388,17 @@ public class InventoryUI extends JFrame {
 //                frame.setVisible(true);
 //            }
 //        });
+        export.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ExportController controller = (ExportController) controllers.get("exportController");
+                try {
+                    controller.create(name, inventoryViewModel.getItemList());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
 
         //action listener for making new item

@@ -3,6 +3,9 @@ import Screens.*;
 import entities.Analysis;
 import entities.AnalysisController;
 import entities.Inventory;
+import export_use_case.ExportInputBoundary;
+import export_use_case.ExportPresenter;
+import export_use_case.ExporterInventory;
 import generate_order_use_case.OrderingDsGateway;
 import generate_order_use_case.OrderingInputBoundary;
 import generate_order_use_case.OrderingInteractor;
@@ -97,6 +100,12 @@ public class Main {
                 controllers, updateItemQtyPresenter); //create new use case interactor
         ReceivingController receivingController = new ReceivingController(receivingInteractor); //create new controller with interactor as param
         controllers.put("receivingController", receivingController);
+
+        //Setup for ExportInventory use case
+        ExportPresenter exporterPresenter = new ExportInventoryUpdater();
+        ExportInputBoundary exportInventory = new ExporterInventory(inv, exporterPresenter, controllers);
+        ExportController exportController = new ExportController(exportInventory);
+        controllers.put("exportController", exportController);
 
         //scratch
         InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
