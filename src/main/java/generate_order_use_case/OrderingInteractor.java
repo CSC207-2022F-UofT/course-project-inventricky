@@ -39,22 +39,24 @@ public class OrderingInteractor implements OrderingInputBoundary {
             }
         }
 
-        Order createdOrder = newOrder.registerOrderManual(requestModel.getName(), requestModel.getSupplier(), requestModel.getOrderCases(),
-                inventory, requestModel.getIsWeight(), requestModel.getBuyPrice(), requestModel.getSellPrice(),
-                requestModel.getCaseQuantity(), requestModel.getDepartment());
-        OrderingResponseModel orderingResponseModel = new OrderingResponseModel(createdOrder.getName(),
-                createdOrder.getBarcode(), createdOrder.getDateBought(), createdOrder.getEstimatedDate(),
-                createdOrder.getDateReceived(), createdOrder.getSupplier(), createdOrder.getOrderCases());
+
         // item doesnt exist in inventory
-        if(!ifFound){
+        if(!ifFound) {
             NewItemDsGateway newItemGateway = new InventoryDatabase();
-            NewItemRequestModel inputData = new NewItemRequestModel(createdOrder.getName(), createdOrder.getIsWeight(),
-                    createdOrder.getQuantity(), createdOrder.getBuyPrice(), createdOrder.getSellPrice(),
-                    createdOrder.getCaseQuantity(), createdOrder.getDepartment());
+            NewItemRequestModel inputData = new NewItemRequestModel(requestModel.getName(), requestModel.getIsWeight(),
+                    0, requestModel.getBuyPrice(), requestModel.getSellPrice(),
+                    requestModel.getCaseQuantity(), requestModel.getDepartment());
             NewItemInputBoundary newItemInteractor = new NewItemInteractor(newItemGateway, newItemPresenter, inventory);
             newItemInteractor.addItem(inputData, false);
             parent.dispose();
         }
+            Order createdOrder = newOrder.registerOrderManual(requestModel.getName(), requestModel.getSupplier(), requestModel.getOrderCases(),
+                    inventory, requestModel.getIsWeight(), requestModel.getBuyPrice(), requestModel.getSellPrice(),
+                    requestModel.getCaseQuantity(), requestModel.getDepartment());
+            OrderingResponseModel orderingResponseModel = new OrderingResponseModel(createdOrder.getName(),
+                    createdOrder.getBarcode(), createdOrder.getDateBought(), createdOrder.getEstimatedDate(),
+                    createdOrder.getDateReceived(), createdOrder.getSupplier(), createdOrder.getOrderCases());
+
 
         String[][] orderTable = new String[inventory.getOrders().size()][7];
 

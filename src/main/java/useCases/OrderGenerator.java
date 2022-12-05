@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class OrderGenerator{
 
-
+    Order newOrder;
     /**
      * Registers an order to the Inventory. Creates a new Order object using the given name, supplier, cases,
      * isWeight, buyPrice, sellPrice, caseQuantity, and department. If the order is of an item that does not
@@ -31,25 +31,27 @@ public class OrderGenerator{
 
         for(InventoryItem item: inventory.getItems()){
             if(item.getName().equals(name)){
-                Order newExistingOrder = new Order(name, item.getBarcode(), item.getIsWeight(), item.getQuantity(),
+                newOrder = new Order(name, item.getBarcode(), item.getIsWeight(), item.getQuantity(),
                         item.getBuyPrice(), item.getSellPrice(), item.getCaseQuantity(), item.getDepartment(),
                         dateToday.toString(), dateToday.plusDays(5).toString(),
                         supplier, cases);
-                inventory.addOrder(newExistingOrder);
-                return newExistingOrder;
+                inventory.addOrder(newOrder);
+
             }
         }
 
-        InventoryItem newItem = new InventoryItem(name, isWeight, 0.0, buyPrice, sellPrice, caseQuantity, department,
-                (cases * caseQuantity), 0.0);
-        inventory.addItem(newItem);
-
-        Order newOrder = new Order(name, newItem.getBarcode(), newItem.getIsWeight(), newItem.getQuantity(),
-                newItem.getBuyPrice(), newItem.getSellPrice(), newItem.getCaseQuantity(), newItem.getDepartment(),
-                dateToday.toString(), dateToday.plusDays(5).toString(),
-                supplier, cases);
-        inventory.addOrder(newOrder);
         return newOrder;
+
+//        InventoryItem newItem = new InventoryItem(name, isWeight, 0.0, buyPrice, sellPrice, caseQuantity, department,
+//                (cases * caseQuantity), 0.0);
+//        inventory.addItem(newItem);
+
+//        Order newOrder = new Order(name, newItem.getBarcode(), newItem.getIsWeight(), newItem.getQuantity(),
+//                newItem.getBuyPrice(), newItem.getSellPrice(), newItem.getCaseQuantity(), newItem.getDepartment(),
+//                dateToday.toString(), dateToday.plusDays(5).toString(),
+//                supplier, cases);
+//        inventory.addOrder(newOrder);
+//        return newOrder;
     }
 
     /**
