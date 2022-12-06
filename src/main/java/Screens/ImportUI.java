@@ -1,10 +1,5 @@
 package Screens;
 
-import entities.Inventory;
-import import_use_case.ImportInventory;
-import import_use_case.ImportPresenter;
-import useCases.InventoryImportBuilder;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,8 +1,5 @@
 package Screens;
 
-import entities.Inventory;
-import useCases.InventoryScratchBuilder;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
