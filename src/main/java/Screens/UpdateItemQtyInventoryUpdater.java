@@ -6,8 +6,19 @@ import update_item_quantity_use_case.UpdateItemQtyResponseModel;
 
 public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
     @Override
-    public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel Item, String[][] inventoryTable) {
+    public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
         InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
+
+
+        //if item history is open
+        if (ItemHistoryScreen.getOpenScreen(item.getBarcode()) != null) {
+            //dispose screen
+            ItemHistoryScreen.getOpenScreen(item.getBarcode()).dispose();
+            //update history screen
+            ItemHistoryViewModel itemHistoryViewModel = new ItemHistoryViewModel(item.getItemHistory());
+            new ItemHistoryScreen(itemHistoryViewModel);
+        }
+
 
         InventoryUI invUI = new InventoryUI(inventoryViewModel);
         OrderHistoryUI.setParent(invUI);
@@ -23,6 +34,12 @@ public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
     public ItemHistoryViewModel prepareHistorySuccessView(UpdateItemQtyResponseModel item) {
         ItemHistoryViewModel itemHistoryViewModel = new ItemHistoryViewModel(item.getItemHistory());
 
+
+        //if item history is open
+        if (ItemHistoryScreen.getOpenScreen(item.getBarcode()) != null) {
+            //dispose screen
+            ItemHistoryScreen.getOpenScreen(item.getBarcode()).dispose();
+        }
         new ItemHistoryScreen(itemHistoryViewModel);
         return itemHistoryViewModel;
     }

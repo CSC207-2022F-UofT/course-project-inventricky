@@ -1,6 +1,5 @@
 package new_item_use_case;
 
-import Screens.InventoryDatabase;
 import Screens.InventoryViewModel;
 
 import entities.Inventory;
@@ -38,9 +37,7 @@ public class NewItemInteractorTest {
             }
         };
 
-        NewItemDsGateway niDatabase = new InventoryDatabase();
-
-        NewItemInputBoundary interactor = new NewItemInteractor(niDatabase, presenter, inv);
+        NewItemInputBoundary interactor = new NewItemInteractor(presenter, inv);
         NewItemRequestModel inputData = new NewItemRequestModel("banana", false, 12, 13, 14, 15, "10");
         interactor.addItem(inputData, true);
     }

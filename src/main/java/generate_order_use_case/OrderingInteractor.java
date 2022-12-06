@@ -12,16 +12,14 @@ import java.util.HashMap;
 
 public class OrderingInteractor implements OrderingInputBoundary {
 
-    private final OrderingDsGateway orderingDsGateway;
     private final OrderingPresenter orderingPresenter;
     private final NewItemPresenter newItemPresenter;
     private final Inventory inventory;
     private final HashMap controllers;
 
 
-    public OrderingInteractor(OrderingDsGateway orderGateway, OrderingPresenter orderPresenter, Inventory inventory,
+    public OrderingInteractor(OrderingPresenter orderPresenter, Inventory inventory,
                               HashMap controllers, NewItemPresenter newItemPresenter){
-        this.orderingDsGateway = orderGateway;
         this.orderingPresenter = orderPresenter;
         this.inventory = inventory;
         this.controllers = controllers;
@@ -42,11 +40,10 @@ public class OrderingInteractor implements OrderingInputBoundary {
 
         // item doesnt exist in inventory
         if(!ifFound) {
-            NewItemDsGateway newItemGateway = new InventoryDatabase();
             NewItemRequestModel inputData = new NewItemRequestModel(requestModel.getName(), requestModel.getIsWeight(),
                     0, requestModel.getBuyPrice(), requestModel.getSellPrice(),
                     requestModel.getCaseQuantity(), requestModel.getDepartment());
-            NewItemInputBoundary newItemInteractor = new NewItemInteractor(newItemGateway, newItemPresenter, inventory);
+            NewItemInputBoundary newItemInteractor = new NewItemInteractor(newItemPresenter, inventory);
             newItemInteractor.addItem(inputData, false);
             parent.dispose();
         }

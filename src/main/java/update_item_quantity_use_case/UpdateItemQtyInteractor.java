@@ -10,15 +10,12 @@ import java.time.format.DateTimeFormatter;
 
 
 public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
-
-    final UpdateItemQtyDsGateway updateItemQtyDsGateway;        //interactor needs an inventory, talks to database
     final UpdateItemQtyPresenter updateItemQtyPresenter;    //presenter
 
     private Inventory inventory;
 
     //pass in data access class, presenter
-    public UpdateItemQtyInteractor(UpdateItemQtyDsGateway updateItemQtyDsGateway, UpdateItemQtyPresenter updateItemQtyDsPresenter, Inventory inventory) {
-        this.updateItemQtyDsGateway = updateItemQtyDsGateway;
+    public UpdateItemQtyInteractor(UpdateItemQtyPresenter updateItemQtyDsPresenter, Inventory inventory) {
         this.updateItemQtyPresenter = updateItemQtyDsPresenter;
         this.inventory = inventory;
     }

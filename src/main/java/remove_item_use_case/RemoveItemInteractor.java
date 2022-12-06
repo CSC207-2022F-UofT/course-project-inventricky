@@ -6,14 +6,18 @@ import entities.InventoryItem;
 
 public class RemoveItemInteractor implements RemoveItemInputBoundary {
 
-    final RemoveItemDsGateway removeItemDsGateway;        //interactor needs an inventory, talks to database
     final RemoveItemPresenter removeItemPresenter;    //presenter
 
     private Inventory inventory;
 
     //pass in data access class, presenter
-    public RemoveItemInteractor(RemoveItemDsGateway removeItemDsGateway, RemoveItemPresenter removeItemDsPresenter, Inventory inventory) {
-        this.removeItemDsGateway = removeItemDsGateway;
+
+    /** Construct use case interactor
+     *
+     * @param removeItemDsPresenter
+     * @param inventory
+     */
+    public RemoveItemInteractor(RemoveItemPresenter removeItemDsPresenter, Inventory inventory) {
         this.removeItemPresenter = removeItemDsPresenter;
         this.inventory = inventory;
     }
@@ -47,8 +51,8 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
                 }
             }
 
-        RuntimeException RuntimeException = null;
-        throw RuntimeException; //TODO exception
+        RuntimeException RuntimeException = new RuntimeException("Failed to remove item from inventory; Item not found error.");
+        throw RuntimeException;
 
     }
 }

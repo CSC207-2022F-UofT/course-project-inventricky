@@ -84,6 +84,11 @@ public abstract class Item implements Serializable {
     }
 
     //update filepath of barcode csv
+
+    /** Update filepath of barcode csv
+     *
+     * @param newFile   filepath of barcode csv.
+     */
     public static void setFile(String newFile) {
         file = newFile;
         barcodes = BarcodeMapReader.readBarcodes(file);
@@ -93,6 +98,18 @@ public abstract class Item implements Serializable {
     //Constructor
 
     //For Order and testing
+
+    /** Construct a new Item for orders or testing (barcode not generated)
+     *
+     * @param name              name of item.
+     * @param barcode           barcode of item.
+     * @param isWeight          true if item is quantified in kg.
+     * @param quantity          quantity of item.
+     * @param buyPrice          buy price of item.
+     * @param sellPrice         sell price of item.
+     * @param caseQuantity      quantity of item per case.
+     * @param department        department number of item.
+     */
     public Item(String name, String barcode, boolean isWeight, double quantity, double buyPrice, double sellPrice, int caseQuantity, String department) {
         this.name = name;
         this.barcode = barcode;
@@ -105,6 +122,17 @@ public abstract class Item implements Serializable {
     }
 
     //For inventory item
+
+    /** Construct a new inventory item.
+     *
+     * @param name              name of item.
+     * @param isWeight          true if item is quantified in kg.
+     * @param quantity          quantity of item.
+     * @param buyPrice          buy price of item.
+     * @param sellPrice         sell price of item.
+     * @param caseQuantity      quantity of item per case.
+     * @param department        department number of item.
+     */
     public Item(String name, boolean isWeight, double quantity, double buyPrice, double sellPrice, int caseQuantity, String department) {
         this.name = name;
         barcodes = BarcodeMapReader.readBarcodes(file);

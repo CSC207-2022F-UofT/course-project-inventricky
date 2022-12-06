@@ -1,6 +1,7 @@
 package export_use_case;
 
 import Screens.ExportViewModel;
+import database_access.Exporter;
 import entities.Inventory;
 
 import java.io.*;

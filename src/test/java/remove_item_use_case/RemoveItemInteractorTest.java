@@ -1,6 +1,5 @@
 package remove_item_use_case;
 
-import Screens.InventoryDatabase;
 import Screens.InventoryViewModel;
 
 import entities.Inventory;
@@ -40,9 +39,7 @@ public class RemoveItemInteractorTest {
             }
         };
 
-        RemoveItemDsGateway riDatabase = new InventoryDatabase();
-
-        RemoveItemInputBoundary interactor = new RemoveItemInteractor(riDatabase, presenter, inv);
+        RemoveItemInputBoundary interactor = new RemoveItemInteractor(presenter, inv);
         RemoveItemRequestModel inputData = new RemoveItemRequestModel("12345");
         interactor.removeItem(inputData, true);
 

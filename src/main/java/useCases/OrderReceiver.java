@@ -1,13 +1,8 @@
 package useCases;
 
-import Screens.InventoryDatabase;
 import entities.Inventory;
 import entities.InventoryItem;
 import entities.Order;
-import update_item_quantity_use_case.UpdateItemQtyDsGateway;
-import update_item_quantity_use_case.UpdateItemQtyInteractor;
-import update_item_quantity_use_case.UpdateItemQtyPresenter;
-import useCases.UpdateItemQuantity;
 
 public class OrderReceiver {
     /**

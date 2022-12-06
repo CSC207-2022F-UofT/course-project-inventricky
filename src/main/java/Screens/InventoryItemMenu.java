@@ -124,14 +124,14 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
             this.dispose();
         } else if (evt.getActionCommand().equals("Confirm Update")) {
             UpdateItemQtyController updateItemQtyController = (UpdateItemQtyController) controllers.get("updateItemQtyController");
-            updateItemQtyController.Update(barcode, (String) reasonComboBox.getSelectedItem(), Double.parseDouble(qtyInput.getText()));
+            updateItemQtyController.update(barcode, (String) reasonComboBox.getSelectedItem(), Double.parseDouble(qtyInput.getText()));
 
             //if item history is open
             if (ItemHistoryScreen.getOpenScreen(barcode) != null) {
                 //dispose screen
                 ItemHistoryScreen.getOpenScreen(barcode).dispose();
                 //draw new item history screen
-                updateItemQtyController.Update(barcode, "history", 1.0);
+                updateItemQtyController.update(barcode, "history", 1.0);
             }
 
             //dispose old inventory
@@ -139,13 +139,9 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
             this.dispose();
         } else if (evt.getActionCommand().equals("Get Item History")) {
             UpdateItemQtyController updateItemQtyController = (UpdateItemQtyController) controllers.get("updateItemQtyController");
-            updateItemQtyController.Update(barcode, "history", 1.0);
+            updateItemQtyController.update(barcode, "history", 1.0);
 
-            //if item history is open
-            if (ItemHistoryScreen.getOpenScreen(barcode) != null) {
-                //dispose screen
-                ItemHistoryScreen.getOpenScreen(barcode).dispose();
-            }
+
 
         }
 

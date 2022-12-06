@@ -15,7 +15,7 @@ public class NewItemController {
     }
 
     //take in input from the user
-    public InventoryViewModel addItem(String name, boolean isWeight, double quantity, double buyPrice,
+    InventoryViewModel addItem(String name, boolean isWeight, double quantity, double buyPrice,
                                double sellPrice, int caseQuantity, String department) {
 
         //take user input and pass into the use case interactor
