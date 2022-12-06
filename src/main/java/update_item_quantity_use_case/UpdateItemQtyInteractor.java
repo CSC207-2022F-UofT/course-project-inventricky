@@ -74,11 +74,11 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
         double roundedQtyInput = Math.round(qtyInput) / 100.0;
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
-        if (updateReason.equals("bought")) {
+        if (updateReason.equals("Bought")) {
             item.setQuantityBought(item.getQuantityBought() + roundedQtyInput);
             item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Bought " + roundedQtyInput);
             item.setQuantity(item.getQuantity() + roundedQtyInput);
-        } else if (updateReason.equals("sold")) {
+        } else if (updateReason.equals("Sold")) {
             item.setQuantitySold(item.getQuantitySold() + roundedQtyInput);
             item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Sold " + roundedQtyInput);
             item.setQuantity(item.getQuantity() - roundedQtyInput);
