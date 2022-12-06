@@ -51,7 +51,7 @@ public class ReceivingInteractor implements ReceivingInputBoundary {
         for (InventoryItem item: inventory.getItems()){
             if(item.getName().equals(requestModel.getName())){
                 // found item in inventory, updateqty in inventory
-                UpdateItemQtyRequestModel inputData = new UpdateItemQtyRequestModel(item.getBarcode(), "bought",
+                UpdateItemQtyRequestModel inputData = new UpdateItemQtyRequestModel(item.getBarcode(), "Bought",
                         (receivedOrder.getOrderCases() * item.getCaseQuantity()));
                 UpdateItemQtyInputBoundary updateItemQtyInteractor = new UpdateItemQtyInteractor(updateQtyPresenter, inventory);
                 updateItemQtyInteractor.updateQty(inputData);
