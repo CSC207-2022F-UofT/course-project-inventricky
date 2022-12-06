@@ -8,7 +8,7 @@ import remove_item_use_case.RemoveItemResponseModel;
 public interface UpdateItemQtyPresenter {
 
     //item removed from database, display item details
-    InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable);
+    InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory);
 
 
     InventoryViewModel prepareQtyFailView(String error); //TODO more speciific errors

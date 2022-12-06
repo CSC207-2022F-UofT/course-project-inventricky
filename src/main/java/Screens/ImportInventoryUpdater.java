@@ -8,8 +8,8 @@ import java.util.HashMap;
 public class ImportInventoryUpdater implements ImportPresenter {
 
     @Override
-    public InventoryViewModel prepareSuccessView(String[][] inventoryTable, HashMap controllers, String invName) {
-        InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
+    public InventoryViewModel prepareSuccessView(String[][] inventoryTable, String[] inventoryHistory, HashMap controllers, String invName) {
+        InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable, inventoryHistory);
         InventoryUI newInv = new InventoryUI(inventoryViewModel);
         newInv.setName(invName);
         newInv.refresh();

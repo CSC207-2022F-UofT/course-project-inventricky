@@ -6,8 +6,8 @@ import update_item_quantity_use_case.UpdateItemQtyResponseModel;
 
 public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
     @Override
-    public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
-        InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
+    public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
+        InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable, inventoryHistory);
 
 
         //if item history is open

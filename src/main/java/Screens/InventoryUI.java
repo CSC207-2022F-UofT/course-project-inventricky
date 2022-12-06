@@ -294,23 +294,6 @@ public class InventoryUI extends JFrame {
 //        });
 
 
-        history.addMenuListener(new MenuListener() {
-            @Override
-            public void menuSelected(MenuEvent e) {
-
-            }
-
-            @Override
-            public void menuDeselected(MenuEvent e) {
-
-            }
-
-            @Override
-            public void menuCanceled(MenuEvent e) {
-
-            }
-        });
-
 
 
         //Add a new item to inventory
@@ -398,19 +381,19 @@ public class InventoryUI extends JFrame {
         panel.add(export);
 
 
-//        hist.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JFrame frame = new JFrame();
-//                String[] list = inventory.getHistory().toArray(new String[0]);
-//                JList l = new JList<String>(list);
-//                frame.add(l);
-//                frame.pack();
-//                frame.setSize(400, 400);
-//                frame.getContentPane().add(BorderLayout.CENTER, l);
-//                frame.setVisible(true);
-//            }
-//        });
+        hist.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame();
+                String[] list = inventoryViewModel.getInventoryHistory();
+                JList l = new JList<String>(list);
+                frame.add(l);
+                frame.pack();
+                frame.setSize(400, 400);
+                frame.getContentPane().add(BorderLayout.CENTER, l);
+                frame.setVisible(true);
+            }
+        });
         export.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

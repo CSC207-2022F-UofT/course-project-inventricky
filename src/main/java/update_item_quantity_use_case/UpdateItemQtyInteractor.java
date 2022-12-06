@@ -34,6 +34,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
                 UpdateItemQtyResponseModel updateItemQtyResponseModel = new UpdateItemQtyResponseModel(candidate.getName(), candidate.getBarcode(), candidate.getItemHistory());
 
                 String[][] inventoryTable = new String[inventory.getItems().size()][7];
+                String[] inventoryHistory = inventory.getHistory().toArray(new String[0]); //CHECK
 
                 for (int i = 0; i < inventory.getItems().size(); i++) {
                     InventoryItem item = inventory.getItems().get(i);
@@ -42,7 +43,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
                             Integer.toString(item.getCaseQuantity()), item.getDepartment()};
                 }
 
-                return updateItemQtyPresenter.prepareQtySuccessView(updateItemQtyResponseModel, inventoryTable);
+                return updateItemQtyPresenter.prepareQtySuccessView(updateItemQtyResponseModel, inventoryTable, inventoryHistory);
 
             }
         }

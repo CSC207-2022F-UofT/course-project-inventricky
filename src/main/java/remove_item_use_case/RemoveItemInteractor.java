@@ -29,7 +29,7 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
         //TODO case where item is not in inventory
             
             
-
+            String[] inventoryHistory = inventory.getHistory().toArray(new String[0]);
 
             for (InventoryItem candidate : inventory.getItems()) {
                 if (candidate.getBarcode().equals(requestModel.getBarcode())) {
@@ -46,7 +46,7 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
                                 Integer.toString(item.getCaseQuantity()), item.getDepartment()};
                     }
 
-                    return removeItemPresenter.prepareSuccessView(removeItemResponseModel, inventoryTable);
+                    return removeItemPresenter.prepareSuccessView(removeItemResponseModel, inventoryTable, inventoryHistory);
 
                 }
             }

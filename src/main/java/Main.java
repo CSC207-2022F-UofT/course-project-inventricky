@@ -23,6 +23,7 @@ import update_item_quantity_use_case.UpdateItemQtyInputBoundary;
 import update_item_quantity_use_case.UpdateItemQtyInteractor;
 import update_item_quantity_use_case.UpdateItemQtyPresenter;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
 public class Main {
@@ -96,7 +97,7 @@ public class Main {
         controllers.put("exportController", exportController);
 
         //scratch
-        InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
+        InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {}, new String[]{"Created from Scratch on " + LocalDate.now() + "."});
         inv.updateHistory("New inventory created from scratch");
         //InventoryUI newInventory = new InventoryUI(blankViewModel);
         //newInventory.setControllers(controllers);

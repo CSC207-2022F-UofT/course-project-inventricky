@@ -6,6 +6,7 @@ import entities.Inventory;
 import entities.InventoryItem;
 import entities.Item;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
 public class ImportInventory implements ImportInputBoundary{
@@ -32,6 +33,7 @@ public class ImportInventory implements ImportInputBoundary{
         ImportDataWrapper wrappedInv = importer.importSerializable();
 
         String[][] inventoryTable = new String[wrappedInv.getList().size()][7]; //InventoryViewModel
+        String[] inventoryHistory = new String[]{"Created from Import on " + LocalDate.now() + "."};
         for (int i = 0; i < wrappedInv.getList().size(); i++) {
 
             if ( wrappedInv.getList().get(i) instanceof InventoryItem) {
@@ -48,6 +50,6 @@ public class ImportInventory implements ImportInputBoundary{
 
 
         }
-        return importPresenter.prepareSuccessView(inventoryTable, controllers, importRequestModel.getInvName());
+        return importPresenter.prepareSuccessView(inventoryTable, inventoryHistory, controllers, importRequestModel.getInvName());
     }
 }

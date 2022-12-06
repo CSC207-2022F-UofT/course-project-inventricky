@@ -27,7 +27,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyPresenter presenter = new UpdateItemQtyPresenter() {
             @Override
-            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
+            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
                 assertEquals("bananas", item.getName());
                 assertEquals("12345", item.getBarcode());
                 assertEquals(" Bought 13.0", item.getItemHistory().get(1).substring(16));
@@ -68,7 +68,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyPresenter presenter = new UpdateItemQtyPresenter() {
             @Override
-            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
+            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
                 assertEquals("bananas", item.getName());
                 assertEquals("12345", item.getBarcode());
                 assertEquals(" Sold 14.0", item.getItemHistory().get(2).substring(16));
@@ -107,7 +107,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyPresenter presenter = new UpdateItemQtyPresenter() {
             @Override
-            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
+            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
                 assertEquals("bananas", item.getName());
                 assertEquals("12345", item.getBarcode());
                 assertEquals(" Error: Adjusted quantity to 11.0", item.getItemHistory().get(3).substring(16));
@@ -145,7 +145,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyPresenter presenter = new UpdateItemQtyPresenter() {
             @Override
-            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
+            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
                 return null;
             }
 

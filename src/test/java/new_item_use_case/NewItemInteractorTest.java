@@ -22,7 +22,7 @@ public class NewItemInteractorTest {
 
         NewItemPresenter presenter = new NewItemPresenter() {
             @Override
-            public InventoryViewModel prepareSuccessView(NewItemResponseModel newItem, String[][] inventoryTable) {
+            public InventoryViewModel prepareSuccessView(NewItemResponseModel newItem, String[][] inventoryTable, String[] inventoryHistory) {
                 assertEquals("banana", newItem.getName());
                 assertEquals("12345", newItem.getBarcode());
                 assertEquals(inv.getItems().get(0).getBarcode(), "12345");
