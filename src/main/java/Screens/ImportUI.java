@@ -2,6 +2,8 @@ package Screens;
 
 import entities.Inventory;
 import import_use_case.ImportInventory;
+import import_use_case.ImportPresenter;
+import useCases.InventoryImportBuilder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,28 +12,24 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class ImportUI extends JFrame {
-    JTextField invName = new JTextField(15);
     JTextField fileName = new JTextField(15);
-    String name;
+    ImportController importController;
 
     public ImportUI(HashMap controllers) {
         this.setTitle("Import Menu");
         JLabel title = new JLabel("Import");
-        this.setSize(400, 400);
+        this.setSize(400, 100);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.setVisible(true);
-
-        LabelTextPanel invInfo = new LabelTextPanel(
-                new JLabel("Inventory Name"), invName);
-        LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel("File Name"), fileName);
+        this.importController = (ImportController) controllers.get("importController");
 
         JButton create = new JButton("Create");
         JButton cancel = new JButton("Cancel");
+        JButton search = new JButton("Search For File");
 
         JPanel buttons = new JPanel();
-        buttons.add(create);
+        buttons.add(search);
         buttons.add(cancel);
 
         cancel.addActionListener(new ActionListener() {
@@ -47,31 +45,20 @@ public class ImportUI extends JFrame {
             }
         });
 
-        create.addActionListener(new ActionListener() {
+        search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Inventory inv = new InventoryImportBuilder(invName.getText(), fileName.getText()).create();
-//                InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
-//                InventoryUI newInventory = new InventoryUI(blankViewModel);
-//                newInventory.setName(invName.getName());
-//                newInventory.setControllers(controllers);
-//                ImportInventoryUpdater importPresenter = new ImportInventoryUpdater();
-//                //TODO create controller to avoid creating inventory in UI
-//                Inventory inv = new Inventory("New Inventory");
-//                ImportInventory importer = new ImportInventory(inv, fileName.getText(), importPresenter, controllers);
-//                importer.importToInventory();
-
-
-//                JFrame f = new JFrame();
-//                f.setSize(300, 300);
-//                String[] list = {fileName.getText()};
-//                JList l = new JList<String>(list);
-//                f.add(l);
-//                f.setVisible(true);
+                FileSearchUI fileSearch = new FileSearchUI();
+                if (fileSearch.response == JFileChooser.APPROVE_OPTION) {
+//                    importController.create(invName.getText(), fileSearch.getSelectedFile().getPath());
+                    String title = fileSearch.getSelectedFile().getName();
+                    importController.create(title.substring(13,title.length() - 4), fileSearch.getSelectedFile().getPath());
+                    this.dispose();
+                }
             }
 
-            private void setVisible() {
-                ImportUI.super.setVisible(false);
+            private void dispose() {
+                ImportUI.super.dispose();
             }
         });
 
@@ -79,13 +66,8 @@ public class ImportUI extends JFrame {
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
         main.add(title);
-        main.add(invInfo);
-        main.add(passwordInfo);
-//        main.add(creator);
         main.add(buttons);
         this.setContentPane(main);
-
-//        this.pack();
     }
 
 }

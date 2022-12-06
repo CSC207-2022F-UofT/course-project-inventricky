@@ -15,7 +15,7 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
     final static String REMOVEITEMPANEL = "Remove Item";
     final static String UPDATEITEMPANEL = "Update Item Quantity";
 
-    final static String[] REASON_COMBO_BOX_ITEMS = {"bought", "sold", "error"};
+    final static String[] REASON_COMBO_BOX_ITEMS = {"Bought", "Sold", "Error"};
 
     JComboBox reasonComboBox = new JComboBox(REASON_COMBO_BOX_ITEMS);
     JTextField qtyInput = new JTextField(5);

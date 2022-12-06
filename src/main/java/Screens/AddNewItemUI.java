@@ -19,6 +19,8 @@ public class AddNewItemUI extends JFrame implements ActionListener{
     JTextField caseQuantity = new JTextField(15);
     JTextField department = new JTextField(15);
 
+    boolean weightValue = false;
+
 
 
 
@@ -48,23 +50,38 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
         //create text fields for inputting new item details
 
-        LabelTextPanel namePanel = new LabelTextPanel(new JLabel("name input"), name);
+        LabelTextPanel namePanel = new LabelTextPanel(new JLabel("Name                        "), name);
 
-        LabelTextPanel isWeightPanel = new LabelTextPanel(new JLabel("isWeight input"), isWeight);
+        LabelTextPanel quantityPanel = new LabelTextPanel(new JLabel("Quantity                   "), quantity);
 
-        LabelTextPanel quantityPanel = new LabelTextPanel(new JLabel("quantity input"), quantity);
+        LabelTextPanel buyPricePanel = new LabelTextPanel(new JLabel("Price Bought            "), buyPrice);
 
-        LabelTextPanel buyPricePanel = new LabelTextPanel(new JLabel("buyPrice input"), buyPrice);
+        LabelTextPanel sellPricePanel = new LabelTextPanel(new JLabel("Selling Price            "), sellPrice);
 
-        LabelTextPanel sellPricePanel = new LabelTextPanel(new JLabel("sellPrice input"), sellPrice);
+        LabelTextPanel caseQuantityPanel = new LabelTextPanel(new JLabel("Case Quantity          "), caseQuantity);
 
-        LabelTextPanel caseQuantityPanel = new LabelTextPanel(new JLabel("caseQuantity input"), caseQuantity);
+        LabelTextPanel departmentPanel = new LabelTextPanel(new JLabel("Department Number"), department);
 
-        LabelTextPanel departmentPanel = new LabelTextPanel(new JLabel("department input"), department);
+        ButtonSelector weight = new ButtonSelector();
+
+        weight.t.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                weightValue = true;
+            }
+        });
+
+        weight.f.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                weightValue = false;
+            }
+        });
+
 
         //option to confirm item or cancel item creation
         JButton confirm = new JButton("Confirm");
-        JButton cancel = new JButton("cancel");
+        JButton cancel = new JButton("Cancel");
 
         JPanel buttons = new JPanel();
         buttons.add(confirm);
@@ -77,7 +94,7 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
         panel.add(title);
         panel.add(namePanel);
-        panel.add(isWeightPanel);
+        panel.add(weight);
         panel.add(quantityPanel);
         panel.add(buyPricePanel);
         panel.add(sellPricePanel);
@@ -99,7 +116,7 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
 
         //user has clicked button to create item, with all the parameters filled
-        newItemController.addItem(name.getText(), Boolean.parseBoolean(isWeight.getText()),
+        newItemController.addItem(name.getText(), weightValue,
                 Double.parseDouble(quantity.getText()), Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
                 Integer.parseInt(caseQuantity.getText()), department.getText());
 

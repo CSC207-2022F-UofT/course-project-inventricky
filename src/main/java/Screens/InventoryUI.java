@@ -41,6 +41,7 @@ public class InventoryUI extends JFrame {
     public InventoryUI(InventoryViewModel inventoryViewModel) {
 //        JFrame frame = new JFrame("Inventory Menu");
         this.setTitle(name);
+        InventoryUI invUI = this;
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
@@ -90,12 +91,14 @@ public class InventoryUI extends JFrame {
         mb.add(history);
         mb.add(sort);
 
+        JMenuItem deletion = new JMenuItem("Confirm Delete");
         JMenuItem analysis11 = new JMenuItem("Revenue Breakdown");
         JMenuItem analysis22 = new JMenuItem("Cost Breakdown");
         JMenuItem analysis33 = new JMenuItem("Profit/Loss Calculator");
         generate_analysis.add(analysis11);
         generate_analysis.add(analysis22);
         generate_analysis.add(analysis33);
+        delete_inventory.add(deletion);
 
 
         analysis11.addActionListener(new ActionListener() {
@@ -271,7 +274,22 @@ public class InventoryUI extends JFrame {
 //        });
 
 
+        history.addMenuListener(new MenuListener() {
+            @Override
+            public void menuSelected(MenuEvent e) {
 
+            }
+
+            @Override
+            public void menuDeselected(MenuEvent e) {
+
+            }
+
+            @Override
+            public void menuCanceled(MenuEvent e) {
+
+            }
+        });
 
 
 
@@ -292,25 +310,30 @@ public class InventoryUI extends JFrame {
 
             }
         });
-        delete_inventory.addMenuListener(new MenuListener() {
+
+//        delete_inventory.addMenuListener(new MenuListener() {
+//            @Override
+//            public void menuSelected(MenuEvent e) {
+////                this.dispose();
+////                new MainCreationUI(controllers);
+//                new DeletionConfirm(invUI, controllers);
+//            }
+//
+//            @Override
+//            public void menuDeselected(MenuEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void menuCanceled(MenuEvent e) {
+//
+//            }
+//        });
+
+        deletion.addActionListener(new ActionListener() {
             @Override
-            public void menuSelected(MenuEvent e) {
-                this.removeVisible();
-                new MainCreationUI(controllers);
-            }
-
-            private void removeVisible() {
-                InventoryUI.super.setVisible(false);
-            }
-
-            @Override
-            public void menuDeselected(MenuEvent e) {
-
-            }
-
-            @Override
-            public void menuCanceled(MenuEvent e) {
-
+            public void actionPerformed(ActionEvent e) {
+                new DeletionConfirm(invUI, controllers);
             }
         });
 

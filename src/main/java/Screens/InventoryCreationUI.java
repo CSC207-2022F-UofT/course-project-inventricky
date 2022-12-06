@@ -54,7 +54,6 @@ public class InventoryCreationUI extends JFrame{
 
 
         JPanel main = new JPanel();
-        main.setSize(500, 500);
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
         main.add(title);
