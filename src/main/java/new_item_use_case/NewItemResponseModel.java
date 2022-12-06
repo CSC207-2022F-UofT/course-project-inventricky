@@ -7,6 +7,11 @@ public class NewItemResponseModel {
     String name; //name of item
     String barcode; //5 digit barcode
 
+    /** Construct new item response model object
+     *
+     * @param name      name of item added to inventory.
+     * @param barcode   barcode of item added to inventory.
+     */
     public NewItemResponseModel(String name, String barcode) {
         this.name = name;
         this.barcode = barcode;

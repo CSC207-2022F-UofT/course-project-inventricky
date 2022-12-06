@@ -11,6 +11,16 @@ public class NewItemRequestModel {
     private int caseQuantity;
     private String department;
 
+    /** Construct new item request model object
+     *
+     * @param name          name of item to be added.
+     * @param isWeight      true if item to be added quantified in kg.
+     * @param quantity      quantity of item to be added.
+     * @param buyPrice      buy price of item to be added.
+     * @param sellPrice     sell price of item to be added.
+     * @param caseQuantity  quantity per case of item.
+     * @param department    department number of item.
+     */
     public NewItemRequestModel(String name, boolean isWeight, double quantity, double buyPrice, double sellPrice,
                                int caseQuantity, String department) {
         this.name = name;

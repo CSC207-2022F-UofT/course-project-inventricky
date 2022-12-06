@@ -7,24 +7,31 @@ import entities.InventoryItem;
 //Use case interactor
 public class NewItemInteractor implements NewItemInputBoundary {
 
-    final NewItemDsGateway newItemDsGateway;        //interactor needs an inventory, talks to database
     final NewItemPresenter newItemPresenter;    //presenter
 
     private Inventory inventory;
 
-    //pass in data access class, presenter
-    public NewItemInteractor(NewItemDsGateway newItemDsGateway, NewItemPresenter newItemDsPresenter, Inventory inventory) {
-        this.newItemDsGateway = newItemDsGateway;
-        this.newItemPresenter = newItemDsPresenter;
+
+    /** Concstruct use case interactor for adding new items.
+     *
+     * @param newItemPresenter      presenter for updating view model.
+     * @param inventory             inventory for new item to be added to.
+     */
+    public NewItemInteractor(NewItemPresenter newItemPresenter, Inventory inventory) {
+        this.newItemPresenter = newItemPresenter;
         this.inventory = inventory;
     }
 
-    //returns output data, takes in input data
+    /** Add item to inventory.
+     *
+     * @param requestModel      request model contatining data of item to be added to inventory.
+     * @param testing           true if method is being called during tests.
+     * @return                  a 2d string array representing the inventory.
+     */
     @Override
     public InventoryViewModel addItem(NewItemRequestModel requestModel, boolean testing) {
 
         //create new InventoryItem
-        //TODO right now this assumes valid input
         InventoryItem newItem;
 
         if (testing) {
@@ -39,9 +46,6 @@ public class NewItemInteractor implements NewItemInputBoundary {
 
         //add the inventory item to inventory
         inventory.addItem(newItem);
-
-
-        //TODO implement time functionality
 
         //return new item's name and barcode to the presenter, along with inventory
         NewItemResponseModel newItemResponseModel = new NewItemResponseModel(newItem.getName(), newItem.getBarcode());

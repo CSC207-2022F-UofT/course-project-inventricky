@@ -4,12 +4,12 @@ import Screens.InventoryViewModel;
 
 //Input boundary
 public interface NewItemInputBoundary {
-    //take item data and return a message stating that item with barcode has been added
-    //TODO implement case where item being added is invalid
 
-
-    //use case interactor must implement this method where it takes in input data and returns output data
-
-    //returns output data, takes in input data
+    /** Input boundary for new item use case.
+     *
+     * @param requestModel  item to be added to inventory.
+     * @param testing       true if the use case is being called for testing.
+     * @return              inventory view model for updating inventory screen.
+     */
     InventoryViewModel addItem(NewItemRequestModel requestModel, boolean testing);
 }

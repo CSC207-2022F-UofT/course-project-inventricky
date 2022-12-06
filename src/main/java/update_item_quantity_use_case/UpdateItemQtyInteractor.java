@@ -10,21 +10,18 @@ import java.time.format.DateTimeFormatter;
 
 
 public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
-
-    final UpdateItemQtyDsGateway updateItemQtyDsGateway;        //interactor needs an inventory, talks to database
     final UpdateItemQtyPresenter updateItemQtyPresenter;    //presenter
 
     private Inventory inventory;
 
     //pass in data access class, presenter
-    public UpdateItemQtyInteractor(UpdateItemQtyDsGateway updateItemQtyDsGateway, UpdateItemQtyPresenter updateItemQtyDsPresenter, Inventory inventory) {
-        this.updateItemQtyDsGateway = updateItemQtyDsGateway;
+    public UpdateItemQtyInteractor(UpdateItemQtyPresenter updateItemQtyDsPresenter, Inventory inventory) {
         this.updateItemQtyPresenter = updateItemQtyDsPresenter;
         this.inventory = inventory;
     }
 
     @Override
-    public InventoryViewModel UpdateQty(UpdateItemQtyRequestModel requestModel) throws RuntimeException {
+    public InventoryViewModel updateQty(UpdateItemQtyRequestModel requestModel) throws RuntimeException {
 
         //Search for item in Inventory
         //TODO case where item is not in inventory

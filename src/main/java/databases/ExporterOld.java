@@ -6,11 +6,11 @@ import entities.InventoryItem;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Exporter  implements Serializable {
+public class ExporterOld implements Serializable {
 
     private final Inventory inventory;
 
-    public Exporter(Inventory inventory) {
+    public ExporterOld(Inventory inventory) {
         this.inventory= inventory;
     }
 

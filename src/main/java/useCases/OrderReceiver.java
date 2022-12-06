@@ -1,6 +1,8 @@
-package entities;
+package useCases;
 
-import useCases.UpdateItemQuantity;
+import entities.Inventory;
+import entities.InventoryItem;
+import entities.Order;
 
 public class OrderReceiver {
     /**
@@ -12,15 +14,20 @@ public class OrderReceiver {
      * @param date      The date the order was received.
      */
 
-    public void receiveOrder(Order order, Inventory inventory, String date) {
+    public Order receiveOrder(Order order, Inventory inventory, String date) {
+//        UpdateItemQtyDsGateway database = new InventoryDatabase();
+//        UpdateItemQtyPresenter updateQty = new UpdateItemQtyInteractor(database);
 
         for (InventoryItem item : inventory.getItems()) {
             if (item.getBarcode().equals(order.getBarcode())) {
+
                 UpdateItemQuantity.updateQty(inventory, order.getBarcode(),
                         (item.getQuantity() + (order.getCaseQuantity() * order.getOrderCases())), "bought");
                 order.changeToReceived(date);
+                return order;
             }
 
         }
+        return null;
     }
 }

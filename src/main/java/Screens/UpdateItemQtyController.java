@@ -14,7 +14,7 @@ public class UpdateItemQtyController {
     }
 
     //take in input from the user
-    Object Update(String barcode, String reason, double newQuantity) {
+    Object update(String barcode, String reason, double newQuantity) {
 
         //take user input and pass into the use case interactor
         UpdateItemQtyRequestModel requestModel = new UpdateItemQtyRequestModel(barcode, reason, newQuantity);
@@ -22,7 +22,7 @@ public class UpdateItemQtyController {
         if (reason.equals("history")) {
             return userInput.GetItemHistory(requestModel);
         }
-        return userInput.UpdateQty(requestModel);
+        return userInput.updateQty(requestModel);
 
     }
 }

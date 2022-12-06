@@ -1,6 +1,5 @@
 package update_item_quantity_use_case;
 
-import Screens.InventoryDatabase;
 import Screens.InventoryViewModel;
 import Screens.ItemHistoryViewModel;
 import entities.Inventory;
@@ -55,11 +54,9 @@ public class UpdateItemQtyInteractorTest {
             }
         };
 
-        UpdateItemQtyDsGateway uiDatabase = new InventoryDatabase();
-
-        UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(uiDatabase, presenter, inv);
+        UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(presenter, inv);
         UpdateItemQtyRequestModel inputData = new UpdateItemQtyRequestModel("12345", "bought", 13);
-        interactor.UpdateQty(inputData);
+        interactor.updateQty(inputData);
 
 
     }
@@ -98,11 +95,9 @@ public class UpdateItemQtyInteractorTest {
             }
         };
 
-        UpdateItemQtyDsGateway uiDatabase = new InventoryDatabase();
-
-        UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(uiDatabase, presenter, inv);
+        UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(presenter, inv);
         UpdateItemQtyRequestModel soldData = new UpdateItemQtyRequestModel("12345", "sold", 14);
-        interactor.UpdateQty(soldData);
+        interactor.updateQty(soldData);
     }
 
     @Test
@@ -138,11 +133,9 @@ public class UpdateItemQtyInteractorTest {
             }
         };
 
-        UpdateItemQtyDsGateway uiDatabase = new InventoryDatabase();
-
-        UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(uiDatabase, presenter, inv);
+        UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(presenter, inv);
         UpdateItemQtyRequestModel errorData = new UpdateItemQtyRequestModel("12345", "error", 11);
-        interactor.UpdateQty(errorData);
+        interactor.updateQty(errorData);
     }
 
     @Test
@@ -176,10 +169,8 @@ public class UpdateItemQtyInteractorTest {
             }
         };
 
-        UpdateItemQtyDsGateway uiDatabase = new InventoryDatabase();
-
-        UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(uiDatabase, presenter, inv);
+        UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(presenter, inv);
         UpdateItemQtyRequestModel historyData = new UpdateItemQtyRequestModel("12345", "bought", 11);
-        interactor.UpdateQty(historyData);
+        interactor.updateQty(historyData);
     }
 }

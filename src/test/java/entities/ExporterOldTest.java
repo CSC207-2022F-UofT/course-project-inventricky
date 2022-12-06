@@ -1,6 +1,6 @@
 package entities;
 import controllers.ExportController;
-import databases.Exporter;
+import databases.ExporterOld;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +10,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class ExporterTest {
+public class ExporterOldTest {
     private final Inventory inventory;
 
-    public ExporterTest() {
+    public ExporterOldTest() {
         this.inventory = new Inventory("Testing Inventory");
         InventoryItem item0 = new InventoryItem("bananas","12345" , true, 10, 2,
                 3, 5, "12", 10, 0);
@@ -56,8 +56,8 @@ public class ExporterTest {
 
     @Test
     public void AssertUsrInvCorrect() throws IOException {
-        Exporter exporter = new Exporter(inventory);
-        exporter.export();
+        ExporterOld exporterOld = new ExporterOld(inventory);
+        exporterOld.export();
         try {
             FileReader fr_usr = new FileReader("src/main/java/exports/user_inventory.tt");
             int i;
@@ -75,8 +75,8 @@ public class ExporterTest {
 
     @Test
     public void AssertFilesExist() throws IOException {
-        Exporter exporter = new Exporter(inventory);
-        exporter.export();
+        ExporterOld exporterOld = new ExporterOld(inventory);
+        exporterOld.export();
         Path p1 = Path.of("src/main/java/exports/user_inventory.txt");
         File f1 = p1.toFile();
         Path p2 = Path.of("src/main/java/exports/serializable_inventory.txt");
