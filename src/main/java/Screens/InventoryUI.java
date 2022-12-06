@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 public class InventoryUI extends JFrame {
 
@@ -39,7 +38,6 @@ public class InventoryUI extends JFrame {
         //Creating the MenuBar and adding components
         JMenuBar mb = new JMenuBar();
 
-
         //create menu for inventory items
         JMenu InventoryItemsMenu = new JMenu("Inventory Items");
 
@@ -49,28 +47,28 @@ public class InventoryUI extends JFrame {
         JMenu removeItemSelect = new JMenu("Remove Item");
         InventoryItemsMenu.add(removeItemSelect);
 
-
         JMenu orders = new JMenu("Orders");
         JMenu generate_analysis = new JMenu("Generate Analysis");
         JMenu delete_inventory = new JMenu("Delete Inventory");
         JMenu history = new JMenu("Inventory History");
-        JMenu sort = new JMenu("Sort");
         mb.add(InventoryItemsMenu);
-        JMenu filter = new JMenu("Filter");
-        JButton search = new JButton("Search");
-        mb.add(m1);
         mb.add(orders);
         mb.add(generate_analysis);
         mb.add(delete_inventory);
         mb.add(history);
+        JMenuItem m11 = new JMenuItem("Analysis 1");
+        JMenuItem m22 = new JMenuItem("Analysis 2");
+        generate_analysis.add(m11);
+        generate_analysis.add(m22);
+
+        JMenu sort = new JMenu("Sort");
+        JButton filter = new JButton("Filter");
+        JButton search = new JButton("Search");
+
         mb.add(sort);
         mb.add(filter);
         mb.add(search);
-        JMenuItem filter1 = new JMenuItem("Items Sold by Weight");
-        JMenuItem filter2 = new JMenuItem("Items Sold by Quantity");
-        JMenuItem filter3 = new JMenuItem("Filter by Department");
-        JMenuItem m11 = new JMenuItem("Analysis 1");
-        JMenuItem m22 = new JMenuItem("Analysis 2");
+
         JMenu sort1 = new JMenu("Sort by Name");
         JMenu sort2 = new JMenu("Sort by Barcode");
         JMenu sort3 = new JMenu("Sort by Buy Price");
@@ -89,11 +87,8 @@ public class InventoryUI extends JFrame {
         JMenuItem sort52 = new JMenuItem("High to Low");
         JMenuItem sort61 = new JMenuItem("Low to High");
         JMenuItem sort62 = new JMenuItem("High to Low");
-        generate_analysis.add(m11);
-        generate_analysis.add(m22);
-        filter.add(filter1);
-        filter.add(filter2);
-        filter.add(filter3);
+
+
         sort.add(sort1);
         sort.add(sort2);
         sort.add(sort3);
@@ -113,108 +108,103 @@ public class InventoryUI extends JFrame {
         sort6.add(sort61);
         sort6.add(sort62);
 
-        Sort sorty = new Sort();
-        Filter filtery = new Filter();
 
         search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SearchUI(inventory.getItems());
+                new SearchUI(inventoryViewModel, controllers);
             }
         });
 
-        filter1.addActionListener(new ActionListener() {
+        filter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(filtery.filterByWeight(inventory.getItems(), true));
-            }
-        });
-        filter2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new DisplayUI(filtery.filterByWeight(inventory.getItems(), false));
-            }
-        });
-        filter3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new FilterUI(inventory.getItems());
+                new FilterUI(inventoryViewModel,  controllers);
 
             }
         });
         sort11.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortName(inventory.getItems() ,false));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortName", false);
             }
         });
         sort12.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortName(inventory.getItems() ,true));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortName", true);
             }
         });
         sort21.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortBarcode(inventory.getItems() ,true));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortBarcode", true);
             }
         });
         sort22.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortBarcode(inventory.getItems() ,false));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortBarcode", false);
             }
         });
         sort31.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortBuyPrice(inventory.getItems() ,true));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortBuyPrice", true);
             }
         });
         sort32.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortBuyPrice(inventory.getItems() ,false));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortBuyPrice", false);
             }
         });sort41.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortSellPrice(inventory.getItems() ,true));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortSellPrice", true);
             }
         });
         sort42.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortSellPrice(inventory.getItems() ,false));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortSellPrice", false);
             }
         });sort51.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortQuantity(inventory.getItems() ,true));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortQuantity", true);
             }
         });
         sort52.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortQuantity(inventory.getItems() ,false));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortQuantity", false);
             }
         });
         sort61.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortCaseQuantity(inventory.getItems() ,true));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortCaseQuantity", true);
             }
         });
         sort62.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisplayUI(sorty.sortCaseQuantity(inventory.getItems() ,false));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortCaseQuantity", false);
             }
         });
-
-
-
 
 
 
@@ -310,7 +300,6 @@ public class InventoryUI extends JFrame {
 //            }
 //        });
 
-
         //action listener for making new item
         newItem.addActionListener(new ActionListener() {
             @Override
@@ -354,7 +343,6 @@ public class InventoryUI extends JFrame {
 
         for (int i = inventoryViewModel.getItemList().length - 1; i >= 0; i--) {
             model.addRow(inventoryViewModel.getItemList()[i]);
-
         }
 
         //open item UI for selected item

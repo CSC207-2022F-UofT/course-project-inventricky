@@ -1,17 +1,16 @@
 package Screens;
-
-import entities.Filter;
-import entities.InventoryItem;
-import entities.Search;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SearchUI extends JFrame{
-
-    public SearchUI(ArrayList<InventoryItem> items) {
+    /**
+     *
+     * @param inventoryViewModel contains the items in the inventory
+     * @param controllers map of controllers needed
+     */
+    public SearchUI(InventoryViewModel inventoryViewModel, HashMap controllers) {
 
         JFrame f = new JFrame("Search");
         //set size and location of frame
@@ -38,8 +37,8 @@ public class SearchUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 f.setVisible(false);
                 f.dispose();
-                Search search = new Search();
-                new DisplayUI(search.searchResults(items, motto1.getText()));
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "search", motto1.getText());
             }
         });
     }

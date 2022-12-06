@@ -1,12 +1,9 @@
 package entities;
 
-import entities.*;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class DisplayTest {
 
@@ -56,14 +53,14 @@ public class DisplayTest {
 
         Filter filter = new Filter();
 
-        ArrayList<InventoryItem> expected = new ArrayList<InventoryItem>();
+        ArrayList<InventoryItem> expected = new ArrayList<>();
         expected.add(inventory.getItems().get(0));
         expected.add(inventory.getItems().get(4));
         expected.add(inventory.getItems().get(6));
         expected.add(inventory.getItems().get(7));
         expected.add(inventory.getItems().get(8));
         expected.add(inventory.getItems().get(9));
-        ArrayList<InventoryItem> expected2 = new ArrayList<InventoryItem>();
+        ArrayList<InventoryItem> expected2 = new ArrayList<>();
 
         ArrayList<InventoryItem> actual = new ArrayList<InventoryItem>();
         actual = filter.filterDepartment(inventory.getItems(), "1");

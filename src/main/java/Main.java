@@ -1,4 +1,6 @@
-
+import DisplayUseCase.DisplayInputBoundary;
+import DisplayUseCase.DisplayInteractor;
+import DisplayUseCase.DisplayPresenter;
 import Screens.*;
 import entities.Inventory;
 import new_item_use_case.NewItemDsGateway;
@@ -35,6 +37,10 @@ public class Main {
 
 
 
+        DisplayPresenter displayPresenter = new DisplayInventoryUpdater();
+        DisplayInputBoundary displayInteractor = new DisplayInteractor(displayPresenter); //create new use case interactor
+        DisplayController displayController = new DisplayController(displayInteractor); //create new controller with interactor as param
+        controllers.put("displayController", displayController);
 
         //setup for New Item use case
         NewItemDsGateway niDatabase = new InventoryDatabase(); //TODO implement this class

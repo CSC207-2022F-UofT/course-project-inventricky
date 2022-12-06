@@ -1,20 +1,18 @@
 
 package Screens;
-
-import entities.Filter;
-import entities.Inventory;
-import entities.InventoryItem;
-import useCases.InventoryScratchBuilder;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FilterUI extends JFrame {
 
-        public FilterUI(ArrayList<InventoryItem> items){
+    /**
+     *
+     * @param inventoryViewModel contains the items in the inventory
+     * @param controllers map of controllers needed
+     */
+    public FilterUI(InventoryViewModel inventoryViewModel, HashMap controllers){
 
             JFrame f = new JFrame("Filter");
             //set size and location of frame
@@ -41,8 +39,8 @@ public class FilterUI extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     f.setVisible(false);
                     f.dispose();
-                    Filter filtery = new Filter();
-                    new DisplayUI(filtery.filterDepartment(items, motto1.getText()));
+                    DisplayController displayController = (DisplayController) controllers.get("displayController");
+                    displayController.create(inventoryViewModel, "filterDepartment", motto1.getText());
                 }
             });
         }
