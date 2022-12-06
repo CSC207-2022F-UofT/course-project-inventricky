@@ -48,7 +48,8 @@ public class ScratchUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Inventory inv = new InventoryScratchBuilder(invName.getText()).create();
-                InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {}, new String[]{"Created from Scratch on " + LocalDate.now() + "."});
+                InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {}, new String[]{});
+                InventoryUI.setHistoryFirst("Created from scratch on " + LocalDate.now() + ".");
                 InventoryUI newInventory = new InventoryUI(blankViewModel);
                 newInventory.setIsNew(true);
                 newInventory.setControllers(controllers);

@@ -12,7 +12,7 @@ public class InventoryScratchBuilder {
 
     public Inventory create() {
         Inventory inv = new Inventory(this.name);
-        inv.updateHistory("New inventory created from scratch");
+        inv.updateHistory("New inventory created from scratch AAAAAA");
         return inv;
     }
 }

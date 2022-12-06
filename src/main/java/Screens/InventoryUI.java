@@ -17,10 +17,14 @@ import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class InventoryUI extends JFrame {
+
+    private static String historyFirst;
 
     private static HashMap controllers; //controllers for use cases
 
@@ -40,6 +44,10 @@ public class InventoryUI extends JFrame {
 
     public void setIsNew(boolean bool) {
         isNew = bool;
+    }
+
+    public static void setHistoryFirst(String line) {
+        historyFirst = line;
     }
 
     public static void setOrderViewModel(OrderHistoryViewModel orderHistoryViewModel){
@@ -385,7 +393,9 @@ public class InventoryUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame();
-                String[] list = inventoryViewModel.getInventoryHistory();
+                ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(inventoryViewModel.getInventoryHistory()));
+                stringList.add(0, historyFirst);
+                String[] list = stringList.toArray(new String[0]);
                 JList l = new JList<String>(list);
                 frame.add(l);
                 frame.pack();
