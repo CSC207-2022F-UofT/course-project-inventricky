@@ -91,7 +91,7 @@ public class InventoryUI extends JFrame {
         JMenu history = new JMenu("Inventory History");
         JMenu sort = new JMenu("Sort");
         mb.add(InventoryItemsMenu);
-        JMenu filter = new JMenu("Filter");
+        JButton filter = new JButton("Filter");
         JButton search = new JButton("Search");
 
         mb.add(orders);
@@ -201,82 +201,82 @@ public class InventoryUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortName", false);
+                displayController.create(inventoryViewModel, "sortName", true);
             }
         });
         sort12.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortName", true);
+                displayController.create(inventoryViewModel, "sortName", false);
             }
         });
         sort21.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortBarcode", true);
+                displayController.create(inventoryViewModel, "sortBarcode", false);
             }
         });
         sort22.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortBarcode", false);
+                displayController.create(inventoryViewModel, "sortBarcode", true);
             }
         });
         sort31.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortBuyPrice", true);
+                displayController.create(inventoryViewModel, "sortBuyPrice", false);
             }
         });
         sort32.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortBuyPrice", false);
+                displayController.create(inventoryViewModel, "sortBuyPrice", true);
             }
         });sort41.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortSellPrice", true);
+                displayController.create(inventoryViewModel, "sortSellPrice", false);
             }
         });
         sort42.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortSellPrice", false);
+                displayController.create(inventoryViewModel, "sortSellPrice", true);
             }
         });sort51.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortQuantity", true);
-            }
-        });
-        sort52.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
                 displayController.create(inventoryViewModel, "sortQuantity", false);
             }
         });
+        sort52.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DisplayController displayController = (DisplayController) controllers.get("displayController");
+                displayController.create(inventoryViewModel, "sortQuantity", true);
+            }
+        });
         sort61.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortCaseQuantity", true);
+                displayController.create(inventoryViewModel, "sortCaseQuantity", false);
             }
         });
         sort62.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortCaseQuantity", false);
+                displayController.create(inventoryViewModel, "sortCaseQuantity", true);
             }
         });
 

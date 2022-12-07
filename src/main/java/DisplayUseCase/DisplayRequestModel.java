@@ -24,13 +24,13 @@ public class DisplayRequestModel {
         this.items = new ArrayList<InventoryItem>();
         this.parameter = parameter;
         for(int i =0; i< inventoryViewModel.getItemList().length; i++){
-            InventoryItem inventoryItem = new InventoryItem(inventoryViewModel.getItemList()[0][0],
-                    inventoryViewModel.getItemList()[0][2], true,
-                    Double.parseDouble(inventoryViewModel.getItemList()[0][1]),
-                    Double.parseDouble(inventoryViewModel.getItemList()[0][3]),
-                    Double.parseDouble(inventoryViewModel.getItemList()[0][4]),
-                    Integer.parseInt(inventoryViewModel.getItemList()[0][5]),
-                    inventoryViewModel.getItemList()[0][6],  0, 0);
+            InventoryItem inventoryItem = new InventoryItem(inventoryViewModel.getItemList()[i][0],
+                    inventoryViewModel.getItemList()[i][2], true,
+                    Double.parseDouble(inventoryViewModel.getItemList()[i][1]),
+                    Double.parseDouble(inventoryViewModel.getItemList()[i][3]),
+                    Double.parseDouble(inventoryViewModel.getItemList()[i][4]),
+                    Integer.parseInt(inventoryViewModel.getItemList()[i][5]),
+                    inventoryViewModel.getItemList()[i][6],  0, 0);
             items.add(inventoryItem);
         }
     }
