@@ -14,23 +14,25 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
 
     /** Construct use case interactor
      *
-     * @param removeItemDsPresenter
-     * @param inventory
+     * @param removeItemPresenter   presenter for updating inventory screen.
+     * @param inventory             current inventory.
      */
-    public RemoveItemInteractor(RemoveItemPresenter removeItemDsPresenter, Inventory inventory) {
-        this.removeItemPresenter = removeItemDsPresenter;
+    public RemoveItemInteractor(RemoveItemPresenter removeItemPresenter, Inventory inventory) {
+        this.removeItemPresenter = removeItemPresenter;
         this.inventory = inventory;
     }
 
+    /** Remove item from inventory.
+     *
+     * @param requestModel          item to be removed from inventory.
+     * @param testing               true if the use case is being called for testing.
+     * @return                      inventory view model contatining inventory in table format.
+     * @throws RuntimeException     failed to remove item from inventory.
+     */
     @Override
     public InventoryViewModel removeItem(RemoveItemRequestModel requestModel, boolean testing) throws RuntimeException {
 
         //Search for item in Inventory
-        //TODO case where item is not in inventory
-            
-            
-
-
             for (InventoryItem candidate : inventory.getItems()) {
                 if (candidate.getBarcode().equals(requestModel.getBarcode())) {
                     inventory.removeItem(candidate, testing);

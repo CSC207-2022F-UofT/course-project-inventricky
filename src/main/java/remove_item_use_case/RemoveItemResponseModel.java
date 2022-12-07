@@ -6,6 +6,11 @@ public class RemoveItemResponseModel {
 
     String barcode;
 
+    /** Construct remove item response model.
+     *
+     * @param name      name of removed item.
+     * @param barcode   barcode of removed item.
+     */
     public RemoveItemResponseModel(String name, String barcode) {
         this.name = name;
         this.barcode = barcode;

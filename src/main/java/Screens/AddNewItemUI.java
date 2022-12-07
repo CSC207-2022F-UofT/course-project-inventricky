@@ -23,6 +23,11 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
     NewItemController newItemController; //controller
 
+    /** Construct a new screen for adding a new item to inventory.
+     *
+     * @param controller    new item use case controller.
+     * @param parent        parent InventoryUI screen.
+     */
     public AddNewItemUI(NewItemController controller, JFrame parent) {
 
         this.parent = parent; //set parent
@@ -92,6 +97,10 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
         }
 
+    /** Invoked when button is clicked.
+     *
+     * @param evt the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("cancel")) {

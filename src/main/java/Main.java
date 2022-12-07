@@ -1,4 +1,6 @@
-
+import DisplayUseCase.DisplayInputBoundary;
+import DisplayUseCase.DisplayInteractor;
+import DisplayUseCase.DisplayPresenter;
 import Screens.*;
 import entities.Analysis;
 import entities.AnalysisController;
@@ -40,6 +42,10 @@ public class Main {
         //ex. controllers.get("newItemController") = newItemController
         HashMap<String, Object> controllers = new HashMap<>();
 
+        DisplayPresenter displayPresenter = new DisplayInventoryUpdater();
+        DisplayInputBoundary displayInteractor = new DisplayInteractor(displayPresenter); //create new use case interactor
+        DisplayController displayController = new DisplayController(displayInteractor); //create new controller with interactor as param
+        controllers.put("displayController", displayController);
 
         //setup for New Item use case
         NewItemPresenter newItemPresenter = new NewItemInventoryUpdater();

@@ -10,6 +10,11 @@ public class ItemHistoryScreen extends JFrame {
 
     private static final HashMap<String, JFrame> openScreens = new HashMap<>();
 
+    /** Static method to get current open history screen if one is open.
+     *
+     * @param barcode   barcode of corresponding item.
+     * @return          current open history screen for item, or null if no screens are currently open.
+     */
     public static JFrame getOpenScreen(String barcode) {
         if (!openScreens.containsKey(barcode)) {
             return null;
@@ -17,6 +22,10 @@ public class ItemHistoryScreen extends JFrame {
         return openScreens.get(barcode);
     }
 
+    /** Constructor for item history screen.
+     *
+     * @param itemHistory   item quantity history.
+     */
     public ItemHistoryScreen(ItemHistoryViewModel itemHistory) {
 
         this.addWindowListener(new WindowAdapter() {

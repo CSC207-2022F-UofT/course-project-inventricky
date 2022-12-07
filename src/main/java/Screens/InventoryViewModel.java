@@ -7,6 +7,10 @@ public class InventoryViewModel {
 
     String[][] itemList; //Array of string arrays containing Name, Quantity and Barcode of item
 
+    /** Construct a new invetory view model.
+     *
+     * @param itemList  2d string array representation of inventory.
+     */
     public InventoryViewModel(String[][] itemList) {
         this.itemList = itemList;
     }

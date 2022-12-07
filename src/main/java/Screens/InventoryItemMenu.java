@@ -23,7 +23,10 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
 
     String barcode; //barcode of item being operated on
 
-
+    /** Static method for setting controller map class variable.
+     *
+     * @param controllers   mapping of controller names to controllers.
+     */
     public static void setControllers(HashMap<String, Object> controllers) {
         InventoryItemMenu.controllers = controllers;
     }
@@ -31,6 +34,12 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
 
     JPanel cards;
 
+    /** Construct new inventory item menu screen for selected item.
+     *
+     * @param barcode           barcode of selected item.
+     * @param controllerMap     mapping of controller names to controllers.
+     * @param parent            parent InventoryUI screen.
+     */
     public InventoryItemMenu(String barcode, HashMap<String, Object> controllerMap, JFrame parent) {
 
         this.parent = parent;
@@ -105,6 +114,11 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
     }
 
     //listener for combo box
+
+    /** Invoked when combo box option is selected.
+     *
+     * @param evt the event to be processed
+     */
     @Override
     public void itemStateChanged(ItemEvent evt) {
         CardLayout c = (CardLayout) (cards.getLayout());
@@ -112,6 +126,11 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
     }
 
     //listener for button
+
+    /** Invoked when button is clicked.
+     *
+     * @param evt the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("Cancel")) {

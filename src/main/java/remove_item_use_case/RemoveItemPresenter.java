@@ -5,7 +5,14 @@ import Screens.InventoryViewModel;
 public interface RemoveItemPresenter {
 
     //item removed from database, display item details
+
+    /** Presenters must implement this method.
+     *
+     * @param oldItem           item removed from inventory.
+     * @param inventoryTable    2d string array representing inventory.
+     * @return                  inventory view model contatining inventory in table format.
+     */
     InventoryViewModel prepareSuccessView(RemoveItemResponseModel oldItem, String[][] inventoryTable);
 
-    RemoveItemResponseModel prepareFailView(String error); //TODO more speicific errors
+    RemoveItemResponseModel prepareFailView(String error);
 }
