@@ -16,4 +16,8 @@ public class ButtonSelector extends JPanel {
          this.add(p);
          this.setVisible(true);
      }
+
+    public void setTitle(JLabel title) {
+        this.title = title;
+    }
 }

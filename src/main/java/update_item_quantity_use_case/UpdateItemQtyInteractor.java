@@ -29,7 +29,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
 
         for (InventoryItem candidate : inventory.getItems()) {
             if (candidate.getBarcode().equals(requestModel.getBarcode())) {
-            updateQty(candidate, requestModel.getQtyInput(), requestModel.getUpdateReason());
+            updateQtyHelper(inventory, candidate, requestModel.getQtyInput(), requestModel.getUpdateReason());
 
                 UpdateItemQtyResponseModel updateItemQtyResponseModel = new UpdateItemQtyResponseModel(candidate.getName(), candidate.getBarcode(), candidate.getItemHistory());
 
@@ -68,7 +68,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
         throw RuntimeException; //TODO exception
     }
 
-    public static void updateQty(InventoryItem item, double qtyInput, String updateReason) {
+    public static void updateQtyHelper(Inventory inventory, InventoryItem item, double qtyInput, String updateReason) {
 
 
         qtyInput = qtyInput * 100.0;
@@ -78,13 +78,15 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
         if (updateReason.equals("Bought")) {
             item.setQuantityBought(item.getQuantityBought() + roundedQtyInput);
             item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Bought " + roundedQtyInput);
+            inventory.updateHistory(dtf.format(LocalDateTime.now()) + " Bought " + roundedQtyInput + " " + item.getName());
             item.setQuantity(item.getQuantity() + roundedQtyInput);
         } else if (updateReason.equals("Sold")) {
             item.setQuantitySold(item.getQuantitySold() + roundedQtyInput);
             item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Sold " + roundedQtyInput);
+            inventory.updateHistory(dtf.format(LocalDateTime.now()) + " Sold " + roundedQtyInput + " " + item.getName());
             item.setQuantity(item.getQuantity() - roundedQtyInput);
         } else {
-            item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Error: Adjusted quantity to " + roundedQtyInput);
+            item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Error: Adjusted quantity of " + item.getName() + " to " + roundedQtyInput);
             item.setQuantity(roundedQtyInput);
         }
     }
