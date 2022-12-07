@@ -10,7 +10,6 @@ import generate_order_use_case.OrderingInteractor;
 import generate_order_use_case.OrderingPresenter;
 import import_use_case.ImportInventory;
 import import_use_case.ImportPresenter;
-import entities.comparator.AnalysisScreenUpdater;
 import new_item_use_case.NewItemInputBoundary;
 import new_item_use_case.NewItemInteractor;
 import new_item_use_case.NewItemPresenter;
@@ -39,10 +38,7 @@ public class Main {
 
         //map of controllers
         //ex. controllers.get("newItemController") = newItemController
-        HashMap controllers = new HashMap();
-
-
-
+        HashMap<String, Object> controllers = new HashMap<>();
 
 
         //setup for New Item use case
@@ -52,13 +48,13 @@ public class Main {
         controllers.put("newItemController", newItemController);
 
         //setup for Remove Item use case
-        RemoveItemPresenter removeItemPresenter= new RemoveItemInventoryUpdater();
+        RemoveItemPresenter removeItemPresenter = new RemoveItemInventoryUpdater();
         RemoveItemInputBoundary removeItemInteractor = new RemoveItemInteractor(removeItemPresenter, inv);
         RemoveItemController removeItemController = new RemoveItemController(removeItemInteractor);
         controllers.put("removeItemController", removeItemController);
 
         //setup for Update Item Qty use case
-        UpdateItemQtyPresenter updateItemQtyPresenter= new UpdateItemQtyInventoryUpdater();
+        UpdateItemQtyPresenter updateItemQtyPresenter = new UpdateItemQtyInventoryUpdater();
         UpdateItemQtyInputBoundary updateItemQtyInteractor = new UpdateItemQtyInteractor(updateItemQtyPresenter, inv);
         UpdateItemQtyController updateItemQtyController = new UpdateItemQtyController(updateItemQtyInteractor);
         controllers.put("updateItemQtyController", updateItemQtyController);
@@ -70,7 +66,6 @@ public class Main {
         controllers.put("importController", importController);
 
         //setup for Analysis
-        AnalysisScreenUpdater analysisScreenPresenter = new AnalysisScreenUpdater();
         Analysis analysis = new Analysis(inv);
         AnalysisController analysisController = new AnalysisController(analysis);
         controllers.put("analysisController", analysisController);
@@ -82,7 +77,7 @@ public class Main {
         OrderingController orderingController = new OrderingController(orderingInteractor); //create new controller with interactor as param
         controllers.put("orderingController", orderingController);
 
-//       //  setup for Receiving use case
+        //setup for Receiving use case
         ReceivingPresenter receivingPresenter = new ReceivingScreenUpdater();
         ReceivingInteractor receivingInteractor = new ReceivingInteractor(receivingPresenter, inv,
                 controllers, updateItemQtyPresenter); //create new use case interactor
@@ -95,25 +90,8 @@ public class Main {
         ExportController exportController = new ExportController(exportInventory);
         controllers.put("exportController", exportController);
 
-        //scratch
-        InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
-        inv.updateHistory("New inventory created from scratch");
-        //InventoryUI newInventory = new InventoryUI(blankViewModel);
-        //newInventory.setControllers(controllers);
-
-
-
 
         new MainCreationUI(controllers);
-
-
-
-
-        //AddNewItemUI addNewItemUI = new AddNewItemUI(newItemController);
-        //screens.add(addNewItemUI, "New Item");
-//        cardLayout.show(screens, "Inventory");
-//        application.pack();
-//        application.setVisible(true);
 
     }
 

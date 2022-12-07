@@ -3,7 +3,6 @@ package barcode_use_case;
 import database_access.BarcodeGenerator;
 import database_access.BarcodeMapReader;
 import database_access.BarcodeRemover;
-import entities.InventoryItem;
 
 import java.util.HashMap;
 import java.util.List;

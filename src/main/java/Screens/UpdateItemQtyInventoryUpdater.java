@@ -1,8 +1,9 @@
 package Screens;
 
-import remove_item_use_case.RemoveItemResponseModel;
 import update_item_quantity_use_case.UpdateItemQtyPresenter;
 import update_item_quantity_use_case.UpdateItemQtyResponseModel;
+
+import java.util.Objects;
 
 public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
     @Override
@@ -13,7 +14,7 @@ public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
         //if item history is open
         if (ItemHistoryScreen.getOpenScreen(item.getBarcode()) != null) {
             //dispose screen
-            ItemHistoryScreen.getOpenScreen(item.getBarcode()).dispose();
+            Objects.requireNonNull(ItemHistoryScreen.getOpenScreen(item.getBarcode())).dispose();
             //update history screen
             ItemHistoryViewModel itemHistoryViewModel = new ItemHistoryViewModel(item.getItemHistory());
             new ItemHistoryScreen(itemHistoryViewModel);
@@ -38,7 +39,7 @@ public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
         //if item history is open
         if (ItemHistoryScreen.getOpenScreen(item.getBarcode()) != null) {
             //dispose screen
-            ItemHistoryScreen.getOpenScreen(item.getBarcode()).dispose();
+            Objects.requireNonNull(ItemHistoryScreen.getOpenScreen(item.getBarcode())).dispose();
         }
         new ItemHistoryScreen(itemHistoryViewModel);
         return itemHistoryViewModel;

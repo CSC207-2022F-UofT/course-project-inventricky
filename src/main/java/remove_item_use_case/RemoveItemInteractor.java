@@ -8,7 +8,7 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
 
     final RemoveItemPresenter removeItemPresenter;    //presenter
 
-    private Inventory inventory;
+    private final Inventory inventory;
 
     //pass in data access class, presenter
 
@@ -51,8 +51,7 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
                 }
             }
 
-        RuntimeException RuntimeException = new RuntimeException("Failed to remove item from inventory; Item not found error.");
-        throw RuntimeException;
+        throw new RuntimeException("Failed to remove item from inventory; Item not found error.");
 
     }
 }

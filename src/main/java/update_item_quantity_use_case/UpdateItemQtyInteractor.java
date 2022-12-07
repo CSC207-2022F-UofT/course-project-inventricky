@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
     final UpdateItemQtyPresenter updateItemQtyPresenter;    //presenter
 
-    private Inventory inventory;
+    private final Inventory inventory;
 
     //pass in data access class, presenter
     public UpdateItemQtyInteractor(UpdateItemQtyPresenter updateItemQtyDsPresenter, Inventory inventory) {
@@ -47,8 +47,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
             }
         }
 
-        RuntimeException RuntimeException = null;
-        throw RuntimeException; //TODO exception
+        throw new RuntimeException("error with updating item quantity");
 
     }
 
@@ -63,8 +62,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
                 return updateItemQtyPresenter.prepareHistorySuccessView(updateItemQtyResponseModel);
             }
         }
-        RuntimeException RuntimeException = null;
-        throw RuntimeException; //TODO exception
+        throw new RuntimeException("error with getting item history"); //TODO exception
     }
 
     public static void updateQtyHelper(Inventory inventory, InventoryItem item, double qtyInput, String updateReason) {
@@ -77,6 +75,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
         if (updateReason.equals("Bought")) {
             item.setQuantityBought(item.getQuantityBought() + roundedQtyInput);
             item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Bought " + roundedQtyInput);
+            //TODO add Peter's code
             item.setQuantity(item.getQuantity() + roundedQtyInput);
         } else if (updateReason.equals("Sold")) {
             item.setQuantitySold(item.getQuantitySold() + roundedQtyInput);

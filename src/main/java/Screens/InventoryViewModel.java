@@ -15,7 +15,4 @@ public class InventoryViewModel {
         return itemList;
     }
 
-    public void setItemList(String[][] itemList) {
-        this.itemList = itemList;
-    }
 }

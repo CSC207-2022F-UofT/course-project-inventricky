@@ -12,7 +12,4 @@ public class ItemHistoryViewModel {
         return itemHistory;
     }
 
-    public void setItemHistory(ArrayList<String> itemHistory) {
-        this.itemHistory = itemHistory;
-    }
 }

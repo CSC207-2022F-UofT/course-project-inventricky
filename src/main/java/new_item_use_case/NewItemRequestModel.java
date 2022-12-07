@@ -3,13 +3,13 @@ package new_item_use_case;
 //DONE
 public class NewItemRequestModel {
 
-    private String name;
-    private boolean isWeight;
-    private double quantity;
-    private double buyPrice;
-    private double sellPrice;
-    private int caseQuantity;
-    private String department;
+    private final String name;
+    private final boolean isWeight;
+    private final double quantity;
+    private final double buyPrice;
+    private final double sellPrice;
+    private final int caseQuantity;
+    private final String department;
 
     /** Construct new item request model object
      *
@@ -36,55 +36,28 @@ public class NewItemRequestModel {
         return name;
     }
 
-    void setName(String name) {
-        this.name = name;
-    }
-
     boolean getIsWeight() {
         return isWeight;
-    }
-
-    void setIsWeight(boolean isWeight) {
-        this.isWeight = isWeight;
     }
 
     double getQuantity() {
         return quantity;
     }
 
-    void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-
     double getBuyPrice() {
         return buyPrice;
-    }
-
-    void setBuyPrice(double buyPrice) {
-        this.buyPrice = buyPrice;
     }
 
     double getSellPrice() {
         return sellPrice;
     }
 
-    void setSellPrice(double sellPrice) {
-        this.sellPrice = sellPrice;
-    }
-
     int getCaseQuantity() {
         return caseQuantity;
-    }
-
-    void setCaseQuantity(int caseQuantity) {
-        this.caseQuantity = caseQuantity;
     }
 
     String getDepartment() {
         return department;
     }
 
-    void setDepartment(String department) {
-        this.department = department;
-    }
 }

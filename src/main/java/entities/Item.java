@@ -1,8 +1,6 @@
 package entities;
 
 import barcode_use_case.BarcodeInteractor;
-import barcode_use_case.GenerateBarcodeInputBoundary;
-import barcode_use_case.ReadBarcodeInputBoundary;
 import database_access.BarcodeMapReader;
 
 import java.io.Serializable;
@@ -21,13 +19,13 @@ public abstract class Item implements Serializable {
     private String name; // product name
     private String barcode; // product barcode
 
-    private boolean isWeight; // true if product is quantified by weight
+    private final boolean isWeight; // true if product is quantified by weight
     private double quantity; // quantity of product in on hand in inventory (double type if measured in kg)
-    private double buyPrice; // buying price of item (per item or price per kg)
-    private double sellPrice; // selling price of item (per item or price per kg)
-    private int caseQuantity; // quantity of item per case
+    private final double buyPrice; // buying price of item (per item or price per kg)
+    private final double sellPrice; // selling price of item (per item or price per kg)
+    private final int caseQuantity; // quantity of item per case
 
-    private String department; //Department # of item
+    private final String department; //Department # of item
 
     //Getters and Setters
     public String getName() {

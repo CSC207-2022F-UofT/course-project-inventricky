@@ -26,8 +26,9 @@ public class BarcodeRemover {
         //remove barcode from map and csv
 
 
+        String tempFileName = file.substring(0, file.lastIndexOf('.')) + ".temp";
         try {
-            FileWriter fileWriter = new FileWriter(file.substring(0, file.lastIndexOf('.')) + ".temp"); //create temporary csv file
+            FileWriter fileWriter = new FileWriter(tempFileName); //create temporary csv file
             FileReader fileReader = new FileReader(file);
 
             BufferedWriter bw = new BufferedWriter(fileWriter);
@@ -50,7 +51,7 @@ public class BarcodeRemover {
                     bw.close();
                     File original = new File(file);
                     original.delete();
-                    new File(file.substring(0, file.lastIndexOf('.')) + ".temp").renameTo(original);
+                    new File(tempFileName).renameTo(original);
                     return;
 
                 }
@@ -110,7 +111,7 @@ public class BarcodeRemover {
 
         File original = new File(file);
         original.delete();
-        new File(file.substring(0, file.lastIndexOf('.')) + ".temp").renameTo(original);
+        new File(tempFileName).renameTo(original);
 
 
     }

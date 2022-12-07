@@ -22,7 +22,8 @@ public class BarcodeGenerator {
 
 
         try {
-            FileWriter fileWriter = new FileWriter(file.substring(0, file.lastIndexOf('.')) + ".temp"); //create temporary csv file
+            String tempFileName = file.substring(0, file.lastIndexOf('.')) + ".temp";
+            FileWriter fileWriter = new FileWriter(tempFileName); //create temporary csv file
             FileReader fileReader = new FileReader(file);
 
             BufferedWriter bw = new BufferedWriter(fileWriter);
@@ -52,7 +53,7 @@ public class BarcodeGenerator {
                 bw.close();
                 File original = new File(file);
                 original.delete();
-                new File(file.substring(0, file.lastIndexOf('.')) + ".temp").renameTo(original);
+                new File(tempFileName).renameTo(original);
                 return String.format("%05d", barcodeMax + 1);
             } else { //department not in csv file
                 //case where csv is empty
@@ -103,14 +104,14 @@ public class BarcodeGenerator {
                 }
 
                 //add department to barcodeMap
-                ArrayList<String> newCodes = new ArrayList();
+                ArrayList<String> newCodes = new ArrayList<String>();
                 newCodes.add(department + "000");
                 barcodes.put(department, newCodes);
 
                 bw.close();
                 File original = new File(file);
                 original.delete();
-                new File(file.substring(0, file.lastIndexOf('.')) + ".temp").renameTo(original);
+                new File(tempFileName).renameTo(original);
                 return department + "000";
             }
         } catch (IOException e) {

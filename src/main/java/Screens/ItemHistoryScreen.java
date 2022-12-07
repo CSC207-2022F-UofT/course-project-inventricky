@@ -4,12 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ItemHistoryScreen extends JFrame {
 
-    private static HashMap<String, JFrame> openScreens = new HashMap<String, JFrame>();
+    private static final HashMap<String, JFrame> openScreens = new HashMap<>();
 
     public static JFrame getOpenScreen(String barcode) {
         if (!openScreens.containsKey(barcode)) {
@@ -32,7 +31,7 @@ public class ItemHistoryScreen extends JFrame {
 
 
         //create new list model for storing history entries
-        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        DefaultListModel<String> listModel = new DefaultListModel<>();
 
         //populate list model with entries
         for (String entry : itemHistory.getItemHistory()) {
@@ -41,7 +40,7 @@ public class ItemHistoryScreen extends JFrame {
 
         }
 
-        JList<String> historyList = new JList<String>(listModel);
+        JList<String> historyList = new JList<>(listModel);
 
         this.add(historyList);
         this.setMinimumSize(new Dimension(200, 200));

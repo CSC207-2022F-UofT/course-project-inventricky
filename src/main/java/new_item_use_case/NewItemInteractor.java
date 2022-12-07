@@ -9,7 +9,7 @@ public class NewItemInteractor implements NewItemInputBoundary {
 
     final NewItemPresenter newItemPresenter;    //presenter
 
-    private Inventory inventory;
+    private final Inventory inventory;
 
 
     /** Concstruct use case interactor for adding new items.

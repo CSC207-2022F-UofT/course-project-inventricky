@@ -1,7 +1,6 @@
 package Screens;
 
 import entities.AnalysisController;
-import entities.Order;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -18,7 +17,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 public class InventoryUI extends JFrame {
 

@@ -7,35 +7,36 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class InventoryItemMenu extends JFrame implements ActionListener, ItemListener {
 
-    private JFrame parent;
-    private static HashMap controllers; //controllers for use cases
+    private final JFrame parent;
+    private static HashMap<String, Object> controllers; //controllers for use cases
     final static String REMOVEITEMPANEL = "Remove Item";
     final static String UPDATEITEMPANEL = "Update Item Quantity";
 
     final static String[] REASON_COMBO_BOX_ITEMS = {"Bought", "Sold", "Error"};
 
-    JComboBox reasonComboBox = new JComboBox(REASON_COMBO_BOX_ITEMS);
+    JComboBox<String> reasonComboBox = new JComboBox<String>(REASON_COMBO_BOX_ITEMS);
     JTextField qtyInput = new JTextField(5);
 
     String barcode; //barcode of item being operated on
 
 
-    public static void setControllers(HashMap controllers) {
+    public static void setControllers(HashMap<String, Object> controllers) {
         InventoryItemMenu.controllers = controllers;
     }
 
 
     JPanel cards;
 
-    public InventoryItemMenu(String barcode, HashMap controllers, JFrame parent) {
+    public InventoryItemMenu(String barcode, HashMap<String, Object> controllerMap, JFrame parent) {
 
         this.parent = parent;
 
 
-        this.controllers = controllers; //set controller map
+        controllers = controllerMap; //set controller map
         this.barcode = barcode;
 
         //create title
@@ -45,7 +46,7 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
         //create combo box for selecting operation on items
         JPanel comboBoxPane = new JPanel();
         String[] comboBoxItems = {REMOVEITEMPANEL, UPDATEITEMPANEL};
-        JComboBox comboBox = new JComboBox(comboBoxItems);
+        JComboBox<String> comboBox = new JComboBox<String>(comboBoxItems);
         comboBox.setEditable(false);
         comboBox.addItemListener(this);
         comboBoxPane.add(comboBox);
@@ -129,7 +130,7 @@ public class InventoryItemMenu extends JFrame implements ActionListener, ItemLis
             //if item history is open
             if (ItemHistoryScreen.getOpenScreen(barcode) != null) {
                 //dispose screen
-                ItemHistoryScreen.getOpenScreen(barcode).dispose();
+                Objects.requireNonNull(ItemHistoryScreen.getOpenScreen(barcode)).dispose();
                 //draw new item history screen
                 updateItemQtyController.update(barcode, "history", 1.0);
             }

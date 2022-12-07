@@ -15,11 +15,11 @@ public class NewItemController {
     }
 
     //take in input from the user
-    InventoryViewModel addItem(String name, boolean isWeight, double quantity, double buyPrice,
+    InventoryViewModel addItem(String name, boolean isWeight, double buyPrice,
                                double sellPrice, int caseQuantity, String department) {
 
         //take user input and pass into the use case interactor
-        NewItemRequestModel requestModel = new NewItemRequestModel(name, isWeight, quantity,
+        NewItemRequestModel requestModel = new NewItemRequestModel(name, isWeight, 0,
                 buyPrice, sellPrice, caseQuantity, department);
 
         return userInput.addItem(requestModel, false);

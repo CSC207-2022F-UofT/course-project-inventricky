@@ -27,15 +27,8 @@ public class UpdateItemQtyRequestModel {
         return updateReason;
     }
 
-    public void setUpdateReason(String updateReason) {
-        this.updateReason = updateReason;
-    }
-
     public double getQtyInput() {
         return qtyInput;
     }
 
-    public void setQtyInput(double newQuantity) {
-        this.qtyInput = newQuantity;
-    }
 }

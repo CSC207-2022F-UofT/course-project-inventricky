@@ -11,8 +11,6 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
     //text fields for user input
     JTextField name = new JTextField(15);
-    JTextField isWeight = new JTextField(15); //can be "true" or "false"
-    //double 2 decimal places if isWeight true
     JTextField buyPrice = new JTextField(15);
     JTextField sellPrice = new JTextField(15);
     JTextField caseQuantity = new JTextField(15);
@@ -61,19 +59,9 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
         ButtonSelector weight = new ButtonSelector();
 
-        weight.t.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                weightValue = true;
-            }
-        });
+        weight.t.addActionListener(e -> weightValue = true);
 
-        weight.f.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                weightValue = false;
-            }
-        });
+        weight.f.addActionListener(e -> weightValue = false);
 
 
         //option to confirm item or cancel item creation
@@ -113,7 +101,7 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
         //user has clicked button to create item, with all the parameters filled
         newItemController.addItem(name.getText(), weightValue,
-                0, Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
+                Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
                 Integer.parseInt(caseQuantity.getText()), department.getText());
 
         //dispose old inventory

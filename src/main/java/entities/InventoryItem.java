@@ -1,6 +1,5 @@
 package entities;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,7 +10,7 @@ public class InventoryItem extends Item implements Serializable {
 
     private double quantitySold; // quantity of product sold so far (double type if measured in kg)
 
-    private ArrayList<String> itemHistory; // List of changes to item quantity
+    private final ArrayList<String> itemHistory; // List of changes to item quantity
 
     public double getQuantityBought() {
         return quantityBought;

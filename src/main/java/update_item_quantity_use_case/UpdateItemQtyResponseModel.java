@@ -38,7 +38,4 @@ public class UpdateItemQtyResponseModel {
         return itemHistory;
     }
 
-    public void setItemHistory(ArrayList<String> itemHistory) {
-        this.itemHistory = itemHistory;
-    }
 }
