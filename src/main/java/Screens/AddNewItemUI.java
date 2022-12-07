@@ -13,7 +13,6 @@ public class AddNewItemUI extends JFrame implements ActionListener{
     JTextField name = new JTextField(15);
     JTextField isWeight = new JTextField(15); //can be "true" or "false"
     //double 2 decimal places if isWeight true
-    JTextField quantity = new JTextField(15);
     JTextField buyPrice = new JTextField(15);
     JTextField sellPrice = new JTextField(15);
     JTextField caseQuantity = new JTextField(15);
@@ -51,8 +50,6 @@ public class AddNewItemUI extends JFrame implements ActionListener{
         //create text fields for inputting new item details
 
         LabelTextPanel namePanel = new LabelTextPanel(new JLabel("Name                        "), name);
-
-        LabelTextPanel quantityPanel = new LabelTextPanel(new JLabel("Quantity                   "), quantity);
 
         LabelTextPanel buyPricePanel = new LabelTextPanel(new JLabel("Price Bought            "), buyPrice);
 
@@ -95,7 +92,6 @@ public class AddNewItemUI extends JFrame implements ActionListener{
         panel.add(title);
         panel.add(namePanel);
         panel.add(weight);
-        panel.add(quantityPanel);
         panel.add(buyPricePanel);
         panel.add(sellPricePanel);
         panel.add(caseQuantityPanel);
@@ -117,7 +113,7 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
         //user has clicked button to create item, with all the parameters filled
         newItemController.addItem(name.getText(), weightValue,
-                Double.parseDouble(quantity.getText()), Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
+                0, Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
                 Integer.parseInt(caseQuantity.getText()), department.getText());
 
         //dispose old inventory
