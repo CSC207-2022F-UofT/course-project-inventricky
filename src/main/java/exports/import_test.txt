@@ -1,0 +1,4 @@
+                Name             Quantity              Barcode             BuyPrice           Sell Price         CaseQuantity           Department 
+              banana                  0.0                12000                 12.0                 13.0                   14                   12 
+              orange                  0.0                12001                 13.0                 41.0                   12                   12 
+                blue                  0.0                11000                213.0                 31.0                   41                   11 

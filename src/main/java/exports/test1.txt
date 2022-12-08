@@ -1,0 +1,12 @@
+                Name             Quantity              Barcode             BuyPrice           Sell Price         CaseQuantity           Department 
+             bananas                 10.0                12345                  2.0                  3.0                    5                   12 
+              banana                 10.0                12346                  2.0                  3.0                    5                   12 
+               apple                  1.0                12352                  4.0                  6.0                   11                   12 
+              orange                  7.0                12361                  7.0                  5.0                    6                   12 
+           nectarine                  3.0                12373                  9.0                  4.0                    9                   12 
+             cookies                  5.0                12385                  3.0                  2.0                    3                   12 
+               bread                  7.0                12392                  1.0                  1.0                    4                   12 
+             banana2                  2.0                12311                  4.0                  8.0                    3                   12 
+            computer                  7.0                12333                  1.0                  6.0                    2                   12 
+                mice                  5.0                12612                  6.0                  9.0                    1                   12 
+                 cat                  6.0                12388                  4.0                  4.0                    8                   12 
