@@ -125,21 +125,21 @@ public class InventoryUI extends JFrame {
         analysis11.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AnalysisRevenueBreakdownUI((AnalysisController) controllers.get("analysisController"));
+                new DisplayInventoryUpdater.AnalysisRevenueBreakdownUI((AnalysisController) controllers.get("analysisController"));
             }
         });
 
         analysis22.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AnalysisCostsBreakdownUI((AnalysisController) controllers.get("analysisController"));
+                new DisplayInventoryUpdater.AnalysisCostsBreakdownUI((AnalysisController) controllers.get("analysisController"));
             }
         });
 
         analysis33.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AnalysisProfitLossCalculatorUI((AnalysisController) controllers.get("analysisController"));
+                new DisplayInventoryUpdater.AnalysisProfitLossCalculatorUI((AnalysisController) controllers.get("analysisController"));
             }
         });
 

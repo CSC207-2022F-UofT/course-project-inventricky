@@ -1,15 +1,19 @@
 package import_use_case;
 
 import Screens.InventoryViewModel;
-import new_item_use_case.NewItemResponseModel;
 
 import java.util.HashMap;
 
 public interface ImportPresenter {
 
-    InventoryViewModel prepareSuccessView(String[][] inventoryTable, HashMap controllers, String invName);
+    /**
+     * Presenters must implement this method
+     * @param inventoryTable table representation of inventory
+     * @param controllers hashmap of controller objects
+     * @param invName name of inventory
+     * @return InventoryViewModel returns an inventoryViewModel
+     */
 
-    NewItemResponseModel prepareFailView(String error);
-
+    InventoryViewModel prepareSuccessView(String[][] inventoryTable, HashMap<String, Object> controllers, String invName);
 
 }
