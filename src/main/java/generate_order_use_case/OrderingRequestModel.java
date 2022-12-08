@@ -1,22 +1,25 @@
 package generate_order_use_case;
-import java.time.LocalDate;
 public class OrderingRequestModel {
-    // use case layer
     private final String name;
-
     private final boolean isWeight;
-
     private final double buyPrice;
-
     private final double sellPrice;
-
     private final int caseQuantity;
-
     private final String department;
     private final String supplier;
     private final int cases;
 
-    LocalDate dateToday = LocalDate.now();
+    /**
+     * Construct new order request model object.
+     * @param name              name of order to be added.
+     * @param isWeight          true if order is measured by weight.
+     * @param buyPrice          buy price of the ordered item.
+     * @param sellPrice         sell price of the ordered item.
+     * @param caseQuantity      quantity per case of ordered item.
+     * @param department        department of ordered item.
+     * @param supplier          supplier of order.
+     * @param cases             amount of cases bought.
+     */
     public OrderingRequestModel(String name, boolean isWeight, double buyPrice,
                  double sellPrice, int caseQuantity, String department,
                  String supplier, int cases){
@@ -28,7 +31,6 @@ public class OrderingRequestModel {
         this.department = department;
         this.supplier = supplier;
         this.cases = cases;
-
     }
 
     public String getName(){
@@ -54,18 +56,6 @@ public class OrderingRequestModel {
     public String getDepartment(){
         return this.department;
     }
-    public String getDateBought(){
-        return dateToday.toString();
-    }
-
-    public String getEstimatedDate(){
-
-        return dateToday.plusDays(5).toString();
-    }
-
-    public String getDateReceived(){
-        return "";
-    }
 
     public String getSupplier(){
         return this.supplier;
@@ -74,6 +64,5 @@ public class OrderingRequestModel {
     public int getOrderCases(){
         return this.cases;
     }
-
 
 }
