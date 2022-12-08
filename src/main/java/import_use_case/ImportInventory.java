@@ -1,7 +1,6 @@
 package import_use_case;
 
 import database_access.Importer;
-import Screens.InventoryViewModel;
 import entities.Inventory;
 import entities.InventoryItem;
 import entities.Item;
