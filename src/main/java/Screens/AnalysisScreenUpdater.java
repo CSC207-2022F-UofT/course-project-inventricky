@@ -1,9 +1,6 @@
-package entities.comparator;
+package Screens;
 
-import Screens.AnalysisNewScreen;
 import analysis_use_case.NewAnalysisPresenter;
-
-import javax.swing.*;
 
 public class AnalysisScreenUpdater implements NewAnalysisPresenter {
     /**

@@ -1,5 +1,9 @@
-package entities;
+package analysis_use_case;
 
+
+import entities.Inventory;
+import entities.InventoryItem;
+import entities.Order;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,8 +12,8 @@ public class AnalysisTest {
     private Inventory fruits;
 
     public void makeInventory(){
-        ArrayList<InventoryItem> stuff = new ArrayList<InventoryItem>();
-        ArrayList<Order> stuff2 = new ArrayList<Order>();
+        ArrayList<InventoryItem> stuff = new ArrayList<>();
+        ArrayList<Order> stuff2 = new ArrayList<>();
         InventoryItem item1 = new InventoryItem("Apple", "11000", false, 5, 2, 5,
                 25, "11", 25, 20);
         InventoryItem item2 = new InventoryItem("Banana", "11001",false, 13, 1, 3,
