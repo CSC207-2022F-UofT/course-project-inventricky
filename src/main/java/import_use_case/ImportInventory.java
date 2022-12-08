@@ -14,13 +14,27 @@ public class ImportInventory implements ImportInputBoundary{
 
     final ImportPresenter importPresenter;
 
-    HashMap controllers;
+    final HashMap<String, Object> controllers;
 
-    public ImportInventory(Inventory inv, ImportPresenter presenter, HashMap controllers) {
+    /**
+     * Initializes ImportInventory
+     * @param inv inventory to import to
+     * @param presenter import presenter
+     * @param controllers hashmap of controllers
+     */
+
+    public ImportInventory(Inventory inv, ImportPresenter presenter, HashMap<String, Object> controllers) {
         this.inventory = inv;
         this.importPresenter = presenter;
         this.controllers = controllers;
     }
+
+    /**
+     * Returns an InventoryViewModel with an imported inventory based on the inventory given in importRequestModel
+     *
+     * @param importRequestModel Request model that includes inventory name and filename to import.
+     * @return InventoryViewModel ViewModel representing imported inventory.
+     */
 
     @Override
     public InventoryViewModel create(ImportRequestModel importRequestModel) {
@@ -35,20 +49,11 @@ public class ImportInventory implements ImportInputBoundary{
         String[][] inventoryTable = new String[wrappedInv.getList().size()][7]; //InventoryViewModel
         String[] inventoryHistory = new String[]{"Created from Import on " + LocalDate.now() + "."};
         for (int i = 0; i < wrappedInv.getList().size(); i++) {
-
-            if ( wrappedInv.getList().get(i) instanceof InventoryItem) {
-                InventoryItem item = (InventoryItem) wrappedInv.getList().get(i);
-                inventoryTable[i] = new String[] {item.getName(), item.getQuantity()+"", item.getBarcode(),
-                        item.getBuyPrice()+"", item.getSellPrice()+"",
-                        Integer.toString(item.getCaseQuantity()), item.getDepartment()};
-                inventory.addItem(item);
-            } else {
-                //this.inventory.addOrder((Order) obj);
-                //TODO
-            }
-
-
-
+            InventoryItem item = (InventoryItem) wrappedInv.getList().get(i);
+            inventoryTable[i] = new String[] {item.getName(), item.getQuantity()+"", item.getBarcode(),
+                    item.getBuyPrice()+"", item.getSellPrice()+"",
+                    Integer.toString(item.getCaseQuantity()), item.getDepartment()};
+            inventory.addItem(item);
         }
         return importPresenter.prepareSuccessView(inventoryTable, inventoryHistory, controllers, importRequestModel.getInvName());
     }

@@ -1,8 +1,15 @@
 package import_use_case;
 
 public class ImportRequestModel {
-    private String invName;
-    private String fileName;
+    private final String invName;
+    private final String fileName;
+
+    /**
+     * Initializes importRequestModel
+     *
+     * @param invName name of inventory
+     * @param fileName string of filename to import
+     */
 
     public ImportRequestModel(String invName, String fileName) {
         this.invName = invName;
@@ -17,11 +24,4 @@ public class ImportRequestModel {
         return fileName;
     }
 
-    public void setInvName(String invName) {
-        this.invName = invName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
 }

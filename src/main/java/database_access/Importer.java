@@ -8,13 +8,19 @@ import java.util.ArrayList;
 public class Importer implements Serializable {
     private final String filename;
 
+    /**
+     * Initializes Importer object
+     *
+     * @param fileToImport string of filename to import
+     */
+
     public Importer(String fileToImport) {
         this.filename = fileToImport;
     }
 
     /**
      * Deserializes inventory data and checks whether each deserialized item is an InventoryItem or and Order.
-     * Items are put into this.inventory either in the collection of Orders or InventoryItems.
+     * Items are put into this inventory either in the collection of Orders or InventoryItems.
      */
 
     public ImportDataWrapper importSerializable() {
