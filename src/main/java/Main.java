@@ -1,5 +1,8 @@
 
 import Screens.*;
+import delete_inventory_use_case.DeleteInventoryInputBoundary;
+import delete_inventory_use_case.DeleteInventoryInteractor;
+import delete_inventory_use_case.DeleteInventoryPresenter;
 import entities.Analysis;
 import entities.AnalysisController;
 import entities.Inventory;
@@ -95,6 +98,12 @@ public class Main {
         ExportInputBoundary exportInventory = new ExporterInventory(inv, exporterPresenter, controllers);
         ExportController exportController = new ExportController(exportInventory);
         controllers.put("exportController", exportController);
+
+        //Setup for DeleteInventory use case
+        DeleteInventoryPresenter deleteInventoryUpdater = new DeleteInventoryUpdater();
+        DeleteInventoryInputBoundary deleteInventoryInteractor = new DeleteInventoryInteractor(deleteInventoryUpdater, controllers);
+        DeletionController deleteController = new DeletionController(deleteInventoryInteractor);
+        controllers.put("deletionController", deleteController);
 
         //scratch
         InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {}, new String[]{"Created from Scratch on " + LocalDate.now() + "."});

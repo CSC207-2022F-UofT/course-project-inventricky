@@ -53,9 +53,12 @@ public class InventoryUI extends JFrame {
     public static void setOrderViewModel(OrderHistoryViewModel orderHistoryViewModel){
         orderViewModel = orderHistoryViewModel;
     }
+    public static String getInvName() {
+        return name;
+    }
 
     public InventoryUI(InventoryViewModel inventoryViewModel) {
-//        JFrame frame = new JFrame("Inventory Menu");
+
         this.setTitle(name);
         InventoryUI invUI = this;
 

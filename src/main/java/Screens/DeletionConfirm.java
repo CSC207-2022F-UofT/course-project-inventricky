@@ -1,5 +1,7 @@
 package Screens;
 
+import delete_inventory_use_case.DeleteInventoryInputBoundary;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,10 @@ import java.util.HashMap;
 
 public class DeletionConfirm extends JFrame {
 
+    /** A JFrame to confirm the deletion of an inventory.
+     * @param parent The InventoryUI associated with the deletion.
+     * @param controllers The associated controllers.
+     */
     public DeletionConfirm(InventoryUI parent, HashMap controllers) {
         this.setTitle("Confirm Delete");
         setVisible(true);
@@ -25,7 +31,8 @@ public class DeletionConfirm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 this.dispose();
                 parent.dispose();
-                new MainCreationUI(controllers);
+                DeletionController deletionController = (DeletionController) controllers.get("deletionController");
+                deletionController.deleteInventory(parent.getName());
             }
 
             private void dispose() {
