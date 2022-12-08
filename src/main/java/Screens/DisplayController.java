@@ -23,7 +23,7 @@ public class DisplayController {
      *      *                  serachResults based on what you are searching or filtering.
      * @return Updated items ready to be used by the view
      */
-    InventoryViewModel create(InventoryViewModel inventoryViewModel, String action, Object Parameter) {
+    public InventoryViewModel create(InventoryViewModel inventoryViewModel, String action, Object Parameter) {
         DisplayRequestModel requestModel = new DisplayRequestModel(inventoryViewModel, action, Parameter);
         return userInput.create(requestModel);
     }

@@ -38,7 +38,7 @@ public class SearchUI extends JFrame{
                 f.setVisible(false);
                 f.dispose();
                 DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "search", motto1.getText());
+                displayController.create(inventoryViewModel, "searchResults", motto1.getText());
             }
         });
     }
