@@ -18,7 +18,7 @@ public class ReceivingTest {
     Order order = new Order("Pizza", "12345", true,
             5, 40, 60, 2, "69",
             dateToday.toString(), dateToday.plusDays(5).toString(), "moxies", 5);
-    InventoryItem item = new InventoryItem("Pizza", true, 5, 40, 60,
+    InventoryItem item = new InventoryItem("Pizza", "12345", true, 5, 40, 60,
             2, "69", 0, 0);
 
     private static Inventory inv;
