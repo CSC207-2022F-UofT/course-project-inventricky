@@ -28,7 +28,7 @@ public class ExporterInventory implements ExportInputBoundary{
 
     /**
      * Overrides abstract method inside the ExportViewModel. Calls the export class and then the presenter
-     * for the "export successful" screen
+     * for the "export successful" pop-up screen
      * @param exportRequestModel Export Request Model; a class that connects this layer to the entities
      * @return the "export successful" screen
      * @throws IOException as required by the Exporter class

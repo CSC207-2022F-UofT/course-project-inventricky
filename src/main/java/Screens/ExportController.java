@@ -9,6 +9,10 @@ public class ExportController {
     //userInput is an interactor that implements the methods described by the interface
     final ExportInputBoundary userInput;
 
+    /**
+     * Constructor for the Export Controller
+     * @param ExportGateway to connect to the outer layer
+     */
     //userInput is an interactor that implements the methods described by the interface
     public ExportController(ExportInputBoundary ExportGateway) {
         this.userInput = ExportGateway;
