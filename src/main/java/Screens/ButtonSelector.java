@@ -6,7 +6,7 @@ import java.awt.*;
 public class ButtonSelector extends JPanel {
     JButton t = new JButton("True");
     JButton f = new JButton("False");
-    JLabel title = new JLabel("Sorted by Weight         ");
+    JLabel title = new JLabel("Quantified by Weight       ");
 
     /**
      * Creates a JPanel of two buttons wil a True and False option.

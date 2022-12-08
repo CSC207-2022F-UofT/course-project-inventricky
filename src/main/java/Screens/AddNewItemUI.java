@@ -105,17 +105,18 @@ public class AddNewItemUI extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("cancel")) {
             this.dispose();
+        } else {
+
+
+            //user has clicked button to create item, with all the parameters filled
+            newItemController.addItem(name.getText(), weightValue,
+                    Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
+                    Integer.parseInt(caseQuantity.getText()), department.getText());
+
+            //dispose old inventory
+            parent.dispose();
+            this.dispose();
         }
-
-
-        //user has clicked button to create item, with all the parameters filled
-        newItemController.addItem(name.getText(), weightValue,
-                Double.parseDouble(buyPrice.getText()), Double.parseDouble(sellPrice.getText()),
-                Integer.parseInt(caseQuantity.getText()), department.getText());
-
-        //dispose old inventory
-        parent.dispose();
-        this.dispose();
 
     }
 }
