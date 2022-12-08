@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class OrderingTest {
-        InventoryItem item = new InventoryItem("Pizza", true, 5, 40, 60,
+        InventoryItem item = new InventoryItem("Pizza", "12345" , true, 5, 40, 60,
                 2, "69", 0, 0);
 
     /**
