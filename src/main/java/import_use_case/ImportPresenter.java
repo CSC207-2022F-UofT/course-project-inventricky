@@ -15,3 +15,8 @@ public interface ImportPresenter {
     InventoryViewModel prepareSuccessView(String[][] inventoryTable, String[] inventoryHistory, HashMap<String, Object> controllers, String invName);
 
 }
+
+
+
+
+
