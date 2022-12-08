@@ -149,20 +149,6 @@ public class ExporterTest {
         Assertions.assertEquals(inventoryTable[0][0], "bananas");
     }
 
-    /**
-     *  Test to see if window opens up correctly when inventory is exported
-     * @throws IOException as required by ExporterInventory
-     */
-    @Test
-    public void ExporterInventory() throws IOException {
-        ExportPresenter presenter = new ExportInventoryUpdater();
-        HashMap<String, Object> controllers = new HashMap<>();
-        ExporterInventory exporterInventory = new ExporterInventory(inventory,presenter, controllers);
-        ExportRequestModel exportRequestModel = new ExportRequestModel(inventoryname, inventoryTable);
-        exporterInventory.create(exportRequestModel);
-
-        Assertions.assertEquals(inventoryTable[0][0], "bananas");
-    }
 
     /**
      * Test to check if ExportDataWrapper can be instantinted direclty
