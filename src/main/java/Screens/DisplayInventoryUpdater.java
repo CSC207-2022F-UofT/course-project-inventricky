@@ -1,6 +1,6 @@
 package Screens;
 
-import DisplayUseCase.DisplayPresenter;
+import display_use_case.DisplayPresenter;
 import new_item_use_case.NewItemResponseModel;
 
 public class DisplayInventoryUpdater implements DisplayPresenter {

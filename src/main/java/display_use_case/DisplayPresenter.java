@@ -1,4 +1,4 @@
-package DisplayUseCase;
+package display_use_case;
 
 import Screens.InventoryViewModel;
 import new_item_use_case.NewItemResponseModel;

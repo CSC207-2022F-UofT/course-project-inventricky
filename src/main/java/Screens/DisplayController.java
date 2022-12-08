@@ -1,7 +1,7 @@
 package Screens;
 
-import DisplayUseCase.DisplayInputBoundary;
-import DisplayUseCase.DisplayRequestModel;
+import display_use_case.DisplayInputBoundary;
+import display_use_case.DisplayRequestModel;
 
 public class DisplayController {
     final DisplayInputBoundary userInput;

@@ -1,4 +1,4 @@
-package DisplayUseCase;
+package display_use_case;
 
 import Screens.InventoryViewModel;
 import entities.InventoryItem;
@@ -26,9 +26,6 @@ public class DisplayInteractor implements DisplayInputBoundary {
 
         if(Objects.equals(displayRequestModel.getAction(), "searchResults")){
             items = searchResults(displayRequestModel.getItems(), (String) displayRequestModel.getParameter());
-        }
-        else if(Objects.equals(displayRequestModel.getAction(), "filterByWeight")){
-            items = filterByWeight(displayRequestModel.getItems(), (Boolean) displayRequestModel.getParameter());
         }
         else if(Objects.equals(displayRequestModel.getAction(), "filterDepartment")){
             items = filterDepartment(displayRequestModel.getItems(), (String) displayRequestModel.getParameter());
@@ -77,22 +74,6 @@ public class DisplayInteractor implements DisplayInputBoundary {
             }
         }
 
-        return returnList;
-    }
-
-    /**
-     *
-     * @param items Items that are being filtered.
-     * @param byWeight True if you want the items that are by weight, false if you want items that aren't by weight
-     * @return array of items that are either by weight or aren't by weight, depending on byWeight
-     */
-    public ArrayList<InventoryItem> filterByWeight(ArrayList<InventoryItem> items, boolean byWeight){
-        ArrayList<InventoryItem> returnList = new ArrayList<>();
-        for(InventoryItem item: items){
-            if(item.getIsWeight() == byWeight){
-                returnList.add(item);
-            }
-        }
         return returnList;
     }
 

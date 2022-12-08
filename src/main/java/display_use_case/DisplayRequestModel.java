@@ -1,4 +1,4 @@
-package DisplayUseCase;
+package display_use_case;
 
 import Screens.InventoryViewModel;
 import entities.InventoryItem;
@@ -21,7 +21,7 @@ public class DisplayRequestModel {
      */
     public DisplayRequestModel(InventoryViewModel inventoryViewModel, String action, Object parameter){
         this.action = action;
-        this.items = new ArrayList<InventoryItem>();
+        this.items = new ArrayList<>();
         this.parameter = parameter;
         for(int i =0; i< inventoryViewModel.getItemList().length; i++){
             InventoryItem inventoryItem = new InventoryItem(inventoryViewModel.getItemList()[i][0],

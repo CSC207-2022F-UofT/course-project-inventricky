@@ -1,24 +1,22 @@
-package entities;
+package display_use_case;
 
-import DisplayUseCase.DisplayInputBoundary;
-import DisplayUseCase.DisplayInteractor;
-import DisplayUseCase.DisplayPresenter;
 import Screens.DisplayController;
 import Screens.DisplayInventoryUpdater;
 import Screens.InventoryViewModel;
+import entities.InventoryItem;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.ArrayList;
 
-public class DisplayTest {
+public class DisplayUseCaseTest {
 
     private final InventoryViewModel inventoryViewModel;
 
     private final DisplayController displayController;
 
 
-    public DisplayTest() {
+    public DisplayUseCaseTest() {
         InventoryItem item1 = new InventoryItem("banana", "1", true, 10, 2,
                 3, 5, "1", 10, 0);
         InventoryItem item2 = new InventoryItem("apple", "2", false, 1, 4,
@@ -90,8 +88,8 @@ public class DisplayTest {
 
 
     @Test
+    //Test the search feature with a variety of inputs.
     public void testSearch(){
-        //Test the search feature with a variety of inputs.
         InventoryViewModel actual = this.displayController.create(this.inventoryViewModel,
                 "searchResults", "Ba");
         InventoryViewModel actual2 = this.displayController.create(this.inventoryViewModel,
