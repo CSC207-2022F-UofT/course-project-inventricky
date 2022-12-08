@@ -2,6 +2,9 @@
 Group #60 proudly presents "Inventricky", an inventory system that is tailored for business use.
 Our program allows the user to make their inventory and manage their stock of items and orders among other features which are mentioned further in this document.
 
+### Instructions
+In your very first use of the program, make sure you start an inventory from scratch (considering you haven't used the program before and have nothing to import). After naming and creating your inventory, you can add items using the add item button. You can update the quantity or even remove added items if desired. Make sure to check out the different analysis options as you add quantities and add items. Adding orders follows a similar process, only you have to go through the order UI. Try making an order and receiving it! You'll notice that quantities will update on the inventory to reflect this change. You can search for items by name, filter by department or sort by namy different attributes. When you are satisfied with your inventory, you can export it. You'll notice new files in the "exports" folder, one that is readable (a .txt) file and one that is meant for importing purposes (serializable___.txt). After a succesful export, try importing an inventory using this file. You'll see the inventory you created before, feel free to play around with it more!
+
 ### Getting Started / Importing
 Upon starting the program, the user will have the option to import an inventory or create an inventory from Scratch.
 the Import inventory method will require the user to choose a serializable file to import from.
