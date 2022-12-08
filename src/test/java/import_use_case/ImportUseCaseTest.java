@@ -2,7 +2,6 @@ package import_use_case;
 
 import Screens.ImportController;
 import Screens.ImportInventoryUpdater;
-import Screens.InventoryViewModel;
 import entities.Inventory;
 import org.junit.jupiter.api.Test;
 
