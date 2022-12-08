@@ -17,7 +17,7 @@ public class OrderGenerator {
      * @param supplier  The supplier of the order.
      * @param cases     The number of cases being ordered.
      * @param inventory The inventory the order is being registered to.
-     * @return The ordered item.
+     * @return          The ordered item.
      */
     public Order registerOrderManual(String name, String supplier, int cases, Inventory inventory) {
         LocalDate dateToday = LocalDate.now();

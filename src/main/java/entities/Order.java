@@ -9,18 +9,18 @@ public class Order extends Item{
 
     /**
      * Construct a new Order object.
-     * @param name  name of ordered item.
-     * @param barcode   barcode of ordered item.
-     * @param isWeight  true if item is measured by weight.
-     * @param quantity  quantity of ordered item.
-     * @param buyPrice  buy price of ordered item.
-     * @param sellPrice sell price of ordered item.
-     * @param caseQuantity  quantity of ordered item in one case.
-     * @param department    department of ordered item.
-     * @param date_bought   date bought of order.
+     * @param name              name of ordered item.
+     * @param barcode           barcode of ordered item.
+     * @param isWeight          true if item is measured by weight.
+     * @param quantity          quantity of ordered item.
+     * @param buyPrice          buy price of ordered item.
+     * @param sellPrice         sell price of ordered item.
+     * @param caseQuantity      quantity of ordered item in one case.
+     * @param department        department of ordered item.
+     * @param date_bought       date bought of order.
      * @param estimated_date    estimated date of order.
-     * @param supplier  supplier of order.
-     * @param cases     number of cases bought for order.
+     * @param supplier          supplier of order.
+     * @param cases             number of cases bought for order.
      */
     public Order(String name, String barcode, boolean isWeight, double quantity, double buyPrice,
                  double sellPrice, int caseQuantity, String department, String date_bought, String estimated_date,

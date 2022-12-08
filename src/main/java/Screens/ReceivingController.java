@@ -1,22 +1,30 @@
 package Screens;
-
-import generate_order_use_case.OrderingInputBoundary;
-import generate_order_use_case.OrderingRequestModel;
 import receive_order_use_case.ReceivingInputBoundary;
 import receive_order_use_case.ReceivingRequestModel;
-
 import javax.swing.*;
 
 public class ReceivingController {
     final ReceivingInputBoundary userInput;
 
+    /**
+     * Construct a new receiving controller.
+     * @param receivingGateway      use case interactor for receiving item.
+     */
     public ReceivingController(ReceivingInputBoundary receivingGateway){
         this.userInput = receivingGateway;
     }
 
-    OrderHistoryViewModel updateShipmentStatus(String name, int casesBought, String dateReceived, JFrame parent){
-        ReceivingRequestModel requestModel = new ReceivingRequestModel(name, casesBought, dateReceived);
+    /**
+     * Update shipment status of order.
+     * @param name          name of ordered item to be received.
+     * @param dateReceived  date received of ordered item.
+     * @param parent        previous order history screen.
+     * @return              order history view model containing table representation of order history.
+     */
 
-        return userInput.receiveOrder(requestModel, parent);
+    OrderHistoryViewModel updateShipmentStatus(String name, String dateReceived, JFrame parent){
+        ReceivingRequestModel requestModel = new ReceivingRequestModel(name, dateReceived);
+
+        return userInput.receiveOrder(requestModel, parent, false);
     }
 }
