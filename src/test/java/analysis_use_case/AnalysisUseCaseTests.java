@@ -14,6 +14,9 @@ public class AnalysisUseCaseTests {
 
     private static Inventory inv;
 
+    /**
+     * This creates an Inventory to be tested on
+     */
     @BeforeAll
     static void createTestData() {
         ArrayList<InventoryItem> stuff = new ArrayList<>();
@@ -38,6 +41,9 @@ public class AnalysisUseCaseTests {
         inv = new Inventory("fruits", stuff, stuff2);
     }
 
+    /**
+     * This tests the totalRevenueBreakdown method
+     */
     @Test
     public void revenueBreakdown(){
         NewAnalysisPresenter presenter = list -> {
@@ -51,6 +57,9 @@ public class AnalysisUseCaseTests {
 
     }
 
+    /**
+     * This tests the totalCostsBreakdown method
+     */
     @Test
     public void costsBreakdown(){
         NewAnalysisPresenter presenter = list -> {
@@ -66,6 +75,9 @@ public class AnalysisUseCaseTests {
         presenter.showArray(new Analysis(inv).totalCostsBreakdown().toArray(new String[0]));
     }
 
+    /**
+     * This tests the calculateProfit method
+     */
     @Test
     public void calculateProfit(){
         NewAnalysisPresenter presenter = list -> {
