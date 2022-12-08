@@ -26,30 +26,52 @@ public class InventoryUI extends JFrame {
 
     private static OrderHistoryViewModel orderViewModel = new OrderHistoryViewModel(new String[][] {});
 
+    /** Sets inventory name.
+     * @param name New name of the Inventory.
+     */
     public void setName(String name) {
         InventoryUI.name = name;
     }
 
+    /** Sets the controller.
+     * @param controllers The controllers to be set.
+     */
     public void setControllers(HashMap<String, Object> controllers) {
         InventoryUI.controllers = controllers;
     }
 
+    /** Sets the isNew boolean.
+     * @param bool Whether the inventory is new.
+     */
     public void setIsNew(boolean bool) {
         isNew = bool;
     }
 
+    /** Sets order view model.
+     * @param orderHistoryViewModel Order view model to be set.
+     */
     public static void setOrderViewModel(OrderHistoryViewModel orderHistoryViewModel){
         orderViewModel = orderHistoryViewModel;
     }
 
+    /** Returns the name of the inventory.
+     * @return Inventory name.
+     */
     public static String getInvName() {
         return name;
     }
 
+    /** Sets the inital event for iventory history.
+     * @param historyFirstLine The first event of inventory history.
+     */
     public static void setHistoryFirst(String historyFirstLine) {
         historyFirst = historyFirstLine;
     }
 
+    /**
+     * Initializes an InventoryUI for the inventory. This UI is responsible for displaying items as well as the options for
+     * Orders, Analysis, etc.
+     */
     public InventoryUI(InventoryViewModel inventoryViewModel) {
 
         this.setTitle(name);
@@ -81,32 +103,21 @@ public class InventoryUI extends JFrame {
         JMenuBar mb = new JMenuBar();
 
 
-        //create menu for inventory items
-        JMenu InventoryItemsMenu = new JMenu("Inventory Items");
-
-        JMenu addItemSelect = new JMenu("Add New Item");
-        InventoryItemsMenu.add(addItemSelect);
-
-        JMenu removeItemSelect = new JMenu("Remove Item");
-        InventoryItemsMenu.add(removeItemSelect);
-
-
         JMenu orders = new JMenu("Orders");
         JMenu generate_analysis = new JMenu("Generate Analysis");
         JMenu delete_inventory = new JMenu("Delete Inventory");
-        JMenu history = new JMenu("Inventory History");
         JMenu sort = new JMenu("Sort");
-        mb.add(InventoryItemsMenu);
-        JButton filter = new JButton("Filter");
-        JButton search = new JButton("Search");
+        JMenu filter1 = new JMenu("Filter");
+        JMenu search1 = new JMenu("Search");
+        JMenuItem filter = new JMenuItem("Filter");
+        JMenuItem search = new JMenuItem("Search");
 
         mb.add(orders);
         mb.add(generate_analysis);
         mb.add(delete_inventory);
-        mb.add(history);
         mb.add(sort);
-        mb.add(filter);
-        mb.add(search);
+        mb.add(filter1);
+        mb.add(search1);
 
         JMenuItem deletion = new JMenuItem("Confirm Delete");
         JMenuItem analysis11 = new JMenuItem("Revenue Breakdown");
@@ -116,6 +127,8 @@ public class InventoryUI extends JFrame {
         generate_analysis.add(analysis22);
         generate_analysis.add(analysis33);
         delete_inventory.add(deletion);
+        filter1.add(filter);
+        search1.add(search);
 
         JMenuItem orderHistory = new JMenuItem("Order History");
         orders.add(orderHistory);
@@ -216,24 +229,6 @@ public class InventoryUI extends JFrame {
         sort62.addActionListener(e -> {
             DisplayController displayController = (DisplayController) controllers.get("displayController");
             displayController.create(inventoryViewModel, "sortCaseQuantity", true);
-        });
-
-        //Add a new item to inventory
-        addItemSelect.addMenuListener(new MenuListener() {
-            @Override
-            public void menuSelected(MenuEvent e) {
-
-            }
-
-            @Override
-            public void menuDeselected(MenuEvent e) {
-
-            }
-
-            @Override
-            public void menuCanceled(MenuEvent e) {
-
-            }
         });
 
         deletion.addActionListener(e -> new DeletionConfirm(invUI, controllers));

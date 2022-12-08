@@ -20,6 +20,7 @@ public class Inventory {
     private String name;
     private ArrayList<InventoryItem> items;
     private ArrayList<Order> orders;
+    //History of the inventory
     private ArrayList<String> history;
 
     public Inventory(String name) {
