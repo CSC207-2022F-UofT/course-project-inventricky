@@ -59,7 +59,7 @@ public class DisplayTest {
                     item.getBuyPrice() + "", item.getSellPrice() + "",
                     Integer.toString(item.getCaseQuantity()), item.getDepartment()};
         }
-        this.inventoryViewModel = new InventoryViewModel(inventoryTable);
+        this.inventoryViewModel = new InventoryViewModel(inventoryTable, new String[]{});
         DisplayPresenter displayPresenter = new DisplayInventoryUpdater();
         DisplayInputBoundary displayInteractor = new DisplayInteractor(displayPresenter);
         this.displayController = new DisplayController(displayInteractor);

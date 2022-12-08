@@ -12,6 +12,6 @@ public interface ImportPresenter {
      * @param invName name of inventory
      * @return InventoryViewModel returns an inventoryViewModel
      */
-    InventoryViewModel prepareSuccessView(String[][] inventoryTable, String[] inventoryHistory, HashMap controllers, String invName);
+    InventoryViewModel prepareSuccessView(String[][] inventoryTable, String[] inventoryHistory, HashMap<String, Object> controllers, String invName);
 
 }

@@ -1,14 +1,10 @@
 package Screens;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
@@ -124,34 +120,13 @@ public class InventoryUI extends JFrame {
         JMenuItem orderHistory = new JMenuItem("Order History");
         orders.add(orderHistory);
 
-        orderHistory.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                doOrderHistoryAction();
+        orderHistory.addActionListener(e -> doOrderHistoryAction());
 
-            }
-        });
+        analysis11.addActionListener(e -> new AnalysisRevenueBreakdownUI((AnalysisController) controllers.get("analysisController")));
 
-        analysis11.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new DisplayInventoryUpdater.AnalysisRevenueBreakdownUI((AnalysisController) controllers.get("analysisController"));
-            }
-        });
+        analysis22.addActionListener(e -> new AnalysisCostsBreakdownUI((AnalysisController) controllers.get("analysisController")));
 
-        analysis22.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new DisplayInventoryUpdater.AnalysisCostsBreakdownUI((AnalysisController) controllers.get("analysisController"));
-            }
-        });
-
-        analysis33.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new DisplayInventoryUpdater.AnalysisProfitLossCalculatorUI((AnalysisController) controllers.get("analysisController"));
-            }
-        });
+        analysis33.addActionListener(e -> new AnalysisProfitLossCalculatorUI((AnalysisController) controllers.get("analysisController")));
 
         JMenu sort1 = new JMenu("Sort by Name");
         JMenu sort2 = new JMenu("Sort by Barcode");
@@ -193,101 +168,54 @@ public class InventoryUI extends JFrame {
         sort6.add(sort62);
 
 
-        search.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new SearchUI(inventoryViewModel, controllers);
-            }
-        });
+        search.addActionListener(e -> new SearchUI(inventoryViewModel, controllers));
 
-        filter.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new FilterUI(inventoryViewModel,  controllers);
-
-            }
+        filter.addActionListener(e -> new FilterUI(inventoryViewModel,  controllers));
+        sort11.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortName", true);
         });
-        sort11.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortName", true);
-            }
+        sort12.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortName", false);
         });
-        sort12.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortName", false);
-            }
+        sort21.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortBarcode", false);
         });
-        sort21.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortBarcode", false);
-            }
+        sort22.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortBarcode", true);
         });
-        sort22.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortBarcode", true);
-            }
+        sort31.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortBuyPrice", false);
         });
-        sort31.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortBuyPrice", false);
-            }
+        sort32.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortBuyPrice", true);
+        });sort41.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortSellPrice", false);
         });
-        sort32.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortBuyPrice", true);
-            }
-        });sort41.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortSellPrice", false);
-            }
+        sort42.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortSellPrice", true);
+        });sort51.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortQuantity", false);
         });
-        sort42.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortSellPrice", true);
-            }
-        });sort51.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortQuantity", false);
-            }
+        sort52.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortQuantity", true);
         });
-        sort52.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortQuantity", true);
-            }
+        sort61.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortCaseQuantity", false);
         });
-        sort61.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortCaseQuantity", false);
-            }
-        });
-        sort62.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DisplayController displayController = (DisplayController) controllers.get("displayController");
-                displayController.create(inventoryViewModel, "sortCaseQuantity", true);
-            }
+        sort62.addActionListener(e -> {
+            DisplayController displayController = (DisplayController) controllers.get("displayController");
+            displayController.create(inventoryViewModel, "sortCaseQuantity", true);
         });
 
         //Add a new item to inventory
@@ -307,34 +235,8 @@ public class InventoryUI extends JFrame {
 
             }
         });
-//        delete_inventory.addMenuListener(new MenuListener() {
-//            @Override
-//            public void menuSelected(MenuEvent e) {
-//                this.removeVisible();
-//                new MainCreationUI(controllers);
-//            }
-//
-//            private void removeVisible() {
-//                InventoryUI.super.setVisible(false);
-//            }
-//
-//            @Override
-//            public void menuDeselected(MenuEvent e) {
-//
-//            }
-//
-//            @Override
-//            public void menuCanceled(MenuEvent e) {
-//
-//            }
-//        });
 
-        deletion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new DeletionConfirm(invUI, controllers);
-            }
-        });
+        deletion.addActionListener(e -> new DeletionConfirm(invUI, controllers));
 
         //Creating the panel at bottom and adding components
         JPanel panel = new JPanel(); // the panel is not visible in output
@@ -349,46 +251,31 @@ public class InventoryUI extends JFrame {
         panel.add(newItem);
         panel.add(export);
 
-        hist.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
-                ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(inventoryViewModel.getInventoryHistory()));
-                stringList.add(0, historyFirst);
-                String[] list = stringList.toArray(new String[0]);
-                JList l = new JList<String>(list);
-                frame.add(l);
-                frame.pack();
-                frame.setSize(400, 400);
-                frame.getContentPane().add(BorderLayout.CENTER, l);
-                frame.setVisible(true);
-            }
+        hist.addActionListener(e -> {
+            JFrame frame = new JFrame();
+            ArrayList<String> stringList = new ArrayList<>(Arrays.asList(inventoryViewModel.getInventoryHistory()));
+            stringList.add(0, historyFirst);
+            String[] list = stringList.toArray(new String[0]);
+            JList<String> l = new JList<>(list);
+            frame.add(l);
+            frame.pack();
+            frame.setSize(400, 400);
+            frame.getContentPane().add(BorderLayout.CENTER, l);
+            frame.setVisible(true);
         });
 
-        export.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                ExportController controller = (ExportController) controllers.get("exportController");
-                try {
-                    controller.create(name, inventoryViewModel.getItemList());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+        export.addActionListener(actionEvent -> {
+            ExportController controller = (ExportController) controllers.get("exportController");
+            try {
+                controller.create(name, inventoryViewModel.getItemList());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         });
 
 
         //action listener for making new item
-        newItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                doNewItemAction();
-
-
-
-            }
-        });
+        newItem.addActionListener(e -> doNewItemAction());
 
         // Table at the Center
 
@@ -412,17 +299,14 @@ public class InventoryUI extends JFrame {
         //open item UI for selected item
         ta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ListSelectionModel rowSelectionModel = ta.getSelectionModel();
-        rowSelectionModel.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                //get barcode of selected item
-                String selectedItemBarcode = (String) ta.getValueAt(ta.getSelectedRow(), 2);
-                if (!e.getValueIsAdjusting()) {
+        rowSelectionModel.addListSelectionListener(e -> {
+            //get barcode of selected item
+            String selectedItemBarcode = (String) ta.getValueAt(ta.getSelectedRow(), 2);
+            if (!e.getValueIsAdjusting()) {
 
-                    doItemMenuAction(selectedItemBarcode);
+                doItemMenuAction(selectedItemBarcode);
 
 
-                }
             }
         });
 
