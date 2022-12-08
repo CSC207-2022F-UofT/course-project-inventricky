@@ -1,7 +1,5 @@
-package export_use_case;
 package database_access;
 
-import entities.InventoryItem;
 import export_use_case.ExportDataWrapper;
 
 import java.io.*;

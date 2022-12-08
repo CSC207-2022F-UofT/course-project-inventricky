@@ -1,1 +1,0 @@
-                Name             Quantity              Barcode             BuyPrice           Sell Price         CaseQuantity           Department 
