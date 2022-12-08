@@ -189,3 +189,4 @@ public class UpdateItemQtyInteractorTest {
         interactor.updateQty(historyData);
     }
 }
+

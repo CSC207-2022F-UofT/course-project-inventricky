@@ -48,3 +48,4 @@ public class BarcodeInteractor implements GenerateBarcodeInputBoundary, ReadBarc
 
 }
 
+

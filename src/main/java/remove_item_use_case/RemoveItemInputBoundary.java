@@ -12,3 +12,4 @@ public interface RemoveItemInputBoundary {
      */
     InventoryViewModel removeItem(RemoveItemRequestModel requestModel, boolean testing) throws RuntimeException;
 }
+

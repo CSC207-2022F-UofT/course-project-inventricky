@@ -48,3 +48,4 @@ public class NewItemInteractorTest {
         interactor.addItem(inputData, true);
     }
 }
+

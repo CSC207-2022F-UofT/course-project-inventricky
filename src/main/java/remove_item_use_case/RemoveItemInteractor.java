@@ -60,3 +60,4 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
 
     }
 }
+

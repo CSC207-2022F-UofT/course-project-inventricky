@@ -32,3 +32,4 @@ public class RemoveItemResponseModel {
         this.barcode = barcode;
     }
 }
+

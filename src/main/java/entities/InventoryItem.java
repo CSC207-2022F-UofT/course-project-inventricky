@@ -82,3 +82,4 @@ public class InventoryItem extends Item implements Serializable {
     }
 
 }
+

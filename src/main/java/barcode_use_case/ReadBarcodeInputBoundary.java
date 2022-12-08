@@ -9,3 +9,4 @@ public interface ReadBarcodeInputBoundary {
      */
     HashMap<String, List<String>> readBarcode(String file);
 }
+
