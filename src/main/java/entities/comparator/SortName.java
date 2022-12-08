@@ -9,3 +9,4 @@ public class SortName implements Comparator<InventoryItem> {
         return a.getName().compareTo(b.getName());
     }
 }
+

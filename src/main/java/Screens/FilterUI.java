@@ -45,3 +45,4 @@ public class FilterUI extends JFrame {
             });
         }
 }
+

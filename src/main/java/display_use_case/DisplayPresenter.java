@@ -8,3 +8,4 @@ public interface DisplayPresenter {
 
     NewItemResponseModel prepareFailView(String error);
 }
+

@@ -43,3 +43,4 @@ public class SearchUI extends JFrame{
         });
     }
 }
+

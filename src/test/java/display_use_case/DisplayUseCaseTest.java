@@ -245,7 +245,6 @@ public class DisplayUseCaseTest {
         Assertions.assertArrayEquals(expected, actual.getItemList());
         Assertions.assertArrayEquals(expected2, actual2.getItemList());
     }
-
 }
 
 

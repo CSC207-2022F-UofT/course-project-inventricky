@@ -5,3 +5,4 @@ public interface DisplayInputBoundary {
 
     InventoryViewModel create(DisplayRequestModel displayRequestModel);
 }
+

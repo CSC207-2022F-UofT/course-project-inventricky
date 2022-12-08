@@ -14,3 +14,4 @@ public class SortBuyPrice implements Comparator<InventoryItem> {
         return -1;
     }
 }
+

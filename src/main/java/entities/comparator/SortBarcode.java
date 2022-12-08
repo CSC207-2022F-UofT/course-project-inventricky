@@ -9,3 +9,4 @@ public class SortBarcode implements Comparator<InventoryItem> {
         return(a.getBarcode().compareTo(b.getBarcode()));
     }
 }
+
