@@ -112,7 +112,7 @@ public class BarcodeGenerator {
                 br.close();
                 bw.close();
                 File original = new File(file);
-                System.out.println(original.delete());
+                original.delete();
                 new File(tempFileName).renameTo(original);
                 return department + "000";
             }
