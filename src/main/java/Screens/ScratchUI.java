@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 public class ScratchUI extends JFrame{
@@ -43,8 +44,8 @@ public class ScratchUI extends JFrame{
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Inventory inv = new InventoryScratchBuilder(invName.getText()).create();
-                InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {});
+                InventoryViewModel blankViewModel = new InventoryViewModel(new String[][] {}, new String[]{});
+                InventoryUI.setHistoryFirst("Created from scratch on " + LocalDate.now() + ".");
                 InventoryUI newInventory = new InventoryUI(blankViewModel);
                 newInventory.setIsNew(true);
                 newInventory.setControllers(controllers);

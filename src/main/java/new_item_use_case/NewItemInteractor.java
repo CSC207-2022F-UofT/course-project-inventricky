@@ -51,6 +51,7 @@ public class NewItemInteractor implements NewItemInputBoundary {
         NewItemResponseModel newItemResponseModel = new NewItemResponseModel(newItem.getName(), newItem.getBarcode());
 
         String[][] inventoryTable = new String[inventory.getItems().size()][7];
+        String[] inventoryHistory = inventory.getHistory().toArray(new String[0]);
 
         for (int i = 0; i < inventory.getItems().size(); i++) {
             InventoryItem item = inventory.getItems().get(i);
@@ -59,6 +60,6 @@ public class NewItemInteractor implements NewItemInputBoundary {
                     Integer.toString(item.getCaseQuantity()), item.getDepartment()};
         }
 
-        return newItemPresenter.prepareSuccessView(newItemResponseModel, inventoryTable);
+        return newItemPresenter.prepareSuccessView(newItemResponseModel, inventoryTable, inventoryHistory);
     }
 }

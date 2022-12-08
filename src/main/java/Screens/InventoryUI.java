@@ -1,7 +1,5 @@
 package Screens;
 
-import entities.AnalysisController;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -16,9 +14,13 @@ import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class InventoryUI extends JFrame {
+
+    private static String historyFirst;
 
     private static HashMap<String, Object> controllers; //controllers for use cases
 
@@ -44,8 +46,16 @@ public class InventoryUI extends JFrame {
         orderViewModel = orderHistoryViewModel;
     }
 
+    public static String getInvName() {
+        return name;
+    }
+
+    public static void setHistoryFirst(String historyFirstLine) {
+        historyFirst = historyFirstLine;
+    }
+
     public InventoryUI(InventoryViewModel inventoryViewModel) {
-//        JFrame frame = new JFrame("Inventory Menu");
+
         this.setTitle(name);
         InventoryUI invUI = this;
 
@@ -280,23 +290,6 @@ public class InventoryUI extends JFrame {
             }
         });
 
-        history.addMenuListener(new MenuListener() {
-            @Override
-            public void menuSelected(MenuEvent e) {
-
-            }
-
-            @Override
-            public void menuDeselected(MenuEvent e) {
-
-            }
-
-            @Override
-            public void menuCanceled(MenuEvent e) {
-
-            }
-        });
-
         //Add a new item to inventory
         addItemSelect.addMenuListener(new MenuListener() {
             @Override
@@ -314,27 +307,27 @@ public class InventoryUI extends JFrame {
 
             }
         });
-        delete_inventory.addMenuListener(new MenuListener() {
-            @Override
-            public void menuSelected(MenuEvent e) {
-                this.removeVisible();
-                new MainCreationUI(controllers);
-            }
-
-            private void removeVisible() {
-                InventoryUI.super.setVisible(false);
-            }
-
-            @Override
-            public void menuDeselected(MenuEvent e) {
-
-            }
-
-            @Override
-            public void menuCanceled(MenuEvent e) {
-
-            }
-        });
+//        delete_inventory.addMenuListener(new MenuListener() {
+//            @Override
+//            public void menuSelected(MenuEvent e) {
+//                this.removeVisible();
+//                new MainCreationUI(controllers);
+//            }
+//
+//            private void removeVisible() {
+//                InventoryUI.super.setVisible(false);
+//            }
+//
+//            @Override
+//            public void menuDeselected(MenuEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void menuCanceled(MenuEvent e) {
+//
+//            }
+//        });
 
         deletion.addActionListener(new ActionListener() {
             @Override
@@ -355,6 +348,22 @@ public class InventoryUI extends JFrame {
         panel.add(hist);
         panel.add(newItem);
         panel.add(export);
+
+        hist.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame();
+                ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(inventoryViewModel.getInventoryHistory()));
+                stringList.add(0, historyFirst);
+                String[] list = stringList.toArray(new String[0]);
+                JList l = new JList<String>(list);
+                frame.add(l);
+                frame.pack();
+                frame.setSize(400, 400);
+                frame.getContentPane().add(BorderLayout.CENTER, l);
+                frame.setVisible(true);
+            }
+        });
 
         export.addActionListener(new ActionListener() {
             @Override

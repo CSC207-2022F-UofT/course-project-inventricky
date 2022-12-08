@@ -2,8 +2,10 @@ import DisplayUseCase.DisplayInputBoundary;
 import DisplayUseCase.DisplayInteractor;
 import DisplayUseCase.DisplayPresenter;
 import Screens.*;
-import entities.Analysis;
-import entities.AnalysisController;
+import analysis_use_case.Analysis;
+import delete_inventory_use_case.DeleteInventoryInputBoundary;
+import delete_inventory_use_case.DeleteInventoryInteractor;
+import delete_inventory_use_case.DeleteInventoryPresenter;
 import entities.Inventory;
 import export_use_case.ExportInputBoundary;
 import export_use_case.ExportPresenter;
@@ -90,10 +92,15 @@ public class Main {
         ExportController exportController = new ExportController(exportInventory);
         controllers.put("exportController", exportController);
 
+        //Setup for DeleteInventory use case
+        DeleteInventoryPresenter deleteInventoryUpdater = new DeleteInventoryUpdater();
+        DeleteInventoryInputBoundary deleteInventoryInteractor = new DeleteInventoryInteractor(deleteInventoryUpdater, controllers);
+        DeletionController deleteController = new DeletionController(deleteInventoryInteractor);
+        controllers.put("deletionController", deleteController);
+
 
         new MainCreationUI(controllers);
 
     }
 
-    //AddNewItemUI
 }

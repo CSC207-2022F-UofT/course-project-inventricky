@@ -30,7 +30,7 @@ public class RemoveItemInteractorTest {
 
         RemoveItemPresenter presenter = new RemoveItemPresenter() {
             @Override
-            public InventoryViewModel prepareSuccessView(RemoveItemResponseModel oldItem, String[][] inventoryTable) {
+            public InventoryViewModel prepareSuccessView(RemoveItemResponseModel oldItem, String[][] inventoryTable, String[] inventoryHistory) {
                 assertEquals("bananas", oldItem.getName());
                 assertEquals("12345", oldItem.getBarcode());
                 assert (inv.getItems().isEmpty());

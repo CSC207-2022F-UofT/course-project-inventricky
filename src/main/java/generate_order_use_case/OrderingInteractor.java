@@ -5,7 +5,6 @@ import entities.Inventory;
 import entities.InventoryItem;
 import entities.Order;
 import new_item_use_case.*;
-import useCases.OrderGenerator;
 
 import javax.swing.*;
 import java.util.HashMap;

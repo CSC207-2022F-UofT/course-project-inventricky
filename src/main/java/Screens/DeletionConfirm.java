@@ -8,10 +8,14 @@ import java.util.HashMap;
 
 public class DeletionConfirm extends JFrame {
 
+    /** A JFrame to confirm the deletion of an inventory.
+     * @param parent The InventoryUI associated with the deletion.
+     * @param controllers The associated controllers.
+     */
     public DeletionConfirm(InventoryUI parent, HashMap controllers) {
         this.setTitle("Confirm Delete");
         setVisible(true);
-        setSize(300,300);
+        setSize(500,100);
         JPanel panel = new JPanel();
         JLabel title = new JLabel("Are you sure you want to delete the inventory? This action cannot be undone.");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -25,7 +29,8 @@ public class DeletionConfirm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 this.dispose();
                 parent.dispose();
-                new MainCreationUI(controllers);
+                DeletionController deletionController = (DeletionController) controllers.get("deletionController");
+                deletionController.deleteInventory(parent.getInvName());
             }
 
             private void dispose() {

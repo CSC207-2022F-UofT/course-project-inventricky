@@ -33,7 +33,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyPresenter presenter = new UpdateItemQtyPresenter() {
             @Override
-            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
+            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
                 assertEquals("bananas", item.getName());
                 assertEquals("12345", item.getBarcode());
                 assertEquals(" Bought 13.0", item.getItemHistory().get(1).substring(16));
@@ -61,7 +61,7 @@ public class UpdateItemQtyInteractorTest {
         };
 
         UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(presenter, inv);
-        UpdateItemQtyRequestModel inputData = new UpdateItemQtyRequestModel("12345", "bought", 13);
+        UpdateItemQtyRequestModel inputData = new UpdateItemQtyRequestModel("12345", "Bought", 13);
         interactor.updateQty(inputData);
 
 
@@ -77,7 +77,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyPresenter presenter = new UpdateItemQtyPresenter() {
             @Override
-            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
+            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
                 assertEquals("bananas", item.getName());
                 assertEquals("12345", item.getBarcode());
                 assertEquals(" Sold 14.0", item.getItemHistory().get(2).substring(16));
@@ -105,7 +105,7 @@ public class UpdateItemQtyInteractorTest {
         };
 
         UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(presenter, inv);
-        UpdateItemQtyRequestModel soldData = new UpdateItemQtyRequestModel("12345", "sold", 14);
+        UpdateItemQtyRequestModel soldData = new UpdateItemQtyRequestModel("12345", "Sold", 14);
         interactor.updateQty(soldData);
     }
 
@@ -119,7 +119,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyPresenter presenter = new UpdateItemQtyPresenter() {
             @Override
-            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
+            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
                 assertEquals("bananas", item.getName());
                 assertEquals("12345", item.getBarcode());
                 assertEquals(" Error: Adjusted quantity to 11.0", item.getItemHistory().get(3).substring(16));
@@ -146,7 +146,7 @@ public class UpdateItemQtyInteractorTest {
         };
 
         UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(presenter, inv);
-        UpdateItemQtyRequestModel errorData = new UpdateItemQtyRequestModel("12345", "error", 11);
+        UpdateItemQtyRequestModel errorData = new UpdateItemQtyRequestModel("12345", "Error", 11);
         interactor.updateQty(errorData);
     }
 
@@ -160,7 +160,7 @@ public class UpdateItemQtyInteractorTest {
 
         UpdateItemQtyPresenter presenter = new UpdateItemQtyPresenter() {
             @Override
-            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
+            public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
                 return null;
             }
 
@@ -185,7 +185,7 @@ public class UpdateItemQtyInteractorTest {
         };
 
         UpdateItemQtyInputBoundary interactor = new UpdateItemQtyInteractor(presenter, inv);
-        UpdateItemQtyRequestModel historyData = new UpdateItemQtyRequestModel("12345", "bought", 11);
+        UpdateItemQtyRequestModel historyData = new UpdateItemQtyRequestModel("12345", "Bought", 11);
         interactor.updateQty(historyData);
     }
 }

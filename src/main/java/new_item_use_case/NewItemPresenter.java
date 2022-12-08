@@ -11,7 +11,7 @@ public interface NewItemPresenter {
      * @param inventoryTable    2d array representing the inventory
      * @return                  Inventory view model for the inventory view to update screen
      */
-    InventoryViewModel prepareSuccessView(NewItemResponseModel newItem, String[][] inventoryTable);
+    InventoryViewModel prepareSuccessView(NewItemResponseModel newItem, String[][] inventoryTable, String[] inventoryHistory);
 
     /** Presenters must implement this method
      *

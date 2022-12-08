@@ -32,6 +32,8 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
     @Override
     public InventoryViewModel removeItem(RemoveItemRequestModel requestModel, boolean testing) throws RuntimeException {
 
+
+
         //Search for item in Inventory
             for (InventoryItem candidate : inventory.getItems()) {
                 if (candidate.getBarcode().equals(requestModel.getBarcode())) {
@@ -40,6 +42,7 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
                     RemoveItemResponseModel removeItemResponseModel = new RemoveItemResponseModel(candidate.getName(), candidate.getBarcode());
 
                     String[][] inventoryTable = new String[inventory.getItems().size()][7];
+                    String[] inventoryHistory = inventory.getHistory().toArray(new String[0]);
 
                     for (int i = 0; i < inventory.getItems().size(); i++) {
                         InventoryItem item = inventory.getItems().get(i);
@@ -48,7 +51,7 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
                                 Integer.toString(item.getCaseQuantity()), item.getDepartment()};
                     }
 
-                    return removeItemPresenter.prepareSuccessView(removeItemResponseModel, inventoryTable);
+                    return removeItemPresenter.prepareSuccessView(removeItemResponseModel, inventoryTable, inventoryHistory);
 
                 }
             }

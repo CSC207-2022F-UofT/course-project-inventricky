@@ -1,4 +1,4 @@
-package useCases;
+package generate_order_use_case;
 
 import entities.Inventory;
 import entities.InventoryItem;

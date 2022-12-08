@@ -46,6 +46,8 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
                 UpdateItemQtyResponseModel updateItemQtyResponseModel = new UpdateItemQtyResponseModel(candidate.getName(), candidate.getBarcode(), candidate.getItemHistory());
 
                 String[][] inventoryTable = new String[inventory.getItems().size()][7];
+                String[] inventoryHistory = inventory.getHistory().toArray(new String[0]); //CHECK
+
 
                 for (int i = 0; i < inventory.getItems().size(); i++) {
                     InventoryItem item = inventory.getItems().get(i);
@@ -54,7 +56,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
                             Integer.toString(item.getCaseQuantity()), item.getDepartment()};
                 }
 
-                return updateItemQtyPresenter.prepareQtySuccessView(updateItemQtyResponseModel, inventoryTable);
+                return updateItemQtyPresenter.prepareQtySuccessView(updateItemQtyResponseModel, inventoryTable, inventoryHistory);
 
             }
         }
@@ -79,7 +81,7 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
                 return updateItemQtyPresenter.prepareHistorySuccessView(updateItemQtyResponseModel);
             }
         }
-        throw new RuntimeException("error with getting item history"); //TODO exception
+        throw new RuntimeException("error with getting item history");
     }
 
     /** Helper function for updating item quantity.
@@ -99,14 +101,16 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
         if (updateReason.equals("Bought")) {
             item.setQuantityBought(item.getQuantityBought() + roundedQtyInput);
             item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Bought " + roundedQtyInput);
-            //TODO add Peter's code
+            inventory.updateHistory(dtf.format(LocalDateTime.now()) + " Bought " + roundedQtyInput + " " + item.getName());
             item.setQuantity(item.getQuantity() + roundedQtyInput);
         } else if (updateReason.equals("Sold")) {
             item.setQuantitySold(item.getQuantitySold() + roundedQtyInput);
             item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Sold " + roundedQtyInput);
+            inventory.updateHistory(dtf.format(LocalDateTime.now()) + " Sold " + roundedQtyInput + " " + item.getName());
             item.setQuantity(item.getQuantity() - roundedQtyInput);
         } else {
             item.getItemHistory().add(dtf.format(LocalDateTime.now()) + " Error: Adjusted quantity to " + roundedQtyInput);
+            inventory.updateHistory(dtf.format(LocalDateTime.now()) + " Error: Adjusted quantity of " + item.getName() + " to " + roundedQtyInput);
             item.setQuantity(roundedQtyInput);
         }
     }

@@ -14,8 +14,8 @@ public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
      * @return                  inventory view model containing inventory table.
      */
     @Override
-    public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
-        InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
+    public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
+        InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable, inventoryHistory);
 
 
         //if item history is open

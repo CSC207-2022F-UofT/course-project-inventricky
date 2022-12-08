@@ -12,7 +12,7 @@ public interface RemoveItemPresenter {
      * @param inventoryTable    2d string array representing inventory.
      * @return                  inventory view model contatining inventory in table format.
      */
-    InventoryViewModel prepareSuccessView(RemoveItemResponseModel oldItem, String[][] inventoryTable);
+    InventoryViewModel prepareSuccessView(RemoveItemResponseModel oldItem, String[][] inventoryTable, String[] inventoryHistor);
 
     RemoveItemResponseModel prepareFailView(String error);
 }

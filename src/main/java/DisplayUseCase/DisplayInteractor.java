@@ -58,7 +58,7 @@ public class DisplayInteractor implements DisplayInputBoundary {
                     item.getBuyPrice()+"", item.getSellPrice()+"",
                     Integer.toString(item.getCaseQuantity()), item.getDepartment()};
         }
-        return displayPresenter.prepareSuccessView(new InventoryViewModel(inventoryTable));
+        return displayPresenter.prepareSuccessView(new InventoryViewModel(inventoryTable, new String[]{}));
     }
 
     /**

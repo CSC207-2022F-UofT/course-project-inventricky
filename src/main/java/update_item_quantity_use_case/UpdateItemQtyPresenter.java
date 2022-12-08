@@ -13,7 +13,7 @@ public interface UpdateItemQtyPresenter {
      * @param inventoryTable    2d string array representing inventory.
      * @return                  inventory view model containing inventory in table format.
      */
-    InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable);
+    InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable, String[] inventoryHistory);
 
     InventoryViewModel prepareQtyFailView(String error);
 

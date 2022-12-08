@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public interface ImportPresenter {
 
-    InventoryViewModel prepareSuccessView(String[][] inventoryTable, HashMap controllers, String invName);
+    InventoryViewModel prepareSuccessView(String[][] inventoryTable, String[] inventoryHistory, HashMap controllers, String invName);
 
     NewItemResponseModel prepareFailView(String error);
 

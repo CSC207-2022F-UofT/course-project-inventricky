@@ -13,7 +13,10 @@ import java.util.HashMap;
 public class InventoryCreationUI extends JFrame{
     JButton imported = new JButton("Imported");
     JButton scratch = new JButton("Scratch");
-    
+
+    /** A JFrame that lets the user choose between the Imported or Scratch options.
+     * @param controllers The associated controllers for the InventoryCreationUI.
+     */
     public InventoryCreationUI(HashMap controllers) {
         JLabel title = new JLabel("Inventory Creation");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);

@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 public class OrderWindowUI extends JFrame implements ActionListener{
-//    private boolean itemAdded;
 
+    boolean weightValue = false;
     //text fields for user input
     JTextField name = new JTextField(15);
     JTextField supplier = new JTextField(15);
@@ -65,6 +65,24 @@ public class OrderWindowUI extends JFrame implements ActionListener{
 
         LabelTextPanel departmentPanel = new LabelTextPanel(new JLabel("Department"), department);
 
+        ButtonSelector weight = new ButtonSelector();
+
+        weight.setTitle(new JLabel("Sorted by Weight     "));
+
+        weight.t.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                weightValue = true;
+            }
+        });
+
+        weight.f.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                weightValue = false;
+            }
+        });
+
         //option to confirm item or cancel item creation
         JButton confirm = new JButton("Confirm");
         JButton cancel = new JButton("Cancel");
@@ -82,7 +100,7 @@ public class OrderWindowUI extends JFrame implements ActionListener{
         panel.add(namePanel);
         panel.add(supplierPanel);
         panel.add(casesPanel);
-        panel.add(isWeightPanel);
+        panel.add(weight);
         panel.add(buyPricePanel);
         panel.add(sellPricePanel);
         panel.add(caseQuantityPanel);

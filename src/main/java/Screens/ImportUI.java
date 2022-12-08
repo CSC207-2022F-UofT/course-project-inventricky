@@ -10,6 +10,9 @@ public class ImportUI extends JFrame {
     JTextField fileName = new JTextField(15);
     ImportController importController;
 
+    /**
+     * @param controllers The associated controllers for ImportUI.
+     */
     public ImportUI(HashMap controllers) {
         this.setTitle("Import Menu");
         JLabel title = new JLabel("Import");

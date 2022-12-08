@@ -12,8 +12,8 @@ public class NewItemInventoryUpdater implements NewItemPresenter {
      * @return                  inventory view model containing inventory table.
      */
     @Override
-    public InventoryViewModel prepareSuccessView(NewItemResponseModel item, String[][] inventoryTable) {
-        InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
+    public InventoryViewModel prepareSuccessView(NewItemResponseModel item, String[][] inventoryTable, String[] inventoryHistory) {
+        InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable, inventoryHistory);
 
         InventoryUI invUI = new InventoryUI(inventoryViewModel);
         OrderHistoryUI.setParent(invUI);
