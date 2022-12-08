@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class Item implements Serializable {
 
     //Class Variables
-    private static String file = "src/main/java/temp_files/new_inventory_barcodes_temp.csv"; //file path of barcode csv, defaults to empty csv for new Inventory
+    private static String file = "src/main/java/temp_files/new_inventory_barcodes.csv"; //file path of barcode csv, defaults to empty csv for new Inventory
 
     //Shared mapping of departments to barcodes used by item constructor
     private static HashMap<String, List<String>> barcodes = new BarcodeInteractor().readBarcode(file);

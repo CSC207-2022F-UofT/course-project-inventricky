@@ -86,7 +86,7 @@ public class InventoryUI extends JFrame {
                 if (isNew) {
                     try {
                         //overwrite file
-                        PrintWriter pw = new PrintWriter("src/main/java/temp_files/new_inventory_barcodes_temp.csv");
+                        PrintWriter pw = new PrintWriter("src/main/java/temp_files/new_inventory_barcodes.csv");
                         pw.close();
                     } catch (FileNotFoundException ex) {
                         throw new RuntimeException(ex);

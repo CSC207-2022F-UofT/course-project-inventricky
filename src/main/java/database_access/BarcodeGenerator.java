@@ -50,6 +50,7 @@ public class BarcodeGenerator {
 
                 }
 
+                br.close();
                 bw.close();
                 File original = new File(file);
                 original.delete();
@@ -108,9 +109,10 @@ public class BarcodeGenerator {
                 newCodes.add(department + "000");
                 barcodes.put(department, newCodes);
 
+                br.close();
                 bw.close();
                 File original = new File(file);
-                original.delete();
+                System.out.println(original.delete());
                 new File(tempFileName).renameTo(original);
                 return department + "000";
             }

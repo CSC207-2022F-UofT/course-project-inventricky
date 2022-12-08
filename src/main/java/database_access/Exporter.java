@@ -41,7 +41,7 @@ public class Exporter  implements Serializable {
             //for this run of the program, keep overwriting new barcode file
             scratchInventory = true;
             //copy file to exports
-            Path pathIn = Paths.get("src/main/java/temp_files/new_inventory_barcodes_temp.csv");
+            Path pathIn = Paths.get("src/main/java/temp_files/new_inventory_barcodes.csv");
             Path pathOut = Paths.get("src/main/java/exports/"+filename+".csv");
             Files.copy(pathIn, pathOut, StandardCopyOption.REPLACE_EXISTING);
 
