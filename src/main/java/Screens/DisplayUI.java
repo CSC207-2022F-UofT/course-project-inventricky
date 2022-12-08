@@ -42,5 +42,8 @@ public class DisplayUI extends JFrame{
 
     }
 
+}
+
 
 }
+
