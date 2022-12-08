@@ -11,7 +11,7 @@ public class OrderingInteractor implements OrderingInputBoundary {
     private final OrderingPresenter orderingPresenter;
     private final NewItemPresenter newItemPresenter;
     private final Inventory inventory;
-    private final HashMap controllers;
+    private final HashMap<String, Object> controllers;
 
     /**
      * Construct use case interactor for ordering items.
@@ -21,7 +21,7 @@ public class OrderingInteractor implements OrderingInputBoundary {
      * @param newItemPresenter  presenter for adding a new item.
      */
     public OrderingInteractor(OrderingPresenter orderPresenter, Inventory inventory,
-                              HashMap controllers, NewItemPresenter newItemPresenter){
+                              HashMap<String, Object> controllers, NewItemPresenter newItemPresenter){
         this.orderingPresenter = orderPresenter;
         this.inventory = inventory;
         this.controllers = controllers;
@@ -31,8 +31,8 @@ public class OrderingInteractor implements OrderingInputBoundary {
     /**
      * Add order to inventory and update order history screen.
      * @param requestModel  order to be added to inventory.
-     * @param parent    previous screen of order history.
-     * @return      updated view model for the order history screen.
+     * @param parent        previous screen of order history.
+     * @return              updated view model for the order history screen.
      */
     @Override
     public OrderHistoryViewModel addOrder(OrderingRequestModel requestModel, JFrame parent){
@@ -56,8 +56,7 @@ public class OrderingInteractor implements OrderingInputBoundary {
             Order createdOrder = newOrder.registerOrderManual(requestModel.getName(), requestModel.getSupplier(), requestModel.getOrderCases(),
                     inventory);
             OrderingResponseModel orderingResponseModel = new OrderingResponseModel(createdOrder.getName(),
-                    createdOrder.getBarcode(), createdOrder.getDateBought(), createdOrder.getEstimatedDate(),
-                    createdOrder.getDateReceived(), createdOrder.getSupplier(), createdOrder.getOrderCases());
+                    createdOrder.getBarcode());
 
         // update UI with the updated table
         String[][] orderTable = new String[inventory.getOrders().size()][7];
