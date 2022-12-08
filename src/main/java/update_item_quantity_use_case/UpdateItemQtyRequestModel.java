@@ -11,6 +11,7 @@ public class UpdateItemQtyRequestModel {
 
     /** Construct update item quantity request model object.
      *
+     *
      * @param barcode           selected item to be updated.
      * @param updateReason      reason for updating item.
      * @param qtyInput          quantity input for updating item.

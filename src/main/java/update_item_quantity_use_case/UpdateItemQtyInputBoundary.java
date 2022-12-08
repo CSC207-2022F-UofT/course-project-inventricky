@@ -21,3 +21,4 @@ public interface UpdateItemQtyInputBoundary {
     ItemHistoryViewModel GetItemHistory(UpdateItemQtyRequestModel requestModel);
 }
 
+

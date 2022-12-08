@@ -9,3 +9,4 @@ public interface GenerateBarcodeInputBoundary {
      */
     String generateBarcode(String department, HashMap<String, List<String>> barcodes, String file);
 }
+

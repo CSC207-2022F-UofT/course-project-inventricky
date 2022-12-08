@@ -20,3 +20,4 @@ public interface NewItemPresenter {
      */
     NewItemResponseModel prepareFailView(String error);
 }
+

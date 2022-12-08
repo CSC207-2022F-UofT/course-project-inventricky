@@ -24,6 +24,7 @@ public class BarcodeGeneratorTest {
 
     /** Create test data for barcode generator testing.
      *
+     *
      * @throws IOException  file not found
      */
     @BeforeAll

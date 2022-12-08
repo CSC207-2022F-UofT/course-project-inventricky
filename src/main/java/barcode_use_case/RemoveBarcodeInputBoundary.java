@@ -9,3 +9,4 @@ public interface RemoveBarcodeInputBoundary {
      */
     void removeBarcode(String barcode, HashMap<String, List<String>> barcodes, String file);
 }
+

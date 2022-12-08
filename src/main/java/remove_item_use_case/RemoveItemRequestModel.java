@@ -21,3 +21,4 @@ public class RemoveItemRequestModel {
         this.barcode = barcode;
     }
 }
+

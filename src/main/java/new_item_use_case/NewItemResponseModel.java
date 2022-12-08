@@ -33,3 +33,4 @@ public class NewItemResponseModel {
         this.barcode = barcode;
     }
 }
+
