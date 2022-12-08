@@ -53,7 +53,7 @@ public class InventoryItem extends Item implements Serializable {
         super(name, isWeight, quantity, buyPrice, sellPrice, caseQuantity, department);
         this.quantityBought = quantityBought;
         this.quantitySold = quantitySold;
-        this.itemHistory = new ArrayList<String>();
+        this.itemHistory = new ArrayList<>();
         this.itemHistory.add(this.getBarcode() + " " + name);
     }
 
@@ -77,7 +77,7 @@ public class InventoryItem extends Item implements Serializable {
         super(name, barcode, isWeight, quantity, buyPrice, sellPrice, caseQuantity, department);
         this.quantityBought = quantityBought;
         this.quantitySold = quantitySold;
-        this.itemHistory = new ArrayList<String>();
+        this.itemHistory = new ArrayList<>();
         this.itemHistory.add(this.getBarcode() + " " + name);
     }
 

@@ -65,7 +65,7 @@ public class BarcodeGenerator {
                 } else {
 
                     //store departments as arrayList
-                    ArrayList<String> departmentsString = new ArrayList<String>(Arrays.asList(br.readLine().split(COMMA_DELIMITER)));
+                    ArrayList<String> departmentsString = new ArrayList<>(Arrays.asList(br.readLine().split(COMMA_DELIMITER)));
 
 
                     ArrayList<Integer> departmentsInt = new ArrayList<>(); //create arrayList for storing departments (int)
@@ -104,7 +104,7 @@ public class BarcodeGenerator {
                 }
 
                 //add department to barcodeMap
-                ArrayList<String> newCodes = new ArrayList<String>();
+                ArrayList<String> newCodes = new ArrayList<>();
                 newCodes.add(department + "000");
                 barcodes.put(department, newCodes);
 

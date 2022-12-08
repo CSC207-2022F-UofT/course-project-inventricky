@@ -40,7 +40,7 @@ public class BarcodeMapReader {
             //Store csv data in map
             String[] departments = br.readLine().split(COMMA_DELIMITER);
             for (String department : departments) {
-                ArrayList<String> stringCodes = new ArrayList<String>(Arrays.asList(br.readLine().split(COMMA_DELIMITER))); //get barcodes (string)
+                ArrayList<String> stringCodes = new ArrayList<>(Arrays.asList(br.readLine().split(COMMA_DELIMITER))); //get barcodes (string)
                 barcodeMap.put(department, stringCodes); //put barcodes in barcode map
             }
 
