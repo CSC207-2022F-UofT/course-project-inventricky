@@ -4,11 +4,17 @@ public class UpdateItemQtyRequestModel {
 
     private String barcode;
 
-    private String updateReason;
+    private final String updateReason;
 
 
-    private double qtyInput;
+    private final double qtyInput;
 
+    /** Construct update item quantity request model object.
+     *
+     * @param barcode           selected item to be updated.
+     * @param updateReason      reason for updating item.
+     * @param qtyInput          quantity input for updating item.
+     */
     public UpdateItemQtyRequestModel(String barcode, String updateReason, double qtyInput) {
         this.barcode = barcode;
         this.updateReason = updateReason;

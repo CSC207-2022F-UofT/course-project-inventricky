@@ -29,12 +29,6 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) {
 
-        // Build the main program window
-//        JFrame application = new JFrame("App");
-//        CardLayout cardLayout = new CardLayout();
-//        JPanel screens = new JPanel(cardLayout);
-//        application.add(screens);
-
         //create a new blank inventory
         Inventory inv = new Inventory("New Inventory");
 

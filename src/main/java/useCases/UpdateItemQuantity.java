@@ -5,7 +5,7 @@ import entities.Inventory;
 
 public class UpdateItemQuantity {
 
-    public class ItemNotFoundException extends RuntimeException {
+    public static class ItemNotFoundException extends RuntimeException {
 
     }
     /**

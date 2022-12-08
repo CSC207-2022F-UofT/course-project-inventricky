@@ -26,7 +26,7 @@ public class RemoveItemInteractor implements RemoveItemInputBoundary {
      *
      * @param requestModel          item to be removed from inventory.
      * @param testing               true if the use case is being called for testing.
-     * @return                      inventory view model contatining inventory in table format.
+     * @return                      inventory view model containing inventory in table format.
      * @throws RuntimeException     failed to remove item from inventory.
      */
     @Override

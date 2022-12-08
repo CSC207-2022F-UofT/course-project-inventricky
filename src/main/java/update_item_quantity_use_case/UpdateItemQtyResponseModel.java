@@ -11,7 +11,12 @@ public class UpdateItemQtyResponseModel {
     ArrayList<String> itemHistory;
 
 
-
+    /** Construct update item quantity response model.
+     *
+     * @param name          name of updated item.
+     * @param barcode       barcode of updated item.
+     * @param itemHistory   item history of updated item.
+     */
     public UpdateItemQtyResponseModel(String name, String barcode, ArrayList<String> itemHistory) {
         this.name = name;
         this.barcode = barcode;

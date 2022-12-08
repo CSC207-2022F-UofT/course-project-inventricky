@@ -13,6 +13,9 @@ public class UpdateItemQtyInteractorTest {
 
     private static Inventory inv;
 
+    /** Create inventory with single item for testing.
+     *
+     */
     @BeforeAll
     static void createTestData() {
         inv = new Inventory("test");
@@ -20,6 +23,9 @@ public class UpdateItemQtyInteractorTest {
                 3, 5, "12", 0, 0));
     }
 
+    /** Test if update item use case correctly updates item when quantity is bought.
+     *
+     */
     @Test
     @Order(1)
     void UpdateQtyBought() {
@@ -61,6 +67,9 @@ public class UpdateItemQtyInteractorTest {
 
     }
 
+    /** Test if update item use case correctly updates item when quantity is bought.
+     *
+     */
     @Test
     @Order(2)
     void UpdateQtySold() {
@@ -100,6 +109,9 @@ public class UpdateItemQtyInteractorTest {
         interactor.updateQty(soldData);
     }
 
+    /** Test if update item use case correctly updates item when quantity is bought.
+     *
+     */
     @Test
     @Order(3)
     void UpdateQtyError() {
@@ -138,6 +150,9 @@ public class UpdateItemQtyInteractorTest {
         interactor.updateQty(errorData);
     }
 
+    /** Test if update item use case correctly gets item history.
+     *
+     */
     @Test
     @Order(4)
     void GetItemHistory() {

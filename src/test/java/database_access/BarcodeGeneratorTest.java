@@ -1,6 +1,5 @@
 package database_access;
 
-import database_access.BarcodeGenerator;
 import entities.TestResources;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -20,10 +19,14 @@ import java.util.List;
 
 public class BarcodeGeneratorTest {
 
-    private static HashMap<String, List<String>> barcodes = new HashMap<String, List<String>>();
+    private static final HashMap<String, List<String>> barcodes = new HashMap<>();
     private static File tempfile;
     private static File emptyTempfile;
 
+    /** Create test data for barcode generator testing.
+     *
+     * @throws IOException  file not found
+     */
     @BeforeAll
     static void createTestData() throws IOException {
         barcodes.put("01", new ArrayList<>(List.of("01000")));
@@ -43,6 +46,9 @@ public class BarcodeGeneratorTest {
 
     }
 
+    /** Given department is in csv, new barcode is written to csv.
+     *
+     */
     @Test
     void givenDepartmentInCsv_whenBarcodeGenerated_thenCorrectBarcodeAdded() {
         BarcodeGenerator.generateBarcode("11", barcodes, "src/test/java/test_files/barcode_test-copy.csv");
@@ -52,6 +58,9 @@ public class BarcodeGeneratorTest {
 
     }
 
+    /** Given department is not in csv, new barcode and department is written to csv.
+     *
+     */
     @Test
     void givenDepartmentNotInCsv_whenBarcodeGenerated_thenCorrectBarcodeAdded() {
         BarcodeGenerator.generateBarcode("13", barcodes, "src/test/java/test_files/barcode_test-copy.csv");
@@ -63,6 +72,9 @@ public class BarcodeGeneratorTest {
 
     }
 
+    /** Given csv is empty, new barcode and department is written to csv.
+     *
+     */
     @Test
     void givenEmptyCsv_whenBarcodeGenerated_thenCorrectBarcodeAdded() {
         barcodes.clear();
@@ -76,6 +88,9 @@ public class BarcodeGeneratorTest {
 
     }
 
+    /** Delete files created for testing.
+     *
+     */
     @AfterAll
     static void deleteTempFile() {
         tempfile.delete();

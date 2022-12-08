@@ -1,6 +1,5 @@
 package database_access;
 
-import database_access.BarcodeRemover;
 import entities.TestResources;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -22,9 +21,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BarcodeRemoverTest {
 
-    private static HashMap<String, List<String>> barcodes = new HashMap<String, List<String>>();
+    private static final HashMap<String, List<String>> barcodes = new HashMap<>();
     private static File tempfile;
 
+    /** Create test data for
+     *
+     * @throws IOException file not found.
+     */
     @BeforeAll
     static void createTestData() throws IOException {
         barcodes.put("01", new ArrayList<>(List.of("01000")));
@@ -37,6 +40,9 @@ class BarcodeRemoverTest {
         Files.copy(pathIn, pathOut, StandardCopyOption.REPLACE_EXISTING);
     }
 
+    /** Given csv with multiple barcodes in a department, test if correct barcode is removed.
+     *
+     */
     @Test
     void givenMultipleBarcodesInDepartment_whenBarcodeRemoved_thenCorrectBarcodeRemoved() {
         BarcodeRemover.removeBarcode("12011", barcodes, "src/test/java/test_files/barcode_test-copy.csv");
@@ -45,6 +51,9 @@ class BarcodeRemoverTest {
                 "12010, 12012", 2));
     }
 
+    /** Given a csv with a single barcode in a department, test if barcode and department is removed.
+     *
+     */
     @Test
     void givenSingleBarcodeInDepartment_whenBarcodeRemoved_thenDepartmentRemoved() {
         BarcodeRemover.removeBarcode("01000", barcodes, "src/test/java/test_files/barcode_test-copy.csv");
@@ -55,6 +64,9 @@ class BarcodeRemoverTest {
                 "11011, 11024", 1));
     }
 
+    /** Delete files used for testing.
+     *
+     */
     @AfterAll
     static void deleteTempFile() {
         tempfile.delete();

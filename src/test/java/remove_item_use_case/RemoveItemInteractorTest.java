@@ -12,6 +12,9 @@ public class RemoveItemInteractorTest {
 
     private static Inventory inv;
 
+    /** Create inventory with single item for testing.
+     *
+     */
     @BeforeAll
     static void createTestData() {
         inv = new Inventory("test");
@@ -19,6 +22,9 @@ public class RemoveItemInteractorTest {
                 3, 5, "12", 0, 0));
     }
 
+    /** Test if remove item use case correctly removes given item from inventory.
+     *
+     */
     @Test
     void removeItem() {
 

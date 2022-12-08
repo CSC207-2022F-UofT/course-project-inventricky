@@ -6,6 +6,13 @@ import update_item_quantity_use_case.UpdateItemQtyResponseModel;
 import java.util.Objects;
 
 public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
+
+    /** Update inventory screen with updated item quantity.
+     *
+     * @param item              updated item.
+     * @param inventoryTable    2d string array representing inventory.
+     * @return                  inventory view model containing inventory table.
+     */
     @Override
     public InventoryViewModel prepareQtySuccessView(UpdateItemQtyResponseModel item, String[][] inventoryTable) {
         InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable);
@@ -26,11 +33,21 @@ public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
         return inventoryViewModel;
     }
 
+    /** Show error message on fail.
+     *
+     * @param error error message
+     * @return      error message
+     */
     @Override
     public InventoryViewModel prepareQtyFailView(String error) {
         return null;
     }
 
+    /** Show item history screen
+     *
+     * @param item      selected item
+     * @return          item history view model
+     */
     @Override
     public ItemHistoryViewModel prepareHistorySuccessView(UpdateItemQtyResponseModel item) {
         ItemHistoryViewModel itemHistoryViewModel = new ItemHistoryViewModel(item.getItemHistory());
@@ -45,6 +62,11 @@ public class UpdateItemQtyInventoryUpdater implements UpdateItemQtyPresenter {
         return itemHistoryViewModel;
     }
 
+    /** Show error message on fail
+     *
+     * @param error error message
+     * @return      error message
+     */
     @Override
     public ItemHistoryViewModel prepareHistoryFailView(String error) {
         return null;

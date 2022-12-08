@@ -15,11 +15,23 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
     private final Inventory inventory;
 
     //pass in data access class, presenter
-    public UpdateItemQtyInteractor(UpdateItemQtyPresenter updateItemQtyDsPresenter, Inventory inventory) {
-        this.updateItemQtyPresenter = updateItemQtyDsPresenter;
+
+    /** Construct use case interactor.
+     *
+     * @param updateItemQtyPresenter    presenter for updating inventory screen.
+     * @param inventory                 current inventory.
+     */
+    public UpdateItemQtyInteractor(UpdateItemQtyPresenter updateItemQtyPresenter, Inventory inventory) {
+        this.updateItemQtyPresenter = updateItemQtyPresenter;
         this.inventory = inventory;
     }
 
+    /** Update selected item quantity.
+     *
+     * @param requestModel      request model containing selected item and what action to perform.
+     * @return                  inventory view model containing inventory in table format.
+     * @throws RuntimeException error with updating item quantity.
+     */
     @Override
     public InventoryViewModel updateQty(UpdateItemQtyRequestModel requestModel) throws RuntimeException {
 
@@ -51,6 +63,11 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
 
     }
 
+    /** Get selected item history.
+     *
+     * @param requestModel      request model containing selected item.
+     * @return                  item history view model containing item history.
+     */
     @Override
     public ItemHistoryViewModel GetItemHistory(UpdateItemQtyRequestModel requestModel) {
 
@@ -65,6 +82,13 @@ public class UpdateItemQtyInteractor implements UpdateItemQtyInputBoundary {
         throw new RuntimeException("error with getting item history"); //TODO exception
     }
 
+    /** Helper function for updating item quantity.
+     *
+     * @param inventory     current inventory.
+     * @param item          selected item.
+     * @param qtyInput      quantity input for selected item.
+     * @param updateReason  update reason for selected item.
+     */
     public static void updateQtyHelper(Inventory inventory, InventoryItem item, double qtyInput, String updateReason) {
 
 

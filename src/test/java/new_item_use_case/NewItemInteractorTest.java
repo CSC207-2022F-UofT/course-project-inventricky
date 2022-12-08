@@ -12,11 +12,17 @@ public class NewItemInteractorTest {
 
     private static Inventory inv;
 
+    /** Create empty inventory for testing.
+     *
+     */
     @BeforeAll
     static void createTestData() {
         inv = new Inventory("test");
     }
 
+    /** Test if new item use case correctly adds a new item to inventory.
+     *
+     */
     @Test
     void newItem() {
 
