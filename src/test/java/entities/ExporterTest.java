@@ -92,7 +92,7 @@ public class ExporterTest {
 
     /**
      * Asserts that the two files of the exported inventory exists at the specificed location
-     * @throws IOException as required by Exporter
+     * @throws IOException as required by Exporter class
      */
 
     @Test

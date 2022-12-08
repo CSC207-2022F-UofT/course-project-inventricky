@@ -6,7 +6,7 @@ public class ExportRequestModel {
 
     /**
      * Getter for inventorytable
-     * @return the contents of the inventory - inventorytable
+     * @return the contents of the inventory in the form of a table - inventorytable
      */
     public String[][] getInventorytable() {
         return inventorytable;

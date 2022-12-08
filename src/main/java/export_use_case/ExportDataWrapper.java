@@ -8,7 +8,7 @@ public class ExportDataWrapper {
 
     /**
      * Wraps the inventory data (its items) into a format that is later used by the exporter to write the data to files
-     * @param inventorytable inventory items stored in a 2D array of strings
+     * @param inventorytable inventory items stored in a 2-D array of strings
      * @param items_list a list of all the inventory items in the form of an Array list of objects
      */
     public ExportDataWrapper(String[][] inventorytable, ArrayList<Object> items_list) {
