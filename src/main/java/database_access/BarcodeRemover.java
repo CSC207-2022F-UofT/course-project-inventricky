@@ -35,7 +35,7 @@ public class BarcodeRemover {
             BufferedReader br = new BufferedReader(fileReader);
 
             //store departments as arrayList
-            ArrayList<String> departmentsString = new ArrayList<String>(Arrays.asList(br.readLine().split(COMMA_DELIMITER)));
+            ArrayList<String> departmentsString = new ArrayList<>(Arrays.asList(br.readLine().split(COMMA_DELIMITER)));
 
             //get index of department with deleted barcode in csv
             int depIndex = departmentsString.indexOf(department);
@@ -89,7 +89,7 @@ public class BarcodeRemover {
                     line = br.readLine();
                     if (lineIndex == depIndex) {
                         //store barcodes as arrayList
-                        ArrayList<String> barcodesString = new ArrayList<String>(Arrays.asList(line.split(COMMA_DELIMITER)));
+                        ArrayList<String> barcodesString = new ArrayList<>(Arrays.asList(line.split(COMMA_DELIMITER)));
                         barcodesString.remove(barcode); //remove barcode from line
                         //write barcodes to csv
                         bw.write(String.join(", ", barcodesString.stream().map(Object::toString).collect(Collectors.joining(", "))) +
