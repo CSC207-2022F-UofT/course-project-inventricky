@@ -10,6 +10,9 @@ import java.util.HashMap;
 public class ScratchUI extends JFrame{
     JTextField invName = new JTextField(15);
 
+    /** UI for creating from scratch.
+     * @param controllers The associated controllers.
+     */
     public ScratchUI(HashMap controllers) {
         this.setTitle("New Inventory Menu");
         JLabel title = new JLabel("New Inventory");

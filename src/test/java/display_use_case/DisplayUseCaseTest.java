@@ -4,6 +4,7 @@ import Screens.DisplayController;
 import Screens.DisplayInventoryUpdater;
 import Screens.InventoryViewModel;
 import entities.InventoryItem;
+import new_item_use_case.NewItemResponseModel;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -58,7 +59,17 @@ public class DisplayUseCaseTest {
                     Integer.toString(item.getCaseQuantity()), item.getDepartment()};
         }
         this.inventoryViewModel = new InventoryViewModel(inventoryTable, new String[]{});
-        DisplayPresenter displayPresenter = new DisplayInventoryUpdater();
+        DisplayPresenter displayPresenter = new DisplayPresenter() {
+            @Override
+            public InventoryViewModel prepareSuccessView(InventoryViewModel inventoryViewModel) {
+                return inventoryViewModel;
+            }
+
+            @Override
+            public NewItemResponseModel prepareFailView(String error) {
+                return null;
+            }
+        };
         DisplayInputBoundary displayInteractor = new DisplayInteractor(displayPresenter);
         this.displayController = new DisplayController(displayInteractor);
     }

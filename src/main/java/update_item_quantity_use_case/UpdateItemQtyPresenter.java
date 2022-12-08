@@ -9,6 +9,7 @@ public interface UpdateItemQtyPresenter {
 
     /** Presenters must implement this method.
      *
+     *
      * @param item              selected item to be updated.
      * @param inventoryTable    2d string array representing inventory.
      * @return                  inventory view model containing inventory in table format.

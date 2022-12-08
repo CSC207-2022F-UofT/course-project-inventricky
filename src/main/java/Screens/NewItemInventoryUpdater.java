@@ -30,3 +30,4 @@ public class NewItemInventoryUpdater implements NewItemPresenter {
         return null;
     }
 }
+

@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class ExportSuccessfulUI {
     /**
-     * Presents the screen (by generating the button, message, and returning to main menu upon closure)
+     * Presents the pop-up screen (by generating the button, message, and returning to main menu upon closure)
      * after the inventory is exported successfully
      */
     public void present() {

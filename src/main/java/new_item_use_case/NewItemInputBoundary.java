@@ -13,3 +13,4 @@ public interface NewItemInputBoundary {
      */
     InventoryViewModel addItem(NewItemRequestModel requestModel, boolean testing);
 }
+

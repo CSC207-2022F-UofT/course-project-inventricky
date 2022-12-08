@@ -119,3 +119,4 @@ public class AddNewItemUI extends JFrame implements ActionListener{
 
     }
 }
+

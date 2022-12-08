@@ -8,31 +8,27 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class OrderHistoryUI extends JFrame implements ActionListener{
-
     OrderingController orderController;
     ReceivingController receiveController;
-
-    String receivedOrderName = "";
-    String receivedStatus = "";
     DefaultTableModel model = new DefaultTableModel();
     JTable table = new JTable(model);
-
     static String selectedOrderName;
-
     static String selectedCasesBought;
-
-
     static JFrame parent;
     public static void setParent(JFrame parent3) {
         parent = parent3;
     }
-
-
     static String dateReceived;
 
-
+    /**
+     * Construct a new screen for displaying all orders.
+     * @param orderViewModel        order view model to update order history.
+     * @param orderController       order use case controller.
+     * @param receiveController     receive use case controller.
+     */
     public OrderHistoryUI(OrderHistoryViewModel orderViewModel, OrderingController orderController,
                           ReceivingController receiveController) {
+        // create panel, buttons, title
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         this.setSize(700, 1000);
@@ -46,6 +42,7 @@ public class OrderHistoryUI extends JFrame implements ActionListener{
         button.addActionListener(this);
         receivingButton.addActionListener(this);
 
+        // add columns
         table.setShowGrid(false);
         model.addColumn("Name");
         model.addColumn("Barcode");
@@ -56,10 +53,10 @@ public class OrderHistoryUI extends JFrame implements ActionListener{
         model.addColumn("Cases Bought");
         panel.add(buttons);
 
-
         this.orderController = orderController;
         this.receiveController = receiveController;
 
+        // add orders to table
         for (int i = orderViewModel.getOrderList().length - 1; i >= 0; i--) {
             model.addRow(orderViewModel.getOrderList()[i]);
         }
@@ -67,6 +64,11 @@ public class OrderHistoryUI extends JFrame implements ActionListener{
         ListSelectionModel rowSelectionModel = table.getSelectionModel();
         rowSelectionModel.addListSelectionListener(new ListSelectionListener() {
 
+            /**
+             * When a row is clicked within the order history table, store the order name and cases bought
+             * and set the date received.
+             * @param e the event that characterizes the change.
+             */
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 selectedOrderName = (String) table.getValueAt(table.getSelectedRow(), 0);
@@ -77,7 +79,7 @@ public class OrderHistoryUI extends JFrame implements ActionListener{
         });
 
 
-                JScrollPane scroll = new JScrollPane(table);
+        JScrollPane scroll = new JScrollPane(table);
         this.add(scroll);
 
         //Adding Components to the frame.
@@ -88,7 +90,12 @@ public class OrderHistoryUI extends JFrame implements ActionListener{
 
     }
 
-
+    /**
+     * If the user clicks the button, "Place Order", close the order history screen and open the order window
+     * screen. If the user clicks the button, "Receive Order", check if the order has not been received yet and if so,
+     * receive the order.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Place Order")) {
@@ -98,7 +105,7 @@ public class OrderHistoryUI extends JFrame implements ActionListener{
         else if(e.getActionCommand().equals("Receive Order")){
             if(selectedOrderName != null && table.getValueAt(table.getSelectedRow(), 4).equals("")){
                 InventoryUI.setOrderViewModel(receiveController.updateShipmentStatus(selectedOrderName,
-                        Integer.parseInt(selectedCasesBought), dateReceived, parent));
+                        dateReceived, parent));
                 this.dispose();
 
             }

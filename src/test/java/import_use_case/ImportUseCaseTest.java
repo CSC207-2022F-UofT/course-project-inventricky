@@ -17,11 +17,17 @@ public class ImportUseCaseTest {
         // Set up for use case similar to what is in main.java
         HashMap<String, Object> controllers = new HashMap<>();
         Inventory inv = new Inventory("test");
-        ImportPresenter importPresenter = new ImportInventoryUpdater();
+        ImportPresenter importPresenter = new ImportPresenter() {
+            @Override
+            public InventoryViewModel prepareSuccessView(String[][] inventoryTable, String[] inventoryHistory, HashMap<String, Object> controllers, String invName) {
+                InventoryViewModel inventoryViewModel = new InventoryViewModel(inventoryTable, inventoryHistory);
+                return inventoryViewModel;
+            }
+        };
         ImportInventory importInventory = new ImportInventory(inv, importPresenter, controllers);
         ImportController importController = new ImportController(importInventory);
         controllers.put("importController", importController);
-        ImportRequestModel importRequestModel = new ImportRequestModel(inv.getName(), "src/test/java/test_files/serializable_inventory.txt");
+        ImportRequestModel importRequestModel = new ImportRequestModel(inv.getName(), "src/test/java/test_files/serializable_import_test.txt");
 
         // Call to import through use case
         InventoryViewModel inventoryViewModel = importInventory.create(importRequestModel);
@@ -38,3 +44,8 @@ public class ImportUseCaseTest {
         }
     }
 }
+
+
+
+
+

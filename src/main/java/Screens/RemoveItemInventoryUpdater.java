@@ -29,3 +29,4 @@ public class RemoveItemInventoryUpdater implements RemoveItemPresenter {
         return null;
     }
 }
+

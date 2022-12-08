@@ -63,3 +63,4 @@ public class NewItemInteractor implements NewItemInputBoundary {
         return newItemPresenter.prepareSuccessView(newItemResponseModel, inventoryTable, inventoryHistory);
     }
 }
+

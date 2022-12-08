@@ -10,7 +10,7 @@ public class ImportUI extends JFrame {
     JTextField fileName = new JTextField(15);
     ImportController importController;
 
-    /**
+    /** A UI for the import option.
      * @param controllers The associated controllers for ImportUI.
      */
     public ImportUI(HashMap controllers) {
@@ -69,3 +69,8 @@ public class ImportUI extends JFrame {
     }
 
 }
+
+
+
+
+
