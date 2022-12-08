@@ -6,7 +6,7 @@ public class AnalysisController {
     private final Analysis analysis;
 
     /**
-     * AnalysisController Contrsuctor
+     * AnalysisController Constructor
      * @param analysis the Analysis object I will perform the required analysis on
      */
     public AnalysisController(Analysis analysis){
