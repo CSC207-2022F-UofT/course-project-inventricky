@@ -1,6 +1,6 @@
-import DisplayUseCase.DisplayInputBoundary;
-import DisplayUseCase.DisplayInteractor;
-import DisplayUseCase.DisplayPresenter;
+import display_use_case.DisplayInputBoundary;
+import display_use_case.DisplayInteractor;
+import display_use_case.DisplayPresenter;
 import Screens.*;
 import analysis_use_case.Analysis;
 import delete_inventory_use_case.DeleteInventoryInputBoundary;
