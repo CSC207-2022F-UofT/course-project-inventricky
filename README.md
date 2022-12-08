@@ -3,7 +3,82 @@ Group #60 proudly presents "Inventricky", an inventory system that is tailored f
 Our program allows the user to make their inventory and manage their stock of items and orders among other features which are mentioned further in this document.
 
 ### Instructions
-In your very first use of the program, make sure you start an inventory from scratch (considering you haven't used the program before and have nothing to import). After naming and creating your inventory, you can add items using the add item button. You can update the quantity or even remove added items if desired. Make sure to check out the different analysis options as you add quantities and add items. Adding orders follows a similar process, only you have to go through the order UI. Try making an order and receiving it! You'll notice that quantities will update on the inventory to reflect this change. You can search for items by name, filter by department or sort by namy different attributes. When you are satisfied with your inventory, you can export it. You'll notice new files in the "exports" folder, one that is readable (a .txt) file and one that is meant for importing purposes (serializable___.txt). After a succesful export, try importing an inventory using this file. You'll see the inventory you created before, feel free to play around with it more!
+#### Inventory Creation
+
+In your very first use of the program, make sure you start an inventory from scratch 
+(considering you haven't used the program before and have nothing to import). Make sure your file name does not already
+exist for an inventory in the exports folder, and that it is valid (i.e. no spaces).
+
+#### Adding items
+
+After naming and creating your inventory, you can add items using the add item button. You will be greeted by a field
+to input your item details. Press confirm to add the item to inventory.
+
+* Name: name of the item (must be unique)
+* Quantified by weight: true if the item is quantified in kg, otherwise quantified per unit
+* Price Bought: cost of the item to the business per kg/unit, can be a double
+* Selling Price: price of the item for consumer per kg/unit, can be a double
+* Case Quantity: units/kgs of item per case
+* Department Number: 2 digit department number of item (e.g. 09, 99, 12)
+
+#### Removing items
+
+Click on an item in the inventory to bring up an item menu with an option to remove the item. Press confirm remove
+to remove the item.
+
+#### Updating item quantity
+
+To update the quantity of an item, click on the item to bring up the item menu and select the Update Item Quantity 
+dropdown. To update quantity bought, select the bought option and type in the quantity bought. To update the quantity
+sold, select the sold option and type in the quantity sold. To update the quantity due to an error, select the error 
+option and type in the correct quantity. Click confirm update to make these changes.
+
+#### Getting item history
+
+To get the history of quantity changes of an item, click get item history in the item menu. You can also see these changes
+for all items in the inventory by clicking the history button at the bottom of the inventory screen.
+
+#### Item analysis
+
+Click on the generate analysis menu button at the top of the inventory screen to get analysis data about the current 
+inventory. You can get the revenue breakdown, cost breakdown and profit/loss.
+
+#### Search, sort and filter
+
+The inventory menu contains options for searching, sorting, and filtering the inventory. The sort option provides various
+ways to sort the inventory, such as alphabetically or by barcode. The filter option allows you to filter the inventory
+by department number. The search option lets you search for an item by name. This works for both substrings and superstrings, 
+and ignores capitalization.
+
+#### Placing an order
+
+To place an order for an item, click on order in the inventory menu and select order history. This will bring up the 
+order history with an option at the bottom to place an order. Clicking on place order will bring up a screen similar to 
+the one for adding a new item. To place an order for an item not in the inventory, fill the input fields and click
+place order, which will update the order history. To place an order for an existing item, fill in the input fields with
+the same data as the existing item. When placing an order, you can specify how many cases to buy and which supplier 
+your order is from. For definition of input fields, see instructions for adding a new item.
+
+#### Receiving an order
+
+To receive an order, select the order in the order history and click receive order below. This will mark the order as
+received and update the item quantity in the inventory. 
+
+#### Exporting
+
+To export an inventory, click the export button in the inventory menu bar at the bottom. This will export a .txt file,
+serializable file, and csv to the export folder. The .txt file contains a user readable inventory. If the export files
+in the exports folder already exist, this will overwrite the files.
+
+#### Importing
+
+To import an inventory, select the imported option when creating the inventory and select the serializable file of the 
+inventory in the exports folder.
+
+#### Deleting inventory
+
+To delete an inventory, select the delete inventory menu option and confirm deletion. This will delete the inventory and
+all exports of the inventory in the exports folder.
 
 ### Getting Started / Importing
 Upon starting the program, the user will have the option to import an inventory or create an inventory from Scratch.
