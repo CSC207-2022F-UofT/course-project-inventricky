@@ -9,7 +9,6 @@ import java.util.HashMap;
 public class MainCreationUI extends JFrame {
 
     public MainCreationUI(HashMap controllers) {
-//        JFrame frame = new JFrame("Main Menu");
         JPanel panel = new JPanel();
         JButton button = new JButton("Create New Inventory");
         panel.add(button);

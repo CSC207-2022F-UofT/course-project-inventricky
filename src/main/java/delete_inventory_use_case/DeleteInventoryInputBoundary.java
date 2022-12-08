@@ -5,4 +5,5 @@ import Screens.InventoryViewModel;
 public interface DeleteInventoryInputBoundary {
 
     InventoryViewModel deleteInventory(DeleteInventoryRequestModel requestModel, boolean testing);
+
 }

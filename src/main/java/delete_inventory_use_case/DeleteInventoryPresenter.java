@@ -6,7 +6,6 @@ import remove_item_use_case.RemoveItemResponseModel;
 import java.util.HashMap;
 
 public interface DeleteInventoryPresenter {
-
     InventoryViewModel prepareSuccessView(HashMap controllers);
 
 }
