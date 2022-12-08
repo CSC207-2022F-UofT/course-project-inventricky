@@ -1,6 +1,7 @@
 package import_use_case;
 
 import java.util.HashMap;
+import Screens.InventoryViewModel;
 
 public interface ImportPresenter {
     /**
