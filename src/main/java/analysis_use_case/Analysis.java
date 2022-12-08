@@ -1,4 +1,8 @@
-package entities;
+package analysis_use_case;
+
+import entities.Inventory;
+import entities.InventoryItem;
+import entities.Order;
 
 import java.util.ArrayList;
 
@@ -20,7 +24,7 @@ public class Analysis {
      * The last index should have the total revenue of the inventory
      */
     public ArrayList<String> totalRevenueBreakdown() {
-        ArrayList<String> RevenueItems = new ArrayList<String>();
+        ArrayList<String> RevenueItems = new ArrayList<>();
         RevenueItems.add("Revenue:");
         for (InventoryItem item : inventory.getItems()) {
             String ItemBreakdown;
@@ -48,7 +52,7 @@ public class Analysis {
      * The last index should have the total cost of the inventory
      */
     public ArrayList<String> totalCostsBreakdown(){
-        ArrayList<String> CostItems = new ArrayList<String>();
+        ArrayList<String> CostItems = new ArrayList<>();
         CostItems.add("Costs:");
         for (InventoryItem item : inventory.getItems()){
             String ItemBreakdown;

@@ -5,5 +5,5 @@ public interface NewAnalysisPresenter {
      * This is the interface the presenter screen updater implements
      * @param list the list contains the data to be updated
      */
-    public void showArray(String[] list);
+    void showArray(String[] list);
 }

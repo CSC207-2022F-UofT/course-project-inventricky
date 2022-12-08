@@ -1,9 +1,6 @@
 package Screens;
 
-import entities.*;
-
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class AnalysisRevenueBreakdownUI extends JFrame {
     /**
